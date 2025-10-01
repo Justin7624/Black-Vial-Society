@@ -7,75 +7,40 @@
   <style>
     :root{
       --bg:#0e0f12; --card:#16171c; --muted:#1e2027; --ink:#e8e9ef; --ink-2:#b8b9c2;
-      --brand:#63e6be; --brand-2:#3fc29a; --warn:#ffdd57; --accent:#8ab4ff;
+      --brand:#63e6be; --brand-2:#3fc29a; --accent:#8ab4ff;
       --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35)
     }
     *{box-sizing:border-box}
     html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.45}
-    a{color:var(--accent);text-decoration:none}
-    header{
-      position:sticky;top:0;z-index:20;
-      background:linear-gradient(180deg,#0e0f12 60%,rgba(14,15,18,.7));
-      border-bottom:1px solid #222531
-    }
+    header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0e0f12 60%,rgba(14,15,18,.7));border-bottom:1px solid #222531}
     .wrap{max-width:1100px;margin:auto;padding:18px}
     .brand{display:flex;gap:16px;align-items:center;letter-spacing:.06em}
     .brand h1{margin:0;font-size:20px;font-weight:800}
     .tagline{color:var(--ink-2);font-size:12px;margin-top:-2px}
-    .hero{
-      display:grid;gap:18px;margin:22px auto 8px auto;align-items:center;
-      grid-template-columns:1fr; text-align:left;
-    }
+    .hero{display:grid;gap:18px;margin:22px auto 8px auto;align-items:center;grid-template-columns:1fr;text-align:left}
     .toolbar{display:flex;gap:10px;flex-wrap:wrap}
-    .search{
-      flex:1 1 340px;display:flex;align-items:center;gap:10px;
-      background:var(--card);border:1px solid #272a36;border-radius:999px;
-      padding:10px 14px 10px 14px; box-shadow:var(--shadow)
-    }
-    .search input{
-      width:100%;background:transparent;border:0;color:var(--ink);outline:none;font-size:14px
-    }
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;border:1px solid #2b2e3b;background:var(--muted);
-      color:var(--ink-2);padding:8px 12px;border-radius:999px;cursor:pointer;user-select:none
-    }
-    .chip.active{border-color:var(--brand-2);background:rgba(99,230,190,.12);color:var(--ink)}
+    .search{flex:1 1 340px;display:flex;align-items:center;gap:10px;background:#16171c;border:1px solid #272a36;border-radius:999px;padding:10px 14px;box-shadow:var(--shadow)}
+    .search input{width:100%;background:transparent;border:0;color:var(--ink);outline:none;font-size:14px}
+    .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid #2b2e3b;background:#1e2027;color:#b8b9c2;padding:8px 12px;border-radius:999px;cursor:pointer;user-select:none}
+    .chip.active{border-color:#3fc29a;background:rgba(99,230,190,.12);color:var(--ink)}
     .grid{display:grid;gap:16px;margin:16px 0 80px 0;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-    .card{
-      background:linear-gradient(180deg,#16171c,#15161b);
-      border:1px solid #262938;border-radius:var(--radius);
-      padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px
-    }
+    .card{background:linear-gradient(180deg,#16171c,#15161b);border:1px solid #262938;border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
     .title{display:flex;justify-content:space-between;gap:10px;align-items:center}
     .title h3{margin:0;font-size:16px}
-    .pill{
-      font-size:11px;background:rgba(99,230,190,.12);color:var(--brand);border:1px solid var(--brand-2);
-      padding:5px 8px;border-radius:999px
-    }
-    .desc{color:var(--ink-2);font-size:13px}
+    .pill{font-size:11px;background:rgba(99,230,190,.12);color:#63e6be;border:1px solid #3fc29a;padding:5px 8px;border-radius:999px}
+    .desc{color:#b8b9c2;font-size:13px}
     .onset{color:#e9e9f5;font-size:12px;background:#1c2130;border:1px dashed #2f3650;padding:8px;border-radius:10px}
     .doses{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
-    .dose{
-      padding:6px 10px;border-radius:10px;border:1px solid #2b2e3b;background:#1a1c22;
-      font-size:12px;color:var(--ink);cursor:default
-    }
-    details.dropdown{
-      margin-top:6px;border:1px solid #252838;border-radius:12px;overflow:hidden;background:#14161b
-    }
-    details > summary{
-      list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;font-size:13px;
-      display:flex;justify-content:space-between;align-items:center
-    }
+    .dose{padding:6px 10px;border-radius:10px;border:1px solid #2b2e3b;background:#1a1c22;font-size:12px;color:var(--ink)}
+    details.dropdown{margin-top:6px;border:1px solid #252838;border-radius:12px;overflow:hidden;background:#14161b}
+    details > summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;font-size:13px;display:flex;justify-content:space-between;align-items:center}
     details > summary::-webkit-details-marker{display:none}
-    .drop-body{padding:12px 14px;border-top:1px solid #24283a;color:var(--ink-2);font-size:13px}
-    .mute{color:var(--ink-2)}
-    .footer{
-      position:fixed;left:0;right:0;bottom:0;background:#0f1116;border-top:1px solid #242736
-    }
+    .drop-body{padding:12px 14px;border-top:1px solid #24283a;color:#c8c9d4;font-size:13px}
+    .footer{position:fixed;left:0;right:0;bottom:0;background:#0f1116;border-top:1px solid #242736}
     .foot-wrap{max-width:1100px;margin:auto;padding:10px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between}
-    .notice{font-size:12px;color:var(--ink-2)}
-    .empty{color:var(--ink-2);text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
-    .small{font-size:12px;color:var(--ink-2)}
+    .notice{font-size:12px;color:#b8b9c2}
+    .empty{color:#b8b9c2;text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
+    .small{font-size:12px;color:#b8b9c2}
   </style>
 </head>
 <body>
@@ -115,82 +80,219 @@
 
   <footer class="footer">
     <div class="foot-wrap">
-      <div class="notice">This guide is for educational use only. It’s not medical advice.</div>
+      <div class="notice">Educational use only. Not medical advice.</div>
       <div></div>
     </div>
   </footer>
 
   <script>
-    // --- Data ---------------------------------------------------------------
+    // Helper: HTML escape for inline snippets
+    const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+    // Data (assertive phrasing + custom “More info” per item)
     const DATA = [
-      { key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
-        short:"Helps with weight loss and blood sugar by helping you feel full sooner.",
-        onset:"Less hunger may be felt in ~2 weeks; weight changes build over 2–3 months.",
-        doses:["5 mg","10 mg","15 mg","30 mg"] },
-      { key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
-        short:"Supports weight loss and lowers blood sugar; already used for type 2 diabetes.",
-        onset:"Blood sugar can drop in days; weight and appetite shifts in 1–2 months.",
-        doses:["10 mg","15 mg","30 mg"] },
-      { key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
-        short:"Helps you eat less and improves blood sugar; used for weight loss and diabetes.",
-        onset:"Sugar improves in days; visible weight change in ~6–8 weeks.",
-        doses:["5 mg","10 mg"] },
-      { key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
-        short:"May boost everyday energy and help the body use fat better.",
-        onset:"Some people notice more energy within 1–2 weeks.",
-        doses:["10 mg"] },
-      { key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
-        short:"Helps the skin tan more easily; many use it to deepen skin tone.",
-        onset:"Tanning usually builds over 1–2 weeks with repeated use.",
-        doses:["10 mg"] },
-      { key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
-        short:"Similar to MT-1 for tanning; some also notice increased libido.",
-        onset:"Tanning within days to weeks; libido effects may appear sooner.",
-        doses:["10 mg"] },
-      { key:"glow", name:"Glow", badge:"Beauty", category:"energy",
-        short:"Blend often marketed for skin, hair, and nails (ingredients vary by seller).",
-        onset:"Changes are gradual—usually weeks to months.",
-        doses:["70 mg"] },
-      { key:"klow", name:"Klow", badge:"Wellness", category:"energy",
-        short:"General wellness/anti-aging style blend (formula varies).",
-        onset:"Typically weeks to months.",
-        doses:["80 mg"] },
-      { key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
-        short:"Helps curb appetite; sometimes paired with other weight-loss meds.",
-        onset:"Less hunger in about a week; weight changes in several weeks.",
-        doses:["5 mg"] },
-      { key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
-        short:"Common duo for joints, tendons, and soft-tissue support.",
-        onset:"Some feel less soreness in days; tissue support builds over weeks.",
-        doses:["10 mg"] },
-      { key:"nad", name:"NAD+", badge:"Energy", category:"energy",
-        short:"Supports cellular energy; some use it for fatigue or healthy aging.",
-        onset:"Energy/clarity may be felt within hours to days.",
-        doses:["500 mg"] },
-      { key:"ipa", name:"IPA", badge:"Metabolism", category:"energy",
-        short:"Sold for fat-burning/energy by some sellers (formulas vary).",
-        onset:"Often days to weeks depending on the goal.",
-        doses:["10 mg"] },
-      { key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
-        short:"Encourages natural growth-hormone release; can reduce belly fat.",
-        onset:"Hormone changes in days; shape changes take weeks to months.",
-        doses:["10 mg"] },
-      { key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
-        short:"Supports the cell’s ‘power plants’ (mitochondria) for energy and resilience.",
-        onset:"Some report benefits within days to weeks.",
-        doses:["10 mg"] },
-      { key:"bac10", name:"Bacteriostatic Water", badge:"Supply", category:"supplies",
+      {
+        key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
+        short:"Drives strong weight loss and steadies blood sugar by making you feel full quickly.",
+        onset:"Hunger drops in ~2 weeks; visible weight changes build over 2–3 months.",
+        fact:"Early head-to-head timelines show larger and faster average weight loss vs. tirzepatide at similar checkpoints in mid-stage studies.",
+        doses:["5 mg","10 mg","15 mg","30 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Appetite control, fat loss, glucose control.</li>
+          <li><b>Why it stands out:</b> Triple action (GLP-1, GIP, glucagon). In mid-stage research it outpaced tirzepatide at comparable time points.</li>
+          <li><b>What people notice first:</b> Smaller portions feel satisfying; snacking fades.</li>
+          <li><b>Common notes:</b> Start low and build to manage nausea; consistent routine matters.</li>
+        </ul>`
+      },
+      {
+        key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
+        short:"Cuts appetite, lowers A1C, and supports steady weight loss.",
+        onset:"Blood sugar improves in days; appetite and weight shift across 1–2 months.",
+        fact:"Dual action (GLP-1 + GIP). Strong long-term weight-loss data and diabetes outcomes.",
+        doses:["10 mg","15 mg","30 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Weight loss and diabetes control.</li>
+          <li><b>Strength:</b> Proven A1C reduction and durable weight loss with dose titration.</li>
+          <li><b>Tips:</b> Eat slowly and prioritize protein to maximize fullness.</li>
+        </ul>`
+      },
+      {
+        key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
+        short:"Reduces hunger, improves blood sugar, and supports meaningful weight loss.",
+        onset:"Blood sugar shifts in days; weight change shows in 6–8 weeks.",
+        fact:"GLP-1–only action with well-known dosing schedules and safety profile.",
+        doses:["5 mg","10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Appetite control, weight loss, cardiometabolic support.</li>
+          <li><b>Use notes:</b> Weekly rhythm and slow dose steps improve tolerability.</li>
+          <li><b>Pairing:</b> Works best with higher-protein meals and regular movement.</li>
+        </ul>`
+      },
+      {
+        key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
+        short:"Boosts everyday energy and helps the body use fat more efficiently during activity.",
+        onset:"Energy lift shows within 1–2 weeks in many users.",
+        fact:"Mitochondria-related peptide that supports metabolic flexibility.",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Energy, exercise endurance, fat use during workouts.</li>
+          <li><b>Best use:</b> Consistency plus light cardio amplifies results.</li>
+          <li><b>Timing:</b> Many prefer morning or pre-workout.</li>
+        </ul>`
+      },
+      {
+        key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
+        short:"Deepens tan and increases skin pigment gradually.",
+        onset:"Noticeable darkening builds across 1–2 weeks.",
+        fact:"Targets tanning with a smoother profile than MT-2 for many users.",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Tanning with a steady, controlled look.</li>
+          <li><b>Rhythm:</b> Loading phase then spaced upkeep.</li>
+          <li><b>Note:</b> Use sunscreen—darker tone doesn’t replace protection.</li>
+        </ul>`
+      },
+      {
+        key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
+        short:"Deepens tan quickly; some users also notice increased libido.",
+        onset:"Tan builds over days to weeks; libido effects can appear sooner.",
+        fact:"Faster tanning response than MT-1 for many users.",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Rapid tanning response.</li>
+          <li><b>Use notes:</b> Start conservatively to manage sensitivity and tone.</li>
+          <li><b>Compare:</b> Tans faster than MT-1 but can feel stronger.</li>
+        </ul>`
+      },
+      {
+        key:"glow", name:"Glow", badge:"Beauty", category:"energy",
+        short:"Supports skin, hair, and nail appearance with a high-dose blend.",
+        onset:"Visible changes build over several weeks.",
+        fact:"Formula targets collagen support and complexion tone (varies by supplier).",
+        doses:["70 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Complexion, hair fullness, nail strength.</li>
+          <li><b>Timeline:</b> Track photos every 2–4 weeks for changes.</li>
+          <li><b>Stacking:</b> Hydration and protein intake improve outcomes.</li>
+        </ul>`
+      },
+      {
+        key:"klow", name:"Klow", badge:"Wellness", category:"energy",
+        short:"Backs general wellness and healthy aging with a broad blend.",
+        onset:"Benefits accumulate over weeks to months.",
+        fact:"Multi-target support; exact components differ by seller.",
+        doses:["80 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Daily vitality and recovery.</li>
+          <li><b>Best use:</b> Steady routine; pair with sleep and micronutrients.</li>
+          <li><b>Expectation:</b> Slow-and-steady changes rather than quick spikes.</li>
+        </ul>`
+      },
+      {
+        key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
+        short:"Controls appetite and enhances fullness; pairs well with GLP-1 drugs.",
+        onset:"Fullness improves within ~1 week; weight changes follow in several weeks.",
+        fact:"Amylin-pathway support that complements GLP-1 agents.",
+        doses:["5 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Strong fullness, smaller portions, weight control.</li>
+          <li><b>Synergy:</b> Often combined with GLP-1s for amplified appetite control.</li>
+          <li><b>Cue:</b> Eat to satisfaction, not to “clean the plate.”</li>
+        </ul>`
+      },
+      {
+        key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
+        short:"Supports joint, tendon, and soft-tissue recovery.",
+        onset:"Less soreness can show in days; tissue support builds over weeks.",
+        fact:"Combines gastric-derived repair support (BPC-157) with actin-pathway support (TB-500).",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Tendon comfort, joint support, mobility.</li>
+          <li><b>Use:</b> Pair with gentle mobility work and graded loading.</li>
+          <li><b>Note:</b> Consistent sleep and protein intake speed up progress.</li>
+        </ul>`
+      },
+      {
+        key:"nad", name:"NAD+", badge:"Energy", category:"energy",
+        short:"Elevates cellular energy and mental clarity.",
+        onset:"Energy/clarity can appear within hours to days.",
+        fact:"Core co-enzyme for energy production (redox).",
+        doses:["500 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Daytime energy, focus, recovery from fatigue.</li>
+          <li><b>Timing:</b> Daytime use helps avoid sleep disruption.</li>
+          <li><b>Stack:</b> Hydration and B-vitamin sufficiency support its effects.</li>
+        </ul>`
+      },
+      {
+        key:"ipa", name:"IPA", badge:"Metabolism", category:"energy",
+        short:"Promotes fat-burning and steady energy (formulations differ by seller).",
+        onset:"Changes build across days to weeks.",
+        fact:"Used in cutting/energy protocols; exact ingredients vary.",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Metabolic drive and training energy.</li>
+          <li><b>Best use:</b> Pair with consistent steps or light cardio.</li>
+          <li><b>Note:</b> Verify specific composition from your supplier.</li>
+        </ul>`
+      },
+      {
+        key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
+        short:"Stimulates natural growth-hormone release and trims deep belly fat.",
+        onset:"Hormone shifts show in days; body shape changes take weeks to months.",
+        fact:"Targets visceral fat; preserves lean mass with training and protein.",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Midsection fat reduction and body recomposition.</li>
+          <li><b>Best pair:</b> Resistance training plus adequate protein.</li>
+          <li><b>Rhythm:</b> Consistent schedule improves outcomes.</li>
+        </ul>`
+      },
+      {
+        key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
+        short:"Supports mitochondria for steadier energy and resilience.",
+        onset:"Benefits can appear within days to weeks.",
+        fact:"Targets inner-mitochondrial membranes to improve efficiency.",
+        doses:["10 mg"],
+        more:`<ul>
+          <li><b>Focus:</b> Cellular energy and recovery from exertion.</li>
+          <li><b>Best use:</b> Regular movement and sunlight compound the effect.</li>
+          <li><b>Note:</b> Useful during phases of high training load.</li>
+        </ul>`
+      },
+      {
+        key:"bac10", name:"Bacteriostatic Water", badge:"Supply", category:"supplies",
         short:"Sterile water used to mix peptides. Not a treatment by itself.",
-        onset:"—", doses:["10 mL"] },
-      { key:"hospira30", name:"Hospira Bacteriostatic Water", badge:"Supply", category:"supplies",
-        short:"Same purpose as above, from a brand-name manufacturer.",
-        onset:"—", doses:["30 mL"] },
-      { key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
-        short:"Sterile acidic diluent for peptides that prefer a lower pH when mixed.",
-        onset:"—", doses:["10 mL"] },
+        onset:"—", fact:"Contains a small amount of preservative for multi-use vials.", doses:["10 mL"],
+        more:`<ul>
+          <li><b>Use:</b> Reconstitutes peptides to a measured volume.</li>
+          <li><b>Storage:</b> Keep sterile; refrigerate after opening when required.</li>
+          <li><b>Tip:</b> Label the vial with date and concentration.</li>
+        </ul>`
+      },
+      {
+        key:"hospira30", name:"Hospira Bacteriostatic Water", badge:"Supply", category:"supplies",
+        short:"Brand-name sterile water for mixing peptides.",
+        onset:"—", fact:"Same purpose as above in a 30 mL format.", doses:["30 mL"],
+        more:`<ul>
+          <li><b>Use:</b> Mix to target concentration for consistent dosing.</li>
+          <li><b>Format:</b> Larger volume is convenient for multiple vials.</li>
+          <li><b>Note:</b> Maintain clean technique to protect potency.</li>
+        </ul>`
+      },
+      {
+        key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
+        short:"Sterile acidic diluent for peptides that require a lower pH when mixed.",
+        onset:"—", fact:"Commonly used for peptides that stay stable in mild acidity.", doses:["10 mL"],
+        more:`<ul>
+          <li><b>Use:</b> For peptides that specify acidic reconstitution.</li>
+          <li><b>Tip:</b> Follow your product’s exact mixing ratio.</li>
+          <li><b>Storage:</b> Keep sealed and labeled.</li>
+        </ul>`
+      },
     ];
 
-    // --- Render --------------------------------------------------------------
+    // Render
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const q = document.getElementById('q');
@@ -199,26 +301,16 @@
     const makeCard = item => `
       <article class="card" data-key="${item.key}" data-cat="${item.category}">
         <div class="title">
-          <h3>${item.name}</h3>
-          <span class="pill">${item.badge}</span>
+          <h3>${esc(item.name)}</h3>
+          <span class="pill">${esc(item.badge)}</span>
         </div>
-        <p class="desc">${item.short}</p>
-        <div class="onset"><strong>When you might notice something:</strong> ${item.onset}</div>
+        <p class="desc">${esc(item.short)}</p>
+        <div class="onset"><strong>When you notice changes:</strong> ${esc(item.onset)}</div>
+        ${item.fact ? `<div class="small" style="opacity:.9">Fact: ${esc(item.fact)}</div>` : ``}
         <div class="doses" aria-label="Available strengths">${item.doses.map(makeDose).join('')}</div>
-
         <details class="dropdown">
-          <summary>
-            More info
-            <span class="small mute">▼</span>
-          </summary>
-          <div class="drop-body">
-            <ul style="margin:0 0 6px 18px">
-              <li>Keep expectations realistic—most benefits build gradually.</li>
-              <li>Results vary by person, dose, lifestyle, and consistency.</li>
-              <li>Talk to a licensed clinician before starting anything new.</li>
-            </ul>
-            <div class="small">This content is for education only and isn’t medical advice.</div>
-          </div>
+          <summary>More info <span class="small" style="opacity:.7">▼</span></summary>
+          <div class="drop-body">${item.more}</div>
         </details>
       </article>
     `;
@@ -229,21 +321,18 @@
     }
     render(DATA);
 
-    // --- Search & filter -----------------------------------------------------
+    // Search & filter
     let activeFilter = 'all';
-
     function applyFilters(){
       const term = q.value.trim().toLowerCase();
       const filtered = DATA.filter(x=>{
         const passCat = activeFilter==='all' ? true : x.category===activeFilter;
-        const blob = [x.name, x.short, x.badge, x.category].join(' ').toLowerCase();
+        const blob = [x.name, x.short, x.badge, x.category, x.fact].join(' ').toLowerCase();
         return passCat && (term==='' || blob.includes(term));
       });
       render(filtered);
     }
-
     q.addEventListener('input', applyFilters);
-
     document.querySelectorAll('.chip[data-filter]').forEach(ch=>{
       ch.addEventListener('click', ()=>{
         document.querySelectorAll('.chip[data-filter]').forEach(c=>c.classList.remove('active'));
@@ -252,8 +341,6 @@
         applyFilters();
       });
     });
-
-    // Expand/Collapse all dropdowns
     document.getElementById('expand').addEventListener('click', ()=>{
       document.querySelectorAll('details.dropdown').forEach(d=>d.open=true);
     });
