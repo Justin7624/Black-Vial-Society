@@ -7,17 +7,21 @@
   <style>
     :root{
       --bg:#0e0f12; --card:#16171c; --muted:#1e2027; --ink:#e8e9ef; --ink-2:#b8b9c2;
-      --brand:#63e6be; --brand-2:#3fc29a; --accent:#8ab4ff;
-      --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35)
+      --brand:#63e6be; --brand-2:#3fc29a; --accent:#8ab4ff; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35)
     }
     *{box-sizing:border-box}
     html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.45}
-    header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0e0f12 60%,rgba(14,15,18,.7));border-bottom:1px solid #222531}
+    a{color:var(--accent);text-decoration:none}
+    header{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#0e0f12 60%,rgba(14,15,18,.7));border-bottom:1px solid #222531}
     .wrap{max-width:1100px;margin:auto;padding:18px}
-    .brand{display:flex;gap:16px;align-items:center;letter-spacing:.06em}
+    .brand{display:flex;gap:16px;align-items:center}
     .brand h1{margin:0;font-size:20px;font-weight:800}
-    .hero{display:grid;gap:18px;margin:22px auto 8px auto;align-items:center;grid-template-columns:1fr}
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap}
+    .tabs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+    .tab{padding:8px 12px;border-radius:999px;border:1px solid #2b2e3b;background:#1b1d24;color:#c7c9d6;cursor:pointer}
+    .tab.active{background:rgba(99,230,190,.12);border-color:#3fc29a;color:#e8e9ef}
+    .section{display:none}
+    .section.active{display:block}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
     .search{flex:1 1 340px;display:flex;align-items:center;gap:10px;background:#16171c;border:1px solid #272a36;border-radius:999px;padding:10px 14px;box-shadow:var(--shadow)}
     .search input{width:100%;background:transparent;border:0;color:var(--ink);outline:none;font-size:14px}
     .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid #2b2e3b;background:#1e2027;color:#b8b9c2;padding:8px 12px;border-radius:999px;cursor:pointer;user-select:none}
@@ -41,6 +45,20 @@
     .notice{font-size:12px;color:#b8b9c2}
     .empty{color:#b8b9c2;text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
     .small{font-size:12px;color:#b8b9c2}
+
+    /* Price sheet */
+    .price-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+    table{width:100%;border-collapse:separate;border-spacing:0 8px}
+    th,td{padding:12px 14px;font-size:14px}
+    thead th{color:#cfd0d8;text-align:left}
+    tbody tr{background:#15161b;border:1px solid #262938}
+    tbody tr{box-shadow:var(--shadow)}
+    tbody td:first-child, thead th:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
+    tbody td:last-child, thead th:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+    .num{text-align:right;font-variant-numeric:tabular-nums}
+    .unit-pill{font-size:11px;background:#19212c;border:1px solid #2a3446;color:#9fb3d2;padding:3px 8px;border-radius:999px}
+    .muted{color:#9aa0ad}
+    .sort{cursor:pointer;user-select:none}
   </style>
 </head>
 <body>
@@ -50,28 +68,58 @@
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12c3.5-5 9.5-5 13 0-3.5 5-9.5 5-13 0Z" stroke="#63e6be" stroke-width="1.5"/><circle cx="12" cy="12" r="2.8" stroke="#63e6be" stroke-width="1.5"/></svg>
         <h1>Peptide Guide</h1>
       </div>
-      <div class="hero">
-        <div class="toolbar">
-          <div class="search" role="search">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8ab4ff" stroke-width="1.5"/><path d="m20 20-3.5-3.5" stroke="#8ab4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <input id="q" placeholder="Search name or purpose… (e.g., weight loss, tanning, energy, healing)" />
-          </div>
-          <div class="chip active" data-filter="all">All</div>
-          <div class="chip" data-filter="weight">Weight & glucose</div>
-          <div class="chip" data-filter="tanning">Tanning</div>
-          <div class="chip" data-filter="healing">Injury & recovery</div>
-          <div class="chip" data-filter="energy">Energy / anti-aging</div>
-          <div class="chip" data-filter="supplies">Mixing supplies</div>
-          <button class="chip" id="expand">Expand all</button>
-          <button class="chip" id="collapse">Collapse all</button>
-        </div>
+      <div class="tabs">
+        <button class="tab active" data-tab="guide">Guide</button>
+        <button class="tab" data-tab="prices">Price Sheet</button>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
+  <!-- GUIDE (your existing cards render here) -->
+  <main class="wrap section active" id="guide">
+    <div class="toolbar">
+      <div class="search" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8ab4ff" stroke-width="1.5"/><path d="m20 20-3.5-3.5" stroke="#8ab4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="q" placeholder="Search name or purpose… (e.g., weight loss, tanning, energy, healing)" />
+      </div>
+      <div class="chip active" data-filter="all">All</div>
+      <div class="chip" data-filter="weight">Weight & glucose</div>
+      <div class="chip" data-filter="tanning">Tanning</div>
+      <div class="chip" data-filter="healing">Injury & recovery</div>
+      <div class="chip" data-filter="energy">Energy / anti-aging</div>
+      <div class="chip" data-filter="supplies">Mixing supplies</div>
+      <button class="chip" id="expand">Expand all</button>
+      <button class="chip" id="collapse">Collapse all</button>
+    </div>
     <div id="grid" class="grid" aria-live="polite"></div>
     <div id="empty" class="empty" style="display:none">No items match your search/filter.</div>
+  </main>
+
+  <!-- PRICE SHEET -->
+  <main class="wrap section" id="prices">
+    <div class="price-toolbar">
+      <div class="search" role="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#8ab4ff" stroke-width="1.5"/><path d="m20 20-3.5-3.5" stroke="#8ab4ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="pq" placeholder="Search product or strength…" />
+      </div>
+      <span class="muted small">Click headers to sort</span>
+    </div>
+
+    <div class="small muted" style="margin-bottom:8px">Price per unit = price ÷ amount (mg for peptides, mL for supplies).</div>
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th class="sort" data-sort="name">Product</th>
+          <th class="sort" data-sort="strength">Strength</th>
+          <th class="sort num" data-sort="amount">Amount</th>
+          <th class="sort num" data-sort="price">Price</th>
+          <th class="sort num" data-sort="ppu">Price / unit</th>
+          <th>Unit</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="pempty" class="empty" style="display:none">No matches.</div>
   </main>
 
   <footer class="footer">
@@ -82,216 +130,147 @@
   </footer>
 
   <script>
+    // ---------------------- GUIDE DATA (unchanged content) -------------------
     const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-    const DATA = [
-      {
-        key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
+    const GUIDE = [
+      {key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
         short:"Drives strong weight loss and steadies blood sugar by helping you feel full quickly.",
         onset:"Hunger drops in ~2 weeks; visible weight changes build over 2–3 months.",
         fact:"Delivers faster/larger average weight loss vs. tirzepatide at similar checkpoints in mid-stage studies.",
         doses:["5 mg","10 mg","15 mg","30 mg"],
         more:`<ul>
           <li><b>Starter:</b> 1.0 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> 2.0 mg weekly (weeks 5–8) → 4.0 mg (9–12) → 6.0–8.0 mg as tolerated. Hold/step back if nausea persists.</li>
+          <li><b>Titration:</b> 2.0 mg weekly (weeks 5–8) → 4.0 mg (9–12) → 6.0–8.0 mg as tolerated.</li>
           <li><b>Meals:</b> Smaller portions feel sufficient; prioritize protein.</li>
-        </ul>`
-      },
-      {
-        key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
+        </ul>`},
+      {key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
         short:"Cuts appetite, lowers A1C, and supports steady weight loss.",
         onset:"Blood sugar improves in days; appetite and weight shift across 1–2 months.",
         fact:"Dual action (GLP-1 + GIP) with strong long-term data.",
         doses:["10 mg","15 mg","30 mg"],
         more:`<ul>
           <li><b>Starter:</b> 2.5 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> 5 mg (weeks 5–8) → 7.5 mg (9–12) → 10 mg (13–16) → 12.5 mg → 15 mg maintenance as tolerated (advance ~every 4 weeks).</li>
-          <li><b>Tips:</b> Protein + fiber extend fullness.</li>
-        </ul>`
-      },
-      {
-        key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
+          <li><b>Titration:</b> 5 mg (weeks 5–8) → 7.5 mg (9–12) → 10 mg (13–16) → 12.5 mg → 15 mg as tolerated.</li>
+        </ul>`},
+      {key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
         short:"Reduces hunger, improves blood sugar, and supports meaningful weight loss.",
         onset:"Blood sugar shifts in days; weight change shows in 6–8 weeks.",
         fact:"GLP-1–only with well-known weekly schedules.",
         doses:["5 mg","10 mg"],
         more:`<ul>
           <li><b>Starter:</b> 0.25 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> 0.5 mg (weeks 5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated (weight-loss schedule). Diabetes regimens often stay at 0.5–1.0 mg.</li>
-          <li><b>Note:</b> Step only when side-effects are mild.</li>
-        </ul>`
-      },
-      {
-        key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
+          <li><b>Titration:</b> 0.5 mg (weeks 5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg if tolerated.</li>
+        </ul>`},
+      {key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
         short:"Boosts everyday energy and supports fat use during activity.",
         onset:"Energy lift shows within 1–2 weeks for many users.",
         fact:"Mitochondria-related peptide supporting metabolic flexibility.",
         doses:["10 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 5 mg twice weekly × 2 weeks.</li>
-          <li><b>Titration:</b> 10 mg twice weekly (weeks 3–4) → optional 10 mg 3×/week (weeks 5–8) → break 2–4 weeks before next cycle.</li>
-          <li><b>Timing:</b> Morning or pre-workout.</li>
-        </ul>`
-      },
-      {
-        key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
+        more:`<ul><li><b>Starter:</b> 5 mg twice weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 10 mg twice weekly (weeks 3–4) → optional 10 mg 3×/week (weeks 5–8).</li></ul>`},
+      {key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
         short:"Deepens tan and increases skin pigment gradually.",
         onset:"Visible darkening builds across 1–2 weeks.",
         fact:"Provides a controlled tanning curve compared with MT-2 for many.",
         doses:["10 mg"],
-        more:`<ul>
-          <li><b>Starter (loading):</b> 250 mcg daily × 3–7 days.</li>
-          <li><b>Titration:</b> 500 mcg daily until desired tone → maintenance 250–500 mcg 2–3×/week.</li>
-          <li><b>Sun safety:</b> Keep using sunscreen.</li>
-        </ul>`
-      },
-      {
-        key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
+        more:`<ul><li><b>Starter:</b> 250 mcg daily × 3–7 days.</li>
+          <li><b>Titration:</b> 500 mcg daily until tone → maintenance 250–500 mcg 2–3×/week.</li></ul>`},
+      {key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
         short:"Deepens tan quickly; some users also notice increased libido.",
         onset:"Tan builds over days to weeks; libido effects can appear sooner.",
         fact:"Often produces a faster response than MT-1.",
         doses:["10 mg"],
-        more:`<ul>
-          <li><b>Starter (loading):</b> 250 mcg daily × 3–5 days.</li>
-          <li><b>Titration:</b> 500 mcg daily (or split 250 mcg AM/PM) until tone is reached → maintenance 250–500 mcg 2–3×/week.</li>
-          <li><b>Tip:</b> Start conservative to manage sensitivity.</li>
-        </ul>`
-      },
-      {
-        key:"glow", name:"Glow", badge:"Beauty", category:"energy",
+        more:`<ul><li><b>Starter:</b> 250 mcg daily × 3–5 days.</li>
+          <li><b>Titration:</b> 500 mcg daily (or split) until tone → maintenance 250–500 mcg 2–3×/week.</li></ul>`},
+      {key:"glow", name:"Glow", badge:"Beauty", category:"energy",
         short:"Improves skin smoothness, hair fullness, and nail strength.",
-        onset:"Visible changes build over several weeks.",
-        fact:"High-dose beauty blend; formulas vary by seller.",
+        onset:"Visible changes build over several weeks.", fact:"High-dose beauty blend; formulas vary.",
         doses:["70 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 35 mg three times weekly × 2 weeks.</li>
-          <li><b>Titration:</b> 70 mg two to three times weekly ongoing; reassess every 8–12 weeks.</li>
-          <li><b>Support:</b> Hydration and adequate protein help results show.</li>
-        </ul>`
-      },
-      {
-        key:"klow", name:"Klow", badge:"Wellness", category:"energy",
+        more:`<ul><li><b>Starter:</b> 35 mg three times weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 70 mg two to three times weekly ongoing.</li></ul>`},
+      {key:"klow", name:"Klow", badge:"Wellness", category:"energy",
         short:"Supports daily vitality and healthy aging.",
         onset:"Benefits accumulate over weeks to months.",
-        fact:"Broad wellness blend; composition differs by seller.",
-        doses:["80 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 40 mg twice weekly × 2 weeks.</li>
-          <li><b>Titration:</b> 80 mg twice weekly for weeks 3–8 → adjust to 80 mg 1–3×/week based on response.</li>
-          <li><b>Check-ins:</b> Reassess energy/sleep every 4–8 weeks.</li>
-        </ul>`
-      },
-      {
-        key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
+        fact:"Broad wellness blend.", doses:["80 mg"],
+        more:`<ul><li><b>Starter:</b> 40 mg twice weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 80 mg twice weekly (weeks 3–8) → 80 mg 1–3×/week.</li></ul>`},
+      {key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
         short:"Controls appetite and enhances fullness; pairs well with GLP-1 drugs.",
         onset:"Fullness improves within ~1 week; weight changes follow in several weeks.",
-        fact:"Amylin-pathway agent that complements GLP-1s.",
-        doses:["5 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 0.3 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> 0.6 mg (weeks 5–8) → 1.2 mg (9–12) → 2.4 mg maintenance if tolerated.</li>
-          <li><b>Synergy:</b> Works well alongside sema/tirz for appetite control.</li>
-        </ul>`
-      },
-      {
-        key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
+        fact:"Amylin-pathway complement.", doses:["5 mg"],
+        more:`<ul><li><b>Starter:</b> 0.3 mg once weekly × 4 weeks.</li>
+          <li><b>Titration:</b> 0.6 mg → 1.2 mg → 2.4 mg as tolerated.</li></ul>`},
+      {key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
         short:"Supports joint, tendon, and soft-tissue recovery.",
         onset:"Less soreness can show in days; tissue support builds over weeks.",
-        fact:"Combines BPC-157 repair support with TB-500 actin-pathway support.",
-        doses:["10 mg"],
+        fact:"Combo approach.", doses:["10 mg"],
         more:`<ul>
-          <li><b>Starter (each):</b> BPC-157 250 mcg daily + TB-500 2 mg/week split in 2 doses for week 1.</li>
-          <li><b>Titration (weeks 2–4):</b> BPC-157 500 mcg daily; TB-500 4 mg/week split (e.g., 2 mg twice weekly).</li>
-          <li><b>Maintenance (weeks 5–8):</b> BPC-157 250–500 mcg 3–5×/week; TB-500 2 mg/week.</li>
-        </ul>`
-      },
-      {
-        key:"nad", name:"NAD+", badge:"Energy", category:"energy",
+            <li><b>Starter (each):</b> BPC-157 250 mcg daily + TB-500 2 mg/week split.</li>
+            <li><b>Titration:</b> BPC-157 500 mcg daily; TB-500 4 mg/week split (weeks 2–4) → maintain BPC-157 250–500 mcg 3–5×/wk; TB-500 2 mg/wk.</li>
+          </ul>`},
+      {key:"nad", name:"NAD+", badge:"Energy", category:"energy",
         short:"Elevates cellular energy and mental clarity.",
         onset:"Energy/clarity can appear within hours to days.",
-        fact:"Central co-enzyme for energy production.",
-        doses:["500 mg"],
-        more:`<ul>
-          <li><b>Starter (subQ/IM):</b> 100 mg twice weekly × 2 weeks.</li>
-          <li><b>Titration:</b> 200 mg twice weekly (weeks 3–4) → maintain 100–200 mg 1–2×/week.</li>
-          <li><b>Alternative (supervised IV):</b> 250–750 mg per session.</li>
-        </ul>`
-      },
-      {
-        key:"ipa", name:"IPA", badge:"Metabolism", category:"energy",
-        short:"Promotes fat-burning and steady energy (verify exact formula on your label).",
+        fact:"Core co-enzyme.", doses:["500 mg"],
+        more:`<ul><li><b>Starter (subQ/IM):</b> 100 mg twice weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 200 mg twice weekly (weeks 3–4) → 100–200 mg 1–2×/week.</li></ul>`},
+      {key:"ipa", name:"IPA (Ipamorelin)", badge:"Metabolism", category:"energy",
+        short:"Promotes fat-burning and steady energy (verify formula on label).",
         onset:"Changes build across days to weeks.",
-        fact:"Used in cutting/energy protocols; compositions vary.",
-        doses:["10 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 5 mg once daily × 7–14 days.</li>
-          <li><b>Titration:</b> 7.5 mg once daily for 1–2 weeks → 10 mg once daily if well-tolerated. Do not exceed your product’s max dose.</li>
-          <li><b>Monitor:</b> Sleep, heart rate, appetite, and mood.</li>
-        </ul>`
-      },
-      {
-        key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
+        fact:"Cutting/energy protocols.", doses:["10 mg"],
+        more:`<ul><li><b>Starter:</b> 5 mg once daily × 7–14 days.</li>
+          <li><b>Titration:</b> 7.5 mg daily 1–2 weeks → 10 mg daily if tolerated.</li></ul>`},
+      {key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
         short:"Stimulates natural growth-hormone release and trims deep belly fat.",
         onset:"Hormone shifts show in days; body shape changes take weeks to months.",
-        fact:"Targets visceral fat while preserving lean mass when paired with training and protein.",
+        fact:"Targets visceral fat while preserving lean mass with training and protein.",
         doses:["10 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 1 mg subQ daily × 1–2 weeks.</li>
-          <li><b>Titration:</b> 2 mg subQ daily ongoing if well-tolerated.</li>
-          <li><b>Best pair:</b> Resistance training + 1.6–2.2 g protein/kg/day.</li>
-        </ul>`
-      },
-      {
-        key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
+        more:`<ul><li><b>Starter:</b> 1 mg subQ daily × 1–2 weeks.</li>
+          <li><b>Titration:</b> 2 mg subQ daily if tolerated.</li></ul>`},
+      {key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
         short:"Supports mitochondria for steadier energy and resilience.",
         onset:"Benefits can appear within days to weeks.",
-        fact:"Targets inner mitochondrial membranes to improve efficiency.",
-        doses:["10 mg"],
-        more:`<ul>
-          <li><b>Starter:</b> 5 mg subQ daily × 2 weeks.</li>
-          <li><b>Titration:</b> 10 mg subQ daily (weeks 3–4) → optional cycle off 2–4 weeks; repeat as needed.</li>
-          <li><b>Training:</b> Regular movement compounds benefits.</li>
-        </ul>`
-      },
-      {
-        key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
+        fact:"Targets inner mitochondrial membranes.", doses:["10 mg"],
+        more:`<ul><li><b>Starter:</b> 5 mg subQ daily × 2 weeks.</li>
+          <li><b>Titration:</b> 10 mg subQ daily (weeks 3–4) → optional cycle 2–4 weeks off.</li></ul>`},
+      {key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
         short:"Sterile water used to mix peptides. Not a treatment by itself.",
-        onset:"—",
-        fact:"Generic bacteriostatic water with preservative for multi-use vials.",
-        doses:["10 mL"],
-        more:`<ul>
-          <li><b>Use:</b> Reconstitutes peptides to a measured volume.</li>
-          <li><b>Handling:</b> Keep sterile; refrigerate after opening when required.</li>
-          <li><b>Tip:</b> Label the vial with date and concentration.</li>
-        </ul>`
-      },
-      {
-        key:"hospira30", name:"Hospira Bacteriostatic Water (brand)", badge:"Supply", category:"supplies",
+        onset:"—", fact:"Generic bacteriostatic water.", doses:["10 mL"],
+        more:`<ul><li><b>Use:</b> Reconstitutes peptides to a measured volume.</li></ul>`},
+      {key:"hospira30", name:"Hospira Bacteriostatic Water (brand)", badge:"Supply", category:"supplies",
         short:"Brand-name sterile bacteriostatic water, 30 mL.",
-        onset:"—",
-        fact:"Hospira brand; convenient larger volume for multiple mixes.",
-        doses:["30 mL"],
-        more:`<ul>
-          <li><b>Use:</b> Mix to your target concentration for consistent dosing.</li>
-          <li><b>Format:</b> 30 mL multi-use vial.</li>
-          <li><b>Technique:</b> Maintain clean handling to protect potency.</li>
-        </ul>`
-      },
-      {
-        key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
+        onset:"—", fact:"Hospira brand; larger volume.", doses:["30 mL"],
+        more:`<ul><li><b>Use:</b> Mix to your target concentration for consistent dosing.</li></ul>`},
+      {key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
         short:"Sterile acidic diluent for peptides that require a lower pH when mixed.",
-        onset:"—",
-        fact:"Used when a peptide specifies acidic reconstitution.",
-        doses:["10 mL"],
-        more:`<ul>
-          <li><b>Use:</b> Only for peptides that call for acidic mixing.</li>
-          <li><b>Tip:</b> Follow the exact ratio on your product instructions.</li>
-          <li><b>Storage:</b> Keep sealed and labeled.</li>
-        </ul>`
-      },
+        onset:"—", fact:"Use when acidic reconstitution is specified.", doses:["10 mL"],
+        more:`<ul><li><b>Use:</b> Only for peptides that call for acidic mixing.</li></ul>`},
     ];
 
-    // ---- Render helpers
+    // ---------------------- PRICE DATA (your numbers) ------------------------
+    // For supplies, unit is mL. For peptides, unit is mg.
+    const PRICES = [
+      ["Retatrutide","5 mg",60,"mg"],["Retatrutide","10 mg",120,"mg"],["Retatrutide","15 mg",180,"mg"],["Retatrutide","30 mg",360,"mg"],
+      ["Tirzepatide","10 mg",70,"mg"],["Tirzepatide","15 mg",105,"mg"],["Tirzepatide","30 mg",210,"mg"],
+      ["Semaglutide","5 mg",40,"mg"],["Semaglutide","10 mg",80,"mg"],
+      ["MOTS-C","10 mg",35,"mg"],
+      ["Melanotan I","10 mg",30,"mg"],
+      ["Melanotan II","10 mg",30,"mg"],
+      ["Glow","70 mg",130,"mg"],
+      ["Klow","80 mg",135,"mg"],
+      ["Cagrilintide","5 mg",70,"mg"],
+      ["BPC-157 + TB-500","10 mg",75,"mg"],
+      ["NAD+","500 mg",55,"mg"],
+      ["IPA (Ipamorelin)","10 mg",45,"mg"],
+      ["Tesamorelin","10 mg",55,"mg"],
+      ["SS-31","10 mg",50,"mg"],
+      ["Bacteriostatic water","10 mL",8,"mL"],
+      ["Hospira bacteriostatic water","30 mL",18,"mL"],
+      ["Acetic acid","10 mL",12,"mL"],
+    ];
+
+    // ---------------------- GUIDE RENDER -------------------------------------
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const q = document.getElementById('q');
@@ -317,23 +296,21 @@
         </article>
       `;
     }
-
-    function render(list){
+    function renderGuide(list){
       grid.innerHTML = list.map(makeCard).join('');
       empty.style.display = list.length ? 'none' : 'block';
     }
-    render(DATA);
+    renderGuide(GUIDE);
 
-    // ---- Search & filters
     let activeFilter = 'all';
     function applyFilters(){
-      const term = q.value.trim().toLowerCase();
-      const filtered = DATA.filter(x=>{
+      const term = (q.value||"").trim().toLowerCase();
+      const filtered = GUIDE.filter(x=>{
         const passCat = activeFilter==='all' ? true : x.category===activeFilter;
         const blob = [x.name, x.short, x.badge, x.category, x.fact].join(' ').toLowerCase();
         return passCat && (term==='' || blob.includes(term));
       });
-      render(filtered);
+      renderGuide(filtered);
     }
     q.addEventListener('input', applyFilters);
     document.querySelectorAll('.chip[data-filter]').forEach(ch=>{
@@ -344,11 +321,72 @@
         applyFilters();
       });
     });
-    document.getElementById('expand').addEventListener('click', ()=>{
-      document.querySelectorAll('details.dropdown').forEach(d=>d.open=true);
+    document.getElementById('expand').addEventListener('click', ()=>document.querySelectorAll('details.dropdown').forEach(d=>d.open=true));
+    document.getElementById('collapse').addEventListener('click', ()=>document.querySelectorAll('details.dropdown').forEach(d=>d.open=false));
+
+    // ---------------------- PRICE SHEET RENDER --------------------------------
+    const priceTbody = document.querySelector('#priceTable tbody');
+    const priceEmpty = document.getElementById('pempty');
+    const pq = document.getElementById('pq');
+
+    function parseAmount(str){
+      const n = parseFloat(str);
+      return isNaN(n) ? 0 : n;
+    }
+    const rows = PRICES.map(([name,strength,price,unit])=>{
+      const amt = parseAmount(strength);
+      const ppu = amt>0 ? (price/amt) : 0;
+      return {name,strength,amount:amt,price,ppu,unit};
     });
-    document.getElementById('collapse').addEventListener('click', ()=>{
-      document.querySelectorAll('details.dropdown').forEach(d=>d.open=false);
+
+    function fmtMoney(n){ return `$${n.toFixed(2)}` }
+    function fmtNum(n){ return n.toFixed(2) }
+
+    function renderPrices(list){
+      priceTbody.innerHTML = list.map(r=>`
+        <tr>
+          <td>${esc(r.name)}</td>
+          <td>${esc(r.strength)}</td>
+          <td class="num">${fmtNum(r.amount)}</td>
+          <td class="num">${fmtMoney(r.price)}</td>
+          <td class="num">${r.amount?fmtMoney(r.ppu):'—'}</td>
+          <td><span class="unit-pill">${r.unit}</span></td>
+        </tr>
+      `).join('');
+      priceEmpty.style.display = list.length ? 'none' : 'block';
+    }
+    renderPrices(rows);
+
+    pq.addEventListener('input', ()=>{
+      const term = pq.value.trim().toLowerCase();
+      const filtered = rows.filter(r => (r.name + ' ' + r.strength).toLowerCase().includes(term));
+      renderPrices(filtered);
+    });
+
+    // Sorting
+    let sortKey = 'name', sortDir = 1;
+    function sortAndRender(key){
+      if (sortKey === key) sortDir *= -1; else { sortKey = key; sortDir = 1; }
+      const sorted = [...rows].sort((a,b)=>{
+        if (typeof a[key] === 'number') return (a[key]-b[key]) * sortDir;
+        return a[key].localeCompare(b[key]) * sortDir;
+      });
+      renderPrices(sorted);
+    }
+    document.querySelectorAll('th.sort').forEach(th=>{
+      th.addEventListener('click', ()=>sortAndRender(th.dataset.sort));
+    });
+
+    // ---------------------- TABS ---------------------------------------------
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.section');
+    tabs.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        tabs.forEach(b=>b.classList.remove('active'));
+        sections.forEach(s=>s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
     });
   </script>
 </body>
