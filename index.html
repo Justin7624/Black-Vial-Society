@@ -9,7 +9,7 @@
     --bg:#0e0f12; --card:#16171c; --muted:#1e2027; --ink:#e8e9ef; --ink-2:#b8b9c2;
     --brand:#63e6be; --brand-2:#3fc29a; --accent:#8ab4ff; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
 
-    /* Classic mini syringe colors (borrowed from your calculator) */
+    /* Classic mini syringe colors (from calculator) */
     --classic-accent:#7c5cff;
     --classic-accent-b:#5b9dff;
     --classic-accent-2:#25d0a6;
@@ -168,7 +168,7 @@ const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
 const money = n => `$${n.toFixed(2)}`;
 const num = n => n.toFixed(2);
 
-/* ---------- Classic math (same as your calculator) ---------- */
+/* ---------- Classic math ---------- */
 function classicCalc({mgPerVial, diluentMl, desiredMg, syringeScale=100}) {
   const mlPerUnit = 1/100;             // U-100
   const mgPerMl   = mgPerVial / diluentMl;
@@ -177,43 +177,205 @@ function classicCalc({mgPerVial, diluentMl, desiredMg, syringeScale=100}) {
   return { mgPerUnit, units, unitsPct: Math.max(0, Math.min(100, (units/syringeScale)*100)) };
 }
 
-/* ---------- GUIDE DATA (trimmed to focus; keep yours here) ---------- */
+/* ---------- FULL GUIDE DATA (all items restored) ---------- */
 const GUIDE = [
   {key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
     short:"Drives strong weight loss and steadies blood sugar by helping you feel full quickly.",
     onset:"Hunger drops in ~2 weeks; visible weight changes build over 2–3 months.",
-    fact:"Delivers faster/larger average weight loss vs. tirzepatide in mid-stage data.",
+    fact:"Delivers faster/larger average weight loss vs. tirzepatide at similar checkpoints in mid-stage studies.",
     doses:["5 mg","10 mg","15 mg","30 mg"],
-    more:`<ul><li><b>Starter:</b> 1.0 mg weekly × 4 weeks.</li><li><b>Titration:</b> 2.0 mg (w5–8) → 4.0 mg (w9–12) → 6–8 mg as tolerated.</li></ul>`},
+    more:`<ul>
+      <li><b>Starter:</b> 1.0 mg once weekly × 4 weeks.</li>
+      <li><b>Titration:</b> 2.0 mg weekly (weeks 5–8) → 4.0 mg (9–12) → 6.0–8.0 mg as tolerated. Hold/step back if nausea persists.</li>
+      <li><b>Meals:</b> Smaller portions feel sufficient; prioritize protein.</li>
+    </ul>`},
   {key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
     short:"Cuts appetite, lowers A1C, and supports steady weight loss.",
-    onset:"Glucose shifts in days; appetite/weight over 1–2 months.",
-    fact:"Dual GLP-1 + GIP action.",
+    onset:"Blood sugar improves in days; appetite and weight shift across 1–2 months.",
+    fact:"Dual GLP-1 + GIP action with strong long-term data.",
     doses:["10 mg","15 mg","30 mg"],
-    more:`<ul><li><b>Starter:</b> 2.5 mg weekly × 4 weeks.</li><li><b>Titration:</b> 5 → 7.5 → 10 → 12.5 → 15 mg every ~4 weeks as tolerated.</li></ul>`},
+    more:`<ul>
+      <li><b>Starter:</b> 2.5 mg once weekly × 4 weeks.</li>
+      <li><b>Titration:</b> 5 mg (weeks 5–8) → 7.5 mg (9–12) → 10 mg (13–16) → 12.5 mg → 15 mg maintenance as tolerated (advance ~every 4 weeks).</li>
+      <li><b>Tips:</b> Protein + fiber extend fullness.</li>
+    </ul>`},
   {key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
-    short:"Reduces hunger and improves blood sugar.",
-    onset:"Glucose in days; weight in 6–8 weeks.",
-    fact:"GLP-1 weekly schedule.",
+    short:"Reduces hunger, improves blood sugar, and supports meaningful weight loss.",
+    onset:"Blood sugar shifts in days; weight change shows in 6–8 weeks.",
+    fact:"GLP-1–only with well-known weekly schedules.",
     doses:["5 mg","10 mg"],
-    more:`<ul><li><b>Starter:</b> 0.25 mg weekly × 4.</li><li><b>Titration:</b> 0.5 → 1.0 → 1.7 → 2.4 mg if tolerated.</li></ul>`},
+    more:`<ul>
+      <li><b>Starter:</b> 0.25 mg once weekly × 4 weeks.</li>
+      <li><b>Titration:</b> 0.5 mg (weeks 5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated.</li>
+      <li><b>Notes:</b> Advance only when side-effects are mild and stable.</li>
+    </ul>`},
+  {key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
+    short:"Boosts everyday energy and helps the body use fat better.",
+    onset:"People often notice more energy within 1–2 weeks.",
+    fact:"Mitochondria-related peptide supporting metabolic flexibility.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 5 mg twice weekly × 2 weeks.</li>
+      <li><b>Titration:</b> 10 mg twice weekly (weeks 3–4) → optional 10 mg 3×/week (weeks 5–8) → break 2–4 weeks before next cycle.</li>
+      <li><b>Timing:</b> Morning or pre-workout works well.</li>
+    </ul>`},
+  {key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
+    short:"Deepens tan more easily; many use it to deepen skin tone.",
+    onset:"Tanning usually builds over 1–2 weeks with repeated use.",
+    fact:"Provides a slower, more controlled tanning curve than MT-2 for many.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter (loading):</b> 250 mcg daily × 3–7 days.</li>
+      <li><b>Titration:</b> 500 mcg daily until desired tone → maintenance 250–500 mcg 2–3×/week.</li>
+      <li><b>Sun safety:</b> Keep sunscreen/shade habits.</li>
+    </ul>`},
+  {key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
+    short:"Similar to MT-1 for tanning; some also notice increased libido.",
+    onset:"Tanning may start in days to weeks; libido effects may appear sooner.",
+    fact:"Often produces a faster response than MT-1.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter (loading):</b> 250 mcg daily × 3–5 days.</li>
+      <li><b>Titration:</b> 500 mcg daily (or split 250 mcg AM/PM) until tone reached → maintenance 250–500 mcg 2–3×/week.</li>
+      <li><b>Tip:</b> Start conservative to manage sensitivity/freckles.</li>
+    </ul>`},
+  {key:"glow", name:"Glow", badge:"Beauty", category:"energy",
+    short:"Blend used for skin, hair, and nails.",
+    onset:"Changes are gradual—usually weeks to months.",
+    fact:"High-dose beauty blend; ingredients vary by seller.",
+    doses:["70 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 35 mg 3×/week × 2 weeks.</li>
+      <li><b>Titration:</b> 70 mg 2–3×/week ongoing; reassess every 8–12 weeks.</li>
+      <li><b>Support:</b> Hydration + protein help results show.</li>
+    </ul>`},
+  {key:"klow", name:"Klow", badge:"Wellness", category:"energy",
+    short:"General wellness/anti-aging style blend (formula varies).",
+    onset:"Typically weeks to months.",
+    fact:"Broad vitality blend; composition differs by seller.",
+    doses:["80 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 40 mg twice weekly × 2 weeks.</li>
+      <li><b>Titration:</b> 80 mg twice weekly for weeks 3–8 → adjust to 80 mg 1–3×/week based on response.</li>
+      <li><b>Check-ins:</b> Reassess energy/sleep every 4–8 weeks.</li>
+    </ul>`},
+  {key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
+    short:"Helps curb appetite; sometimes paired with other weight-loss meds.",
+    onset:"Less hunger in about a week; weight changes in several weeks.",
+    fact:"Amylin-pathway agent that complements GLP-1s.",
+    doses:["5 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 0.3 mg once weekly × 4 weeks.</li>
+      <li><b>Titration:</b> 0.6 mg (weeks 5–8) → 1.2 mg (9–12) → 2.4 mg maintenance if tolerated.</li>
+      <li><b>Synergy:</b> Combine with GLP-1s for appetite control when supervised.</li>
+    </ul>`},
+  {key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
+    short:"Helps joints, tendons, and soft-tissue recovery.",
+    onset:"Many notice less soreness in days; tissue support builds over weeks.",
+    fact:"Combines BPC-157 repair support with TB-500 actin-pathway support.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter (each):</b> BPC-157 <u>250 mcg daily</u> + TB-500 <u>2 mg/week</u> split into 2 doses for week 1.</li>
+      <li><b>Titration (weeks 2–4):</b> BPC-157 500 mcg daily; TB-500 4 mg/week split (e.g., 2 mg twice weekly).</li>
+      <li><b>Maintenance (weeks 5–8):</b> BPC-157 250–500 mcg 3–5×/week; TB-500 2 mg/week.</li>
+      <li><b>Rehab:</b> Add gentle mobility + progressive loading.</li>
+    </ul>`},
+  {key:"nad", name:"NAD+", badge:"Energy", category:"energy",
+    short:"Boosts cellular energy and mental clarity.",
+    onset:"Energy/clarity may appear within hours to days.",
+    fact:"Central co-enzyme for energy production.",
+    doses:["500 mg"],
+    more:`<ul>
+      <li><b>Starter (subQ/IM):</b> 100 mg twice weekly × 2 weeks.</li>
+      <li><b>Titration:</b> 200 mg twice weekly (weeks 3–4) → maintain 100–200 mg 1–2×/week.</li>
+      <li><b>Alternative (supervised IV):</b> 250–750 mg per session.</li>
+    </ul>`},
+  {key:"ipa", name:"IPA (Ipamorelin)", badge:"Metabolism", category:"energy",
+    short:"Promotes fat-burning and steady energy (verify exact formula on your label).",
+    onset:"Changes build across days to weeks.",
+    fact:"Used in cutting/energy protocols; compositions vary.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 5 mg once daily × 7–14 days.</li>
+      <li><b>Titration:</b> 7.5 mg once daily for 1–2 weeks → 10 mg once daily if well-tolerated (do not exceed product max).</li>
+      <li><b>Monitor:</b> Sleep, heart rate, appetite, mood.</li>
+    </ul>`},
+  {key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
+    short:"Stimulates natural growth-hormone release and trims deep belly fat.",
+    onset:"Hormone shifts in days; body shape changes take weeks to months.",
+    fact:"Targets visceral fat while preserving lean mass with training/protein.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 1 mg subQ daily × 1–2 weeks.</li>
+      <li><b>Titration:</b> 2 mg subQ daily ongoing if well-tolerated.</li>
+      <li><b>Best pair:</b> Resistance training + 1.6–2.2 g protein/kg/day.</li>
+    </ul>`},
+  {key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
+    short:"Supports mitochondria for steadier energy and resilience.",
+    onset:"Benefits can appear within days to weeks.",
+    fact:"Targets inner mitochondrial membranes to improve efficiency.",
+    doses:["10 mg"],
+    more:`<ul>
+      <li><b>Starter:</b> 5 mg subQ daily × 2 weeks.</li>
+      <li><b>Titration:</b> 10 mg subQ daily (weeks 3–4) → optional cycle off 2–4 weeks; repeat as needed.</li>
+      <li><b>Training:</b> Regular movement compounds benefits.</li>
+    </ul>`},
 
-  /* supplies example kept for completeness, more peptides omitted for brevity */
+  /* Supplies (no onset box) */
   {key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
-   short:"Sterile water to mix peptides. Not a treatment.",
-   onset:"—", fact:"Generic multi-use with preservative.", doses:["10 mL"],
-   more:`<ul><li><b>Use:</b> Reconstitute to your target volume.</li></ul>`},
+    short:"Sterile water used to mix peptides. Not a treatment by itself.",
+    onset:"—",
+    fact:"Generic bacteriostatic water with preservative for multi-use vials.",
+    doses:["10 mL"],
+    more:`<ul>
+      <li><b>Use:</b> Reconstitutes peptides to a measured volume.</li>
+      <li><b>Handling:</b> Keep sterile; refrigerate after opening when required.</li>
+      <li><b>Tip:</b> Label the vial with date and concentration.</li>
+    </ul>`},
+  {key:"hospira30", name:"Hospira Bacteriostatic Water (brand)", badge:"Supply", category:"supplies",
+    short:"Brand-name sterile bacteriostatic water, 30 mL.",
+    onset:"—",
+    fact:"Hospira brand; convenient larger volume for multiple mixes.",
+    doses:["30 mL"],
+    more:`<ul>
+      <li><b>Use:</b> Mix to your target concentration for consistent dosing.</li>
+      <li><b>Format:</b> 30 mL multi-use vial.</li>
+      <li><b>Technique:</b> Maintain clean handling to protect potency.</li>
+    </ul>`},
+  {key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
+    short:"Sterile acidic diluent for peptides that require a lower pH when mixed.",
+    onset:"—",
+    fact:"Used when a peptide specifies acidic reconstitution.",
+    doses:["10 mL"],
+    more:`<ul>
+      <li><b>Use:</b> Only for peptides that call for acidic mixing.</li>
+      <li><b>Tip:</b> Follow the exact ratio on your product instructions.</li>
+      <li><b>Storage:</b> Keep sealed and labeled.</li>
+    </ul>`},
 ];
 
-/* ---------- PRICE DATA (your latest) ---------- */
+/* ---------- PRICES (your latest) ---------- */
 const PRICES = [
   ["Retatrutide","5 mg",60,"mg"],["Retatrutide","10 mg",120,"mg"],["Retatrutide","15 mg",180,"mg"],["Retatrutide","30 mg",360,"mg"],
   ["Tirzepatide","10 mg",70,"mg"],["Tirzepatide","15 mg",105,"mg"],["Tirzepatide","30 mg",210,"mg"],
   ["Semaglutide","5 mg",40,"mg"],["Semaglutide","10 mg",80,"mg"],
-  ["Bacteriostatic water","10 mL",6,"mL"],["Hospira bacteriostatic water","30 mL",19.5,"mL"],["Acetic acid","10 mL",12,"mL"],
+  ["MOTS-C","10 mg",35,"mg"],
+  ["Melanotan I","10 mg",30,"mg"],
+  ["Melanotan II","10 mg",30,"mg"],
+  ["Glow","70 mg",130,"mg"],
+  ["Klow","80 mg",135,"mg"],
+  ["Cagrilintide","5 mg",70,"mg"],
+  ["BPC-157 + TB-500","10 mg",75,"mg"],
+  ["NAD+","500 mg",55,"mg"],
+  ["IPA (Ipamorelin)","10 mg",45,"mg"],
+  ["Tesamorelin","10 mg",55,"mg"],
+  ["SS-31","10 mg",50,"mg"],
+  ["Bacteriostatic water","10 mL",6,"mL"],            /* updated */
+  ["Hospira bacteriostatic water","30 mL",19.5,"mL"], /* updated */
+  ["Acetic acid","10 mL",12,"mL"],
 ];
 
-/* ---------- GUIDE RENDER ---------- */
+/* ---------- GUIDE RENDER + MINI CLASSIC ---------- */
 const grid  = document.getElementById('grid');
 const empty = document.getElementById('empty');
 const q     = document.getElementById('q');
@@ -294,7 +456,7 @@ function buildTicks(elTicks, scaleMax=100){
 }
 
 function wireMini(container){
-  const scope = container.querySelector('[data-mini]');
+  const scope   = container.querySelector('[data-mini]');
   const classic = container.querySelector('[data-classic]');
   const elTicks = classic.querySelector('[data-ticks]');
   buildTicks(elTicks, 100);
@@ -328,7 +490,7 @@ function renderGuide(list){
   // Open mini on dose click
   grid.querySelectorAll('.dose').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const doseStr = btn.dataset.dose;      // e.g., "10 mg"
+      const doseStr = btn.dataset.dose;      // e.g., "10 mg" or "30 mL" (we still show the calc for mg doses)
       const mg = parseFloat(doseStr);
       const cardId = btn.dataset.for;
       const miniId = `mini-${cardId}-${doseStr.replace(/\s+/g,'')}`;
@@ -339,8 +501,11 @@ function renderGuide(list){
       document.querySelectorAll('.mini-wrap').forEach(m=>m.style.display='none');
       document.querySelectorAll('.dose').forEach(d=>d.setAttribute('aria-expanded','false'));
 
+      // For supplies measured in mL, we’ll open a mini but prefill mg as 0 so users know the calc is for mg doses.
+      const startMg = isNaN(mg) ? 0 : mg;
+
       if(!isOpen){
-        mini.innerHTML = miniClassicHTML(miniId, mg, mg);
+        mini.innerHTML = miniClassicHTML(miniId, startMg, startMg);
         mini.style.display = 'block';
         btn.setAttribute('aria-expanded','true');
         wireMini(mini);
