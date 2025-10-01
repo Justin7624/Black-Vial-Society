@@ -16,8 +16,7 @@
     .wrap{max-width:1100px;margin:auto;padding:18px}
     .brand{display:flex;gap:16px;align-items:center;letter-spacing:.06em}
     .brand h1{margin:0;font-size:20px;font-weight:800}
-    .tagline{color:var(--ink-2);font-size:12px;margin-top:-2px}
-    .hero{display:grid;gap:18px;margin:22px auto 8px auto;align-items:center;grid-template-columns:1fr;text-align:left}
+    .hero{display:grid;gap:18px;margin:22px auto 8px auto;align-items:center;grid-template-columns:1fr}
     .toolbar{display:flex;gap:10px;flex-wrap:wrap}
     .search{flex:1 1 340px;display:flex;align-items:center;gap:10px;background:#16171c;border:1px solid #272a36;border-radius:999px;padding:10px 14px;box-shadow:var(--shadow)}
     .search input{width:100%;background:transparent;border:0;color:var(--ink);outline:none;font-size:14px}
@@ -48,12 +47,8 @@
     <div class="wrap">
       <div class="brand">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12c3.5-5 9.5-5 13 0-3.5 5-9.5 5-13 0Z" stroke="#63e6be" stroke-width="1.5"/><circle cx="12" cy="12" r="2.8" stroke="#63e6be" stroke-width="1.5"/></svg>
-        <div>
-          <h1>Peptide Guide</h1>
-          <div class="tagline"></div>
-        </div>
+        <h1>Peptide Guide</h1>
       </div>
-
       <div class="hero">
         <div class="toolbar">
           <div class="search" role="search">
@@ -80,193 +75,192 @@
 
   <footer class="footer">
     <div class="foot-wrap">
-      <div class="notice">Educational use only. Not medical advice.</div>
+      <div class="notice">Educational use only. Not medical advice. Follow your clinician and product label.</div>
       <div></div>
     </div>
   </footer>
 
   <script>
-    // Helper: HTML escape for inline snippets
     const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-    // Data (assertive phrasing + custom “More info” per item)
+    // Data with assertive descriptions + customized "Starter & Titration"
     const DATA = [
       {
         key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
         short:"Drives strong weight loss and steadies blood sugar by making you feel full quickly.",
         onset:"Hunger drops in ~2 weeks; visible weight changes build over 2–3 months.",
-        fact:"Early head-to-head timelines show larger and faster average weight loss vs. tirzepatide at similar checkpoints in mid-stage studies.",
+        fact:"Shows faster and larger average weight loss vs. tirzepatide at comparable checkpoints in mid-stage studies.",
         doses:["5 mg","10 mg","15 mg","30 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Appetite control, fat loss, glucose control.</li>
-          <li><b>Why it stands out:</b> Triple action (GLP-1, GIP, glucagon). In mid-stage research it outpaced tirzepatide at comparable time points.</li>
-          <li><b>What people notice first:</b> Smaller portions feel satisfying; snacking fades.</li>
-          <li><b>Common notes:</b> Start low and build to manage nausea; consistent routine matters.</li>
+          <li><b>Focus:</b> Appetite control, fat loss, glucose support.</li>
+          <li><b>Starter &amp; Titration:</b> Because it’s investigational, dosing follows study or clinician guidance.
+            A cautious pattern is: start very low (≈1–2 mg once weekly) for 4 weeks → increase by 1–2 mg every 4 weeks as tolerated to a working dose.
+            Hold or step back if nausea is an issue.</li>
+          <li><b>First changes:</b> Smaller portions feel enough; snacking fades.</li>
         </ul>`
       },
       {
         key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
         short:"Cuts appetite, lowers A1C, and supports steady weight loss.",
         onset:"Blood sugar improves in days; appetite and weight shift across 1–2 months.",
-        fact:"Dual action (GLP-1 + GIP). Strong long-term weight-loss data and diabetes outcomes.",
+        fact:"Dual action (GLP-1 + GIP) with robust long-term data.",
         doses:["10 mg","15 mg","30 mg"],
         more:`<ul>
           <li><b>Focus:</b> Weight loss and diabetes control.</li>
-          <li><b>Strength:</b> Proven A1C reduction and durable weight loss with dose titration.</li>
-          <li><b>Tips:</b> Eat slowly and prioritize protein to maximize fullness.</li>
+          <li><b>Starter &amp; Titration:</b> Common weekly steps: 2.5 mg (weeks 1–4) → 5 mg (weeks 5–8) → 7.5 mg (weeks 9–12) → 10 mg → 12.5 mg → 15 mg as tolerated, holding 4 weeks at each level.</li>
+          <li><b>Tips:</b> Eat slowly and prioritize protein to extend fullness.</li>
         </ul>`
       },
       {
         key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
         short:"Reduces hunger, improves blood sugar, and supports meaningful weight loss.",
         onset:"Blood sugar shifts in days; weight change shows in 6–8 weeks.",
-        fact:"GLP-1–only action with well-known dosing schedules and safety profile.",
+        fact:"GLP-1–only with well-known schedules.",
         doses:["5 mg","10 mg"],
         more:`<ul>
           <li><b>Focus:</b> Appetite control, weight loss, cardiometabolic support.</li>
-          <li><b>Use notes:</b> Weekly rhythm and slow dose steps improve tolerability.</li>
-          <li><b>Pairing:</b> Works best with higher-protein meals and regular movement.</li>
+          <li><b>Starter &amp; Titration:</b> Weekly pattern (Wegovy® style): 0.25 mg (weeks 1–4) → 0.5 mg (5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated. Diabetes schedule (Ozempic®) often tops at 1.0 mg.</li>
+          <li><b>Notes:</b> Step up only when side-effects are mild.</li>
         </ul>`
       },
       {
         key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
         short:"Boosts everyday energy and helps the body use fat more efficiently during activity.",
-        onset:"Energy lift shows within 1–2 weeks in many users.",
+        onset:"Energy lift shows within 1–2 weeks for many users.",
         fact:"Mitochondria-related peptide that supports metabolic flexibility.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Energy, exercise endurance, fat use during workouts.</li>
-          <li><b>Best use:</b> Consistency plus light cardio amplifies results.</li>
-          <li><b>Timing:</b> Many prefer morning or pre-workout.</li>
+          <li><b>Focus:</b> Energy, endurance, fat use during workouts.</li>
+          <li><b>Starter &amp; Titration:</b> 5 mg twice weekly (weeks 1–2) → 10 mg twice weekly (weeks 3–4). Cycle off 2–4 weeks before repeating.</li>
+          <li><b>Timing:</b> Morning or pre-workout works well for many.</li>
         </ul>`
       },
       {
         key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
         short:"Deepens tan and increases skin pigment gradually.",
-        onset:"Noticeable darkening builds across 1–2 weeks.",
-        fact:"Targets tanning with a smoother profile than MT-2 for many users.",
+        onset:"Visible darkening builds across 1–2 weeks.",
+        fact:"Provides a controlled tanning curve for many compared with MT-2.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Tanning with a steady, controlled look.</li>
-          <li><b>Rhythm:</b> Loading phase then spaced upkeep.</li>
-          <li><b>Note:</b> Use sunscreen—darker tone doesn’t replace protection.</li>
+          <li><b>Focus:</b> Steady tanning.</li>
+          <li><b>Starter &amp; Titration:</b> 250 mcg daily for 3–7 days → 500 mcg daily until the desired tone → maintenance 250–500 mcg 2–3×/week.</li>
+          <li><b>Sun safety:</b> Keep using sunscreen.</li>
         </ul>`
       },
       {
         key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
         short:"Deepens tan quickly; some users also notice increased libido.",
         onset:"Tan builds over days to weeks; libido effects can appear sooner.",
-        fact:"Faster tanning response than MT-1 for many users.",
+        fact:"Often produces a faster response than MT-1.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Rapid tanning response.</li>
-          <li><b>Use notes:</b> Start conservatively to manage sensitivity and tone.</li>
-          <li><b>Compare:</b> Tans faster than MT-1 but can feel stronger.</li>
+          <li><b>Focus:</b> Faster tanning.</li>
+          <li><b>Starter &amp; Titration:</b> 250 mcg daily for 3–5 days → 500 mcg daily (or split AM/PM) until tone is reached → maintenance 250–500 mcg 2–3×/week.</li>
+          <li><b>Tip:</b> Start conservatively to manage sensitivity.</li>
         </ul>`
       },
       {
         key:"glow", name:"Glow", badge:"Beauty", category:"energy",
-        short:"Supports skin, hair, and nail appearance with a high-dose blend.",
+        short:"Supports skin smoothness, hair fullness, and nail strength.",
         onset:"Visible changes build over several weeks.",
-        fact:"Formula targets collagen support and complexion tone (varies by supplier).",
+        fact:"High-dose beauty blend (formula varies by supplier).",
         doses:["70 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Complexion, hair fullness, nail strength.</li>
-          <li><b>Timeline:</b> Track photos every 2–4 weeks for changes.</li>
-          <li><b>Stacking:</b> Hydration and protein intake improve outcomes.</li>
+          <li><b>Focus:</b> Complexion, hair, nails.</li>
+          <li><b>Starter &amp; Titration:</b> Half dose 2–3×/week for 2 weeks → full dose 2–3×/week ongoing. Re-assess every 8–12 weeks.</li>
+          <li><b>Stack:</b> Hydration and protein intake help results show.</li>
         </ul>`
       },
       {
         key:"klow", name:"Klow", badge:"Wellness", category:"energy",
-        short:"Backs general wellness and healthy aging with a broad blend.",
+        short:"Supports daily vitality and healthy aging.",
         onset:"Benefits accumulate over weeks to months.",
-        fact:"Multi-target support; exact components differ by seller.",
+        fact:"Broad wellness blend (composition differs by seller).",
         doses:["80 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Daily vitality and recovery.</li>
-          <li><b>Best use:</b> Steady routine; pair with sleep and micronutrients.</li>
-          <li><b>Expectation:</b> Slow-and-steady changes rather than quick spikes.</li>
+          <li><b>Focus:</b> Daily energy and recovery.</li>
+          <li><b>Starter &amp; Titration:</b> Half dose 2×/week (weeks 1–2) → full dose 2×/week (weeks 3–8). Revisit schedule each quarter.</li>
         </ul>`
       },
       {
         key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
         short:"Controls appetite and enhances fullness; pairs well with GLP-1 drugs.",
         onset:"Fullness improves within ~1 week; weight changes follow in several weeks.",
-        fact:"Amylin-pathway support that complements GLP-1 agents.",
+        fact:"Amylin-pathway agent that complements GLP-1s.",
         doses:["5 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Strong fullness, smaller portions, weight control.</li>
-          <li><b>Synergy:</b> Often combined with GLP-1s for amplified appetite control.</li>
-          <li><b>Cue:</b> Eat to satisfaction, not to “clean the plate.”</li>
+          <li><b>Focus:</b> Strong fullness, smaller portions.</li>
+          <li><b>Starter &amp; Titration:</b> 0.3 mg once weekly (weeks 1–4) → 0.6 mg (5–8) → 1.2 mg (9–12) → 2.4 mg → up to study/clinician target as tolerated.</li>
+          <li><b>Synergy:</b> Often combined with sema/tirz for appetite control.</li>
         </ul>`
       },
       {
         key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
         short:"Supports joint, tendon, and soft-tissue recovery.",
         onset:"Less soreness can show in days; tissue support builds over weeks.",
-        fact:"Combines gastric-derived repair support (BPC-157) with actin-pathway support (TB-500).",
+        fact:"Pairs BPC-157 repair support with TB-500 actin-pathway support.",
         doses:["10 mg"],
         more:`<ul>
           <li><b>Focus:</b> Tendon comfort, joint support, mobility.</li>
-          <li><b>Use:</b> Pair with gentle mobility work and graded loading.</li>
-          <li><b>Note:</b> Consistent sleep and protein intake speed up progress.</li>
+          <li><b>Starter &amp; Titration:</b> Week 1: 250 mcg of each daily → Weeks 2–4: 500 mcg of each daily → Maintenance: 250–500 mcg of each 2–3×/week for 2–4 more weeks.</li>
+          <li><b>Best practice:</b> Pair with gentle mobility and progressive loading.</li>
         </ul>`
       },
       {
         key:"nad", name:"NAD+", badge:"Energy", category:"energy",
         short:"Elevates cellular energy and mental clarity.",
         onset:"Energy/clarity can appear within hours to days.",
-        fact:"Core co-enzyme for energy production (redox).",
+        fact:"Central co-enzyme for energy production.",
         doses:["500 mg"],
         more:`<ul>
           <li><b>Focus:</b> Daytime energy, focus, recovery from fatigue.</li>
-          <li><b>Timing:</b> Daytime use helps avoid sleep disruption.</li>
-          <li><b>Stack:</b> Hydration and B-vitamin sufficiency support its effects.</li>
+          <li><b>Starter &amp; Titration (injection):</b> 100 mg 2×/week (weeks 1–2) → 200 mg 2×/week (weeks 3–4) → reassess; maintain 100–200 mg 1–2×/week.</li>
+          <li><b>Note:</b> Some protocols use IV 250–750 mg under supervision.</li>
         </ul>`
       },
       {
         key:"ipa", name:"IPA", badge:"Metabolism", category:"energy",
         short:"Promotes fat-burning and steady energy (formulations differ by seller).",
         onset:"Changes build across days to weeks.",
-        fact:"Used in cutting/energy protocols; exact ingredients vary.",
+        fact:"Used in cutting/energy protocols; check your supplier’s exact composition.",
         doses:["10 mg"],
         more:`<ul>
           <li><b>Focus:</b> Metabolic drive and training energy.</li>
-          <li><b>Best use:</b> Pair with consistent steps or light cardio.</li>
-          <li><b>Note:</b> Verify specific composition from your supplier.</li>
+          <li><b>Starter &amp; Titration:</b> Begin at the lowest listed dose for your product once daily (or split) for 1–2 weeks → increase in small weekly steps while monitoring sleep, heart rate, and appetite.</li>
+          <li><b>Important:</b> Verify ingredients and potency from the label before use.</li>
         </ul>`
       },
       {
         key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
         short:"Stimulates natural growth-hormone release and trims deep belly fat.",
         onset:"Hormone shifts show in days; body shape changes take weeks to months.",
-        fact:"Targets visceral fat; preserves lean mass with training and protein.",
+        fact:"Targets visceral (deep) fat; preserves lean mass with training and protein.",
         doses:["10 mg"],
         more:`<ul>
           <li><b>Focus:</b> Midsection fat reduction and body recomposition.</li>
-          <li><b>Best pair:</b> Resistance training plus adequate protein.</li>
-          <li><b>Rhythm:</b> Consistent schedule improves outcomes.</li>
+          <li><b>Starter &amp; Titration:</b> 1 mg subQ daily for 1–2 weeks → 2 mg daily ongoing if well-tolerated (label dose for HIV-related lipodystrophy is 2 mg daily).</li>
+          <li><b>Best pair:</b> Resistance training + adequate protein.</li>
         </ul>`
       },
       {
         key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
         short:"Supports mitochondria for steadier energy and resilience.",
         onset:"Benefits can appear within days to weeks.",
-        fact:"Targets inner-mitochondrial membranes to improve efficiency.",
+        fact:"Targets inner mitochondrial membranes to improve efficiency.",
         doses:["10 mg"],
         more:`<ul>
           <li><b>Focus:</b> Cellular energy and recovery from exertion.</li>
-          <li><b>Best use:</b> Regular movement and sunlight compound the effect.</li>
-          <li><b>Note:</b> Useful during phases of high training load.</li>
+          <li><b>Starter &amp; Titration (subQ):</b> 5 mg daily (weeks 1–2) → 10 mg daily (weeks 3–4) → cycle 2–4 weeks off; repeat as needed.</li>
+          <li><b>Training:</b> Regular movement and sunlight compound the effect.</li>
         </ul>`
       },
       {
         key:"bac10", name:"Bacteriostatic Water", badge:"Supply", category:"supplies",
         short:"Sterile water used to mix peptides. Not a treatment by itself.",
-        onset:"—", fact:"Contains a small amount of preservative for multi-use vials.", doses:["10 mL"],
+        onset:"—", fact:"Contains a small preservative for multi-use vials.", doses:["10 mL"],
         more:`<ul>
           <li><b>Use:</b> Reconstitutes peptides to a measured volume.</li>
-          <li><b>Storage:</b> Keep sterile; refrigerate after opening when required.</li>
+          <li><b>Handling:</b> Keep sterile; refrigerate after opening when required.</li>
           <li><b>Tip:</b> Label the vial with date and concentration.</li>
         </ul>`
       },
@@ -275,18 +269,18 @@
         short:"Brand-name sterile water for mixing peptides.",
         onset:"—", fact:"Same purpose as above in a 30 mL format.", doses:["30 mL"],
         more:`<ul>
-          <li><b>Use:</b> Mix to target concentration for consistent dosing.</li>
+          <li><b>Use:</b> Mix to your target concentration for consistent dosing.</li>
           <li><b>Format:</b> Larger volume is convenient for multiple vials.</li>
-          <li><b>Note:</b> Maintain clean technique to protect potency.</li>
+          <li><b>Technique:</b> Maintain clean handling to protect potency.</li>
         </ul>`
       },
       {
         key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
         short:"Sterile acidic diluent for peptides that require a lower pH when mixed.",
-        onset:"—", fact:"Commonly used for peptides that stay stable in mild acidity.", doses:["10 mL"],
+        onset:"—", fact:"Used when a peptide specifies acidic reconstitution.", doses:["10 mL"],
         more:`<ul>
-          <li><b>Use:</b> For peptides that specify acidic reconstitution.</li>
-          <li><b>Tip:</b> Follow your product’s exact mixing ratio.</li>
+          <li><b>Use:</b> Only for peptides that call for acidic mixing.</li>
+          <li><b>Tip:</b> Follow the exact ratio on your product instructions.</li>
           <li><b>Storage:</b> Keep sealed and labeled.</li>
         </ul>`
       },
