@@ -83,68 +83,65 @@
   <script>
     const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-    // Data with assertive descriptions + customized "Starter & Titration"
     const DATA = [
       {
         key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
-        short:"Drives strong weight loss and steadies blood sugar by making you feel full quickly.",
+        short:"Drives strong weight loss and steadies blood sugar by helping you feel full quickly.",
         onset:"Hunger drops in ~2 weeks; visible weight changes build over 2–3 months.",
-        fact:"Shows faster and larger average weight loss vs. tirzepatide at comparable checkpoints in mid-stage studies.",
+        fact:"Delivers faster/larger average weight loss vs. tirzepatide at similar checkpoints in mid-stage studies.",
         doses:["5 mg","10 mg","15 mg","30 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Appetite control, fat loss, glucose support.</li>
-          <li><b>Starter &amp; Titration:</b> Because it’s investigational, dosing follows study or clinician guidance.
-            A cautious pattern is: start very low (≈1–2 mg once weekly) for 4 weeks → increase by 1–2 mg every 4 weeks as tolerated to a working dose.
-            Hold or step back if nausea is an issue.</li>
-          <li><b>First changes:</b> Smaller portions feel enough; snacking fades.</li>
+          <li><b>Starter:</b> 1.0 mg once weekly × 4 weeks.</li>
+          <li><b>Titration:</b> ↑ to 2.0 mg weekly (weeks 5–8) → 4.0 mg (weeks 9–12) → 6.0–8.0 mg (as tolerated). Hold or step back if nausea persists.</li>
+          <li><b>Meals:</b> Smaller portions feel sufficient; prioritize protein.</li>
         </ul>`
       },
       {
         key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
         short:"Cuts appetite, lowers A1C, and supports steady weight loss.",
         onset:"Blood sugar improves in days; appetite and weight shift across 1–2 months.",
-        fact:"Dual action (GLP-1 + GIP) with robust long-term data.",
+        fact:"Dual action (GLP-1 + GIP) with strong long-term data.",
         doses:["10 mg","15 mg","30 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Weight loss and diabetes control.</li>
-          <li><b>Starter &amp; Titration:</b> Common weekly steps: 2.5 mg (weeks 1–4) → 5 mg (weeks 5–8) → 7.5 mg (weeks 9–12) → 10 mg → 12.5 mg → 15 mg as tolerated, holding 4 weeks at each level.</li>
-          <li><b>Tips:</b> Eat slowly and prioritize protein to extend fullness.</li>
+          <li><b>Starter:</b> 2.5 mg once weekly × 4 weeks.</li>
+          <li><b>Titration:</b> 5 mg (weeks 5–8) → 7.5 mg (9–12) → 10 mg (13–16) → 12.5 mg → 15 mg maintenance as tolerated (advance in ~4-week steps).</li>
+          <li><b>Tips:</b> Eat slowly; protein and fiber extend fullness.</li>
         </ul>`
       },
       {
         key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
         short:"Reduces hunger, improves blood sugar, and supports meaningful weight loss.",
         onset:"Blood sugar shifts in days; weight change shows in 6–8 weeks.",
-        fact:"GLP-1–only with well-known schedules.",
+        fact:"GLP-1–only with well-known weekly schedules.",
         doses:["5 mg","10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Appetite control, weight loss, cardiometabolic support.</li>
-          <li><b>Starter &amp; Titration:</b> Weekly pattern (Wegovy® style): 0.25 mg (weeks 1–4) → 0.5 mg (5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated. Diabetes schedule (Ozempic®) often tops at 1.0 mg.</li>
-          <li><b>Notes:</b> Step up only when side-effects are mild.</li>
+          <li><b>Starter:</b> 0.25 mg once weekly × 4 weeks.</li>
+          <li><b>Titration:</b> 0.5 mg (weeks 5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated (weight-loss schedule). For diabetes programs, many remain at 0.5–1.0 mg.</li>
+          <li><b>Notes:</b> Advance only when side-effects are mild and stable.</li>
         </ul>`
       },
       {
         key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
-        short:"Boosts everyday energy and helps the body use fat more efficiently during activity.",
+        short:"Boosts everyday energy and supports fat use during activity.",
         onset:"Energy lift shows within 1–2 weeks for many users.",
-        fact:"Mitochondria-related peptide that supports metabolic flexibility.",
+        fact:"Mitochondria-related peptide supporting metabolic flexibility.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Energy, endurance, fat use during workouts.</li>
-          <li><b>Starter &amp; Titration:</b> 5 mg twice weekly (weeks 1–2) → 10 mg twice weekly (weeks 3–4). Cycle off 2–4 weeks before repeating.</li>
-          <li><b>Timing:</b> Morning or pre-workout works well for many.</li>
+          <li><b>Starter:</b> 5 mg twice weekly (e.g., Mon/Thu) × 2 weeks.</li>
+          <li><b>Titration:</b> 10 mg twice weekly for weeks 3–4 → optional 10 mg 3×/week for weeks 5–8 → break 2–4 weeks before next cycle.</li>
+          <li><b>Timing:</b> Morning or pre-workout works well.</li>
         </ul>`
       },
       {
         key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
         short:"Deepens tan and increases skin pigment gradually.",
         onset:"Visible darkening builds across 1–2 weeks.",
-        fact:"Provides a controlled tanning curve for many compared with MT-2.",
+        fact:"Provides a controlled tanning curve compared with MT-2 for many.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Steady tanning.</li>
-          <li><b>Starter &amp; Titration:</b> 250 mcg daily for 3–7 days → 500 mcg daily until the desired tone → maintenance 250–500 mcg 2–3×/week.</li>
-          <li><b>Sun safety:</b> Keep using sunscreen.</li>
+          <li><b>Starter (loading):</b> 250 mcg daily × 3–7 days.</li>
+          <li><b>Titration:</b> 500 mcg daily until desired tone → maintenance 250–500 mcg 2–3×/week.</li>
+          <li><b>Sun safety:</b> Continue sunscreen and shade practices.</li>
         </ul>`
       },
       {
@@ -154,32 +151,33 @@
         fact:"Often produces a faster response than MT-1.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Faster tanning.</li>
-          <li><b>Starter &amp; Titration:</b> 250 mcg daily for 3–5 days → 500 mcg daily (or split AM/PM) until tone is reached → maintenance 250–500 mcg 2–3×/week.</li>
-          <li><b>Tip:</b> Start conservatively to manage sensitivity.</li>
+          <li><b>Starter (loading):</b> 250 mcg daily × 3–5 days.</li>
+          <li><b>Titration:</b> 500 mcg daily (or split 250 mcg AM/PM) until tone is reached → maintenance 250–500 mcg 2–3×/week.</li>
+          <li><b>Tip:</b> Start conservative to manage sensitivity and freckles.</li>
         </ul>`
       },
       {
         key:"glow", name:"Glow", badge:"Beauty", category:"energy",
-        short:"Supports skin smoothness, hair fullness, and nail strength.",
+        short:"Improves skin smoothness, hair fullness, and nail strength.",
         onset:"Visible changes build over several weeks.",
-        fact:"High-dose beauty blend (formula varies by supplier).",
+        fact:"High-dose beauty blend; formulas vary by seller.",
         doses:["70 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Complexion, hair, nails.</li>
-          <li><b>Starter &amp; Titration:</b> Half dose 2–3×/week for 2 weeks → full dose 2–3×/week ongoing. Re-assess every 8–12 weeks.</li>
-          <li><b>Stack:</b> Hydration and protein intake help results show.</li>
+          <li><b>Starter:</b> 35 mg 3×/week × 2 weeks.</li>
+          <li><b>Titration:</b> 70 mg 2–3×/week ongoing; reassess every 8–12 weeks.</li>
+          <li><b>Support:</b> Hydration and 80–100 g/day protein (typical adult) help results show.</li>
         </ul>`
       },
       {
         key:"klow", name:"Klow", badge:"Wellness", category:"energy",
         short:"Supports daily vitality and healthy aging.",
         onset:"Benefits accumulate over weeks to months.",
-        fact:"Broad wellness blend (composition differs by seller).",
+        fact:"Broad wellness blend; composition differs by seller.",
         doses:["80 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Daily energy and recovery.</li>
-          <li><b>Starter &amp; Titration:</b> Half dose 2×/week (weeks 1–2) → full dose 2×/week (weeks 3–8). Revisit schedule each quarter.</li>
+          <li><b>Starter:</b> 40 mg twice weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 80 mg twice weekly for weeks 3–8 → adjust to 80 mg 1–3×/week based on response.</li>
+          <li><b>Check-ins:</b> Reassess energy/sleep every 4–8 weeks.</li>
         </ul>`
       },
       {
@@ -189,21 +187,22 @@
         fact:"Amylin-pathway agent that complements GLP-1s.",
         doses:["5 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Strong fullness, smaller portions.</li>
-          <li><b>Starter &amp; Titration:</b> 0.3 mg once weekly (weeks 1–4) → 0.6 mg (5–8) → 1.2 mg (9–12) → 2.4 mg → up to study/clinician target as tolerated.</li>
-          <li><b>Synergy:</b> Often combined with sema/tirz for appetite control.</li>
+          <li><b>Starter:</b> 0.3 mg once weekly × 4 weeks.</li>
+          <li><b>Titration:</b> 0.6 mg (weeks 5–8) → 1.2 mg (9–12) → 2.4 mg maintenance if tolerated.</li>
+          <li><b>Synergy:</b> Works well alongside sema/tirz for appetite control.</li>
         </ul>`
       },
       {
         key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
         short:"Supports joint, tendon, and soft-tissue recovery.",
         onset:"Less soreness can show in days; tissue support builds over weeks.",
-        fact:"Pairs BPC-157 repair support with TB-500 actin-pathway support.",
+        fact:"Combines BPC-157 repair support with TB-500 actin-pathway support.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Tendon comfort, joint support, mobility.</li>
-          <li><b>Starter &amp; Titration:</b> Week 1: 250 mcg of each daily → Weeks 2–4: 500 mcg of each daily → Maintenance: 250–500 mcg of each 2–3×/week for 2–4 more weeks.</li>
-          <li><b>Best practice:</b> Pair with gentle mobility and progressive loading.</li>
+          <li><b>Starter (each):</b> BPC-157 <u>250 mcg daily</u> + TB-500 <u>2 mg/week</u> split in 2 doses for week 1.</li>
+          <li><b>Titration (weeks 2–4):</b> BPC-157 500 mcg daily; TB-500 4 mg/week split (e.g., 2 mg twice weekly).</li>
+          <li><b>Maintenance (weeks 5–8):</b> BPC-157 250–500 mcg 3–5×/week; TB-500 2 mg/week.</li>
+          <li><b>Rehab:</b> Add gentle mobility and progressive loading.</li>
         </ul>`
       },
       {
@@ -213,33 +212,33 @@
         fact:"Central co-enzyme for energy production.",
         doses:["500 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Daytime energy, focus, recovery from fatigue.</li>
-          <li><b>Starter &amp; Titration (injection):</b> 100 mg 2×/week (weeks 1–2) → 200 mg 2×/week (weeks 3–4) → reassess; maintain 100–200 mg 1–2×/week.</li>
-          <li><b>Note:</b> Some protocols use IV 250–750 mg under supervision.</li>
+          <li><b>Starter (subQ/IM):</b> 100 mg twice weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 200 mg twice weekly (weeks 3–4) → maintain 100–200 mg 1–2×/week.</li>
+          <li><b>Alternative (supervised IV):</b> 250–750 mg per session.</li>
         </ul>`
       },
       {
         key:"ipa", name:"IPA", badge:"Metabolism", category:"energy",
-        short:"Promotes fat-burning and steady energy (formulations differ by seller).",
+        short:"Promotes fat-burning and steady energy (verify exact formula on your label).",
         onset:"Changes build across days to weeks.",
-        fact:"Used in cutting/energy protocols; check your supplier’s exact composition.",
+        fact:"Used in cutting/energy protocols; compositions vary.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Metabolic drive and training energy.</li>
-          <li><b>Starter &amp; Titration:</b> Begin at the lowest listed dose for your product once daily (or split) for 1–2 weeks → increase in small weekly steps while monitoring sleep, heart rate, and appetite.</li>
-          <li><b>Important:</b> Verify ingredients and potency from the label before use.</li>
+          <li><b>Starter:</b> 5 mg once daily × 7–14 days.</li>
+          <li><b>Titration:</b> 7.5 mg once daily for 1–2 weeks → 10 mg once daily if well-tolerated. Do not exceed your product’s max dose.</li>
+          <li><b>Monitor:</b> Sleep, heart rate, appetite, and mood.</li>
         </ul>`
       },
       {
         key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
         short:"Stimulates natural growth-hormone release and trims deep belly fat.",
         onset:"Hormone shifts show in days; body shape changes take weeks to months.",
-        fact:"Targets visceral (deep) fat; preserves lean mass with training and protein.",
+        fact:"Targets visceral fat while preserving lean mass when paired with training and protein.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Midsection fat reduction and body recomposition.</li>
-          <li><b>Starter &amp; Titration:</b> 1 mg subQ daily for 1–2 weeks → 2 mg daily ongoing if well-tolerated (label dose for HIV-related lipodystrophy is 2 mg daily).</li>
-          <li><b>Best pair:</b> Resistance training + adequate protein.</li>
+          <li><b>Starter:</b> 1 mg subQ daily × 1–2 weeks.</li>
+          <li><b>Titration:</b> 2 mg subQ daily ongoing if well-tolerated.</li>
+          <li><b>Best pair:</b> Resistance training + 1.6–2.2 g protein/kg/day.</li>
         </ul>`
       },
       {
@@ -249,9 +248,9 @@
         fact:"Targets inner mitochondrial membranes to improve efficiency.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Focus:</b> Cellular energy and recovery from exertion.</li>
-          <li><b>Starter &amp; Titration (subQ):</b> 5 mg daily (weeks 1–2) → 10 mg daily (weeks 3–4) → cycle 2–4 weeks off; repeat as needed.</li>
-          <li><b>Training:</b> Regular movement and sunlight compound the effect.</li>
+          <li><b>Starter:</b> 5 mg subQ daily × 2 weeks.</li>
+          <li><b>Titration:</b> 10 mg subQ daily (weeks 3–4) → optional cycle off 2–4 weeks; repeat as needed.</li>
+          <li><b>Training:</b> Regular movement compounds benefits.</li>
         </ul>`
       },
       {
@@ -286,7 +285,7 @@
       },
     ];
 
-    // Render
+    // ---- Render helpers
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const q = document.getElementById('q');
@@ -315,7 +314,7 @@
     }
     render(DATA);
 
-    // Search & filter
+    // ---- Search & filters
     let activeFilter = 'all';
     function applyFilters(){
       const term = q.value.trim().toLowerCase();
