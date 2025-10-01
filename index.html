@@ -29,7 +29,8 @@
     .pill{font-size:11px;background:rgba(99,230,190,.12);color:#63e6be;border:1px solid #3fc29a;padding:5px 8px;border-radius:999px}
     .desc{color:#b8b9c2;font-size:13px}
     .onset{color:#e9e9f5;font-size:12px;background:#1c2130;border:1px dashed #2f3650;padding:8px;border-radius:10px}
-    .doses{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+    .dose-label{font-size:12px;color:#cfd0d8;margin-top:2px}
+    .doses{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
     .dose{padding:6px 10px;border-radius:10px;border:1px solid #2b2e3b;background:#1a1c22;font-size:12px;color:var(--ink)}
     details.dropdown{margin-top:6px;border:1px solid #252838;border-radius:12px;overflow:hidden;background:#14161b}
     details > summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;font-size:13px;display:flex;justify-content:space-between;align-items:center}
@@ -92,7 +93,7 @@
         doses:["5 mg","10 mg","15 mg","30 mg"],
         more:`<ul>
           <li><b>Starter:</b> 1.0 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> ↑ to 2.0 mg weekly (weeks 5–8) → 4.0 mg (weeks 9–12) → 6.0–8.0 mg (as tolerated). Hold or step back if nausea persists.</li>
+          <li><b>Titration:</b> 2.0 mg weekly (weeks 5–8) → 4.0 mg (9–12) → 6.0–8.0 mg as tolerated. Hold/step back if nausea persists.</li>
           <li><b>Meals:</b> Smaller portions feel sufficient; prioritize protein.</li>
         </ul>`
       },
@@ -104,8 +105,8 @@
         doses:["10 mg","15 mg","30 mg"],
         more:`<ul>
           <li><b>Starter:</b> 2.5 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> 5 mg (weeks 5–8) → 7.5 mg (9–12) → 10 mg (13–16) → 12.5 mg → 15 mg maintenance as tolerated (advance in ~4-week steps).</li>
-          <li><b>Tips:</b> Eat slowly; protein and fiber extend fullness.</li>
+          <li><b>Titration:</b> 5 mg (weeks 5–8) → 7.5 mg (9–12) → 10 mg (13–16) → 12.5 mg → 15 mg maintenance as tolerated (advance ~every 4 weeks).</li>
+          <li><b>Tips:</b> Protein + fiber extend fullness.</li>
         </ul>`
       },
       {
@@ -116,8 +117,8 @@
         doses:["5 mg","10 mg"],
         more:`<ul>
           <li><b>Starter:</b> 0.25 mg once weekly × 4 weeks.</li>
-          <li><b>Titration:</b> 0.5 mg (weeks 5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated (weight-loss schedule). For diabetes programs, many remain at 0.5–1.0 mg.</li>
-          <li><b>Notes:</b> Advance only when side-effects are mild and stable.</li>
+          <li><b>Titration:</b> 0.5 mg (weeks 5–8) → 1.0 mg (9–12) → 1.7 mg (13–16) → 2.4 mg maintenance if tolerated (weight-loss schedule). Diabetes regimens often stay at 0.5–1.0 mg.</li>
+          <li><b>Note:</b> Step only when side-effects are mild.</li>
         </ul>`
       },
       {
@@ -127,9 +128,9 @@
         fact:"Mitochondria-related peptide supporting metabolic flexibility.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Starter:</b> 5 mg twice weekly (e.g., Mon/Thu) × 2 weeks.</li>
-          <li><b>Titration:</b> 10 mg twice weekly for weeks 3–4 → optional 10 mg 3×/week for weeks 5–8 → break 2–4 weeks before next cycle.</li>
-          <li><b>Timing:</b> Morning or pre-workout works well.</li>
+          <li><b>Starter:</b> 5 mg twice weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 10 mg twice weekly (weeks 3–4) → optional 10 mg 3×/week (weeks 5–8) → break 2–4 weeks before next cycle.</li>
+          <li><b>Timing:</b> Morning or pre-workout.</li>
         </ul>`
       },
       {
@@ -141,7 +142,7 @@
         more:`<ul>
           <li><b>Starter (loading):</b> 250 mcg daily × 3–7 days.</li>
           <li><b>Titration:</b> 500 mcg daily until desired tone → maintenance 250–500 mcg 2–3×/week.</li>
-          <li><b>Sun safety:</b> Continue sunscreen and shade practices.</li>
+          <li><b>Sun safety:</b> Keep using sunscreen.</li>
         </ul>`
       },
       {
@@ -153,7 +154,7 @@
         more:`<ul>
           <li><b>Starter (loading):</b> 250 mcg daily × 3–5 days.</li>
           <li><b>Titration:</b> 500 mcg daily (or split 250 mcg AM/PM) until tone is reached → maintenance 250–500 mcg 2–3×/week.</li>
-          <li><b>Tip:</b> Start conservative to manage sensitivity and freckles.</li>
+          <li><b>Tip:</b> Start conservative to manage sensitivity.</li>
         </ul>`
       },
       {
@@ -163,9 +164,9 @@
         fact:"High-dose beauty blend; formulas vary by seller.",
         doses:["70 mg"],
         more:`<ul>
-          <li><b>Starter:</b> 35 mg 3×/week × 2 weeks.</li>
-          <li><b>Titration:</b> 70 mg 2–3×/week ongoing; reassess every 8–12 weeks.</li>
-          <li><b>Support:</b> Hydration and 80–100 g/day protein (typical adult) help results show.</li>
+          <li><b>Starter:</b> 35 mg three times weekly × 2 weeks.</li>
+          <li><b>Titration:</b> 70 mg two to three times weekly ongoing; reassess every 8–12 weeks.</li>
+          <li><b>Support:</b> Hydration and adequate protein help results show.</li>
         </ul>`
       },
       {
@@ -199,10 +200,9 @@
         fact:"Combines BPC-157 repair support with TB-500 actin-pathway support.",
         doses:["10 mg"],
         more:`<ul>
-          <li><b>Starter (each):</b> BPC-157 <u>250 mcg daily</u> + TB-500 <u>2 mg/week</u> split in 2 doses for week 1.</li>
+          <li><b>Starter (each):</b> BPC-157 250 mcg daily + TB-500 2 mg/week split in 2 doses for week 1.</li>
           <li><b>Titration (weeks 2–4):</b> BPC-157 500 mcg daily; TB-500 4 mg/week split (e.g., 2 mg twice weekly).</li>
           <li><b>Maintenance (weeks 5–8):</b> BPC-157 250–500 mcg 3–5×/week; TB-500 2 mg/week.</li>
-          <li><b>Rehab:</b> Add gentle mobility and progressive loading.</li>
         </ul>`
       },
       {
@@ -254,9 +254,11 @@
         </ul>`
       },
       {
-        key:"bac10", name:"Bacteriostatic Water", badge:"Supply", category:"supplies",
+        key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
         short:"Sterile water used to mix peptides. Not a treatment by itself.",
-        onset:"—", fact:"Contains a small preservative for multi-use vials.", doses:["10 mL"],
+        onset:"—",
+        fact:"Generic bacteriostatic water with preservative for multi-use vials.",
+        doses:["10 mL"],
         more:`<ul>
           <li><b>Use:</b> Reconstitutes peptides to a measured volume.</li>
           <li><b>Handling:</b> Keep sterile; refrigerate after opening when required.</li>
@@ -264,19 +266,23 @@
         </ul>`
       },
       {
-        key:"hospira30", name:"Hospira Bacteriostatic Water", badge:"Supply", category:"supplies",
-        short:"Brand-name sterile water for mixing peptides.",
-        onset:"—", fact:"Same purpose as above in a 30 mL format.", doses:["30 mL"],
+        key:"hospira30", name:"Hospira Bacteriostatic Water (brand)", badge:"Supply", category:"supplies",
+        short:"Brand-name sterile bacteriostatic water, 30 mL.",
+        onset:"—",
+        fact:"Hospira brand; convenient larger volume for multiple mixes.",
+        doses:["30 mL"],
         more:`<ul>
           <li><b>Use:</b> Mix to your target concentration for consistent dosing.</li>
-          <li><b>Format:</b> Larger volume is convenient for multiple vials.</li>
+          <li><b>Format:</b> 30 mL multi-use vial.</li>
           <li><b>Technique:</b> Maintain clean handling to protect potency.</li>
         </ul>`
       },
       {
         key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
         short:"Sterile acidic diluent for peptides that require a lower pH when mixed.",
-        onset:"—", fact:"Used when a peptide specifies acidic reconstitution.", doses:["10 mL"],
+        onset:"—",
+        fact:"Used when a peptide specifies acidic reconstitution.",
+        doses:["10 mL"],
         more:`<ul>
           <li><b>Use:</b> Only for peptides that call for acidic mixing.</li>
           <li><b>Tip:</b> Follow the exact ratio on your product instructions.</li>
@@ -291,22 +297,26 @@
     const q = document.getElementById('q');
 
     const makeDose = d => `<span class="dose" title="${d}">${d}</span>`;
-    const makeCard = item => `
-      <article class="card" data-key="${item.key}" data-cat="${item.category}">
-        <div class="title">
-          <h3>${esc(item.name)}</h3>
-          <span class="pill">${esc(item.badge)}</span>
-        </div>
-        <p class="desc">${esc(item.short)}</p>
-        <div class="onset"><strong>When you notice changes:</strong> ${esc(item.onset)}</div>
-        ${item.fact ? `<div class="small" style="opacity:.9">Fact: ${esc(item.fact)}</div>` : ``}
-        <div class="doses" aria-label="Available strengths">${item.doses.map(makeDose).join('')}</div>
-        <details class="dropdown">
-          <summary>More info <span class="small" style="opacity:.7">▼</span></summary>
-          <div class="drop-body">${item.more}</div>
-        </details>
-      </article>
-    `;
+    function makeCard(item){
+      const showOnset = item.category !== 'supplies' && item.onset && item.onset.trim() !== '—';
+      return `
+        <article class="card" data-key="${item.key}" data-cat="${item.category}">
+          <div class="title">
+            <h3>${esc(item.name)}</h3>
+            <span class="pill">${esc(item.badge)}</span>
+          </div>
+          <p class="desc">${esc(item.short)}</p>
+          ${showOnset ? `<div class="onset"><strong>When you notice changes:</strong> ${esc(item.onset)}</div>` : ``}
+          ${item.fact ? `<div class="small" style="opacity:.9">Fact: ${esc(item.fact)}</div>` : ``}
+          <div class="dose-label">Available doses:</div>
+          <div class="doses" aria-label="Available strengths">${item.doses.map(makeDose).join('')}</div>
+          <details class="dropdown">
+            <summary>More info <span class="small" style="opacity:.7">▼</span></summary>
+            <div class="drop-body">${item.more}</div>
+          </details>
+        </article>
+      `;
+    }
 
     function render(list){
       grid.innerHTML = list.map(makeCard).join('');
