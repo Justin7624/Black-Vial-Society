@@ -49,11 +49,22 @@
     .onset{color:#e9e9f5;font-size:12px;background:#1c2130;border:1px dashed #2f3650;padding:8px;border-radius:10px}
     .dose-label{font-size:12px;color:#cfd0d8;margin-top:2px}
     .doses{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-    .dose{padding:6px 10px;border-radius:10px;border:1px solid #2b2e3b;background:#1a1c22;font-size:12px;color:var(--ink)}
-    details.dropdown{margin-top:6px;border:1px solid #252838;border-radius:12px;overflow:hidden;background:#14161b}
-    details > summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:600;font-size:13px;display:flex;justify-content:space-between;align-items:center}
-    details > summary::-webkit-details-marker{display:none}
-    .drop-body{padding:12px 14px;border-top:1px solid #24283a;color:#c8c9d4;font-size:13px}
+    .dose{padding:6px 10px;border-radius:10px;border:1px solid #2b2e3b;background:#1a1c22;font-size:12px;color:var(--ink);cursor:pointer}
+    .dose:focus{outline:2px solid #3fc29a}
+
+    /* mini Classic calculator dropdown */
+    .mini-wrap{margin-top:8px;border:1px solid #2a2d3c;background:#14161b;border-radius:12px;overflow:hidden;display:none}
+    .mini-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:700;font-size:13px}
+    .mini-body{display:grid;gap:10px;padding:10px 12px;border-top:1px solid #24283a}
+    .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .mini-field{display:flex;flex-direction:column;gap:6px}
+    .mini-field label{font-size:12px;color:#b8b9c2}
+    .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
+    .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .stat{background:#10131a;border:1px dashed #2c3450;padding:10px;border-radius:10px;font-size:13px}
+    .stat b{display:block;font-size:12px;color:#9fb3d2;margin-bottom:4px}
+    .close-mini{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:999px;color:#cfd0d8;padding:6px 10px;font-size:12px}
+
     .empty{color:#b8b9c2;text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
 
     /* Footer */
@@ -80,7 +91,6 @@
   <header>
     <div class="wrap">
       <div class="brand-banner">
-        <!-- Header banner image -->
         <img src="Black_Vial_Society_Transparent_Header.png" alt="Black Vial Society" class="banner-img" />
       </div>
       <div class="tabs">
@@ -158,6 +168,23 @@
   <script>
     // ---------- Helpers ----------
     const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+    // Core math for Classic mode:
+    // mg_per_unit = (mg_per_vial / diluent_ml) * (0.01 mL per unit)
+    // units_to_pull = desired_mg / mg_per_unit
+    function calcClassic({mgPerVial, diluentMl, desiredMg, syringeScale=100}){
+      const mlPerUnit = 1/100; // U-100 insulin
+      const mgPerMl = mgPerVial / diluentMl;
+      const mgPerUnit = mgPerMl * mlPerUnit;
+      const units = desiredMg / mgPerUnit;
+      return {
+        mgPerUnit,
+        units,
+        // safety clamps for display
+        unitsClamped: Math.max(0, Math.min(units, syringeScale))
+      };
+    }
+    const fmt = n => (isFinite(n) ? n.toFixed(2) : '—');
 
     // ---------- Guide Data ----------
     const GUIDE = [
@@ -335,7 +362,6 @@
     ];
 
     // ---------- Price Data ----------
-    // For supplies, unit = mL. For peptides, unit = mg.
     const PRICES = [
       ["Retatrutide","5 mg",60,"mg"],["Retatrutide","10 mg",120,"mg"],["Retatrutide","15 mg",180,"mg"],["Retatrutide","30 mg",360,"mg"],
       ["Tirzepatide","10 mg",70,"mg"],["Tirzepatide","15 mg",105,"mg"],["Tirzepatide","30 mg",210,"mg"],
@@ -351,8 +377,8 @@
       ["IPA (Ipamorelin)","10 mg",45,"mg"],
       ["Tesamorelin","10 mg",55,"mg"],
       ["SS-31","10 mg",50,"mg"],
-      ["Bacteriostatic water","10 mL",6,"mL"],          // updated to $6
-      ["Hospira bacteriostatic water","30 mL",19.5,"mL"], // updated to $19.50
+      ["Bacteriostatic water","10 mL",6,"mL"],
+      ["Hospira bacteriostatic water","30 mL",19.5,"mL"],
       ["Acetic acid","10 mL",12,"mL"],
     ];
 
@@ -361,11 +387,84 @@
     const empty = document.getElementById('empty');
     const q = document.getElementById('q');
 
-    const makeDose = d => `<span class="dose" title="${d}">${d}</span>`;
-    function makeCard(item){
+    const makeDoseChip = (mgStr, cardId) => {
+      const id = `${cardId}-${mgStr.replace(/\s+/g,'')}`;
+      return `<button class="dose" data-dose="${mgStr}" data-for="${cardId}" aria-controls="mini-${id}" aria-expanded="false">${mgStr}</button>
+              <div id="mini-${id}" class="mini-wrap" role="region" aria-label="Classic dose calculator"></div>`;
+    };
+
+    function makeMiniCalcHTML({cardId, mgPerVial, desiredMg}){
+      const id = `${cardId}-${mgPerVial}mg`;
+      const diluentDefault = 2.0; // sensible default; editable
+      const syringeScale = 100;
+      const result = calcClassic({mgPerVial, diluentMl:diluentDefault, desiredMg, syringeScale});
+      return `
+        <div class="mini-head">
+          Classic dose calculator
+          <button class="close-mini" data-close="${id}">Close</button>
+        </div>
+        <div class="mini-body" data-mini="${id}">
+          <div class="mini-grid">
+            <div class="mini-field">
+              <label>Peptide per vial (mg)</label>
+              <input type="number" step="0.01" value="${mgPerVial}" data-role="mgPerVial">
+            </div>
+            <div class="mini-field">
+              <label>Diluent added (mL)</label>
+              <input type="number" step="0.01" value="${diluentDefault}" data-role="diluentMl">
+            </div>
+            <div class="mini-field">
+              <label>Desired dose (mg)</label>
+              <input type="number" step="0.001" value="${desiredMg}" data-role="desiredMg">
+            </div>
+            <div class="mini-field">
+              <label>Syringe scale</label>
+              <select data-role="syringe">
+                <option value="100" selected>U-100 (1 unit = 0.01 mL)</option>
+              </select>
+            </div>
+          </div>
+          <div class="mini-stats">
+            <div class="stat">
+              <b>Units to pull</b>
+              <span data-out="units">${fmt(result.unitsClamped)}</span>
+            </div>
+            <div class="stat">
+              <b>Potency</b>
+              <span><span data-out="mgPerUnit">${fmt(result.mgPerUnit)}</span> mg per unit</span>
+            </div>
+          </div>
+          <div class="small" style="opacity:.8;margin-top:6px">Assumes U-100 insulin syringe (1 unit = 0.01 mL). For education only.</div>
+        </div>
+      `;
+    }
+
+    function attachMiniLogic(container){
+      const scope = container.querySelector('[data-mini]');
+      const read = () => ({
+        mgPerVial: parseFloat(scope.querySelector('[data-role="mgPerVial"]').value)||0,
+        diluentMl: parseFloat(scope.querySelector('[data-role="diluentMl"]').value)||0,
+        desiredMg: parseFloat(scope.querySelector('[data-role="desiredMg"]').value)||0,
+        syringeScale: 100
+      });
+      const write = ({units, mgPerUnit})=>{
+        scope.parentElement.querySelector('[data-out="units"]').textContent = fmt(units);
+        scope.parentElement.querySelector('[data-out="mgPerUnit"]').textContent = fmt(mgPerUnit);
+      };
+      scope.querySelectorAll('input,select').forEach(el=>{
+        el.addEventListener('input', ()=>{
+          const vals = read();
+          const res = calcClassic(vals);
+          write(res);
+        });
+      });
+    }
+
+    function makeCard(item, idx){
+      const cardId = `card${idx}-${item.key}`;
       const showOnset = item.category !== 'supplies' && item.onset && item.onset.trim() !== '—';
       return `
-        <article class="card" data-key="${item.key}" data-cat="${item.category}">
+        <article class="card" data-key="${item.key}" data-cat="${item.category}" id="${cardId}">
           <div class="title">
             <h3>${esc(item.name)}</h3>
             <span class="pill">${esc(item.badge)}</span>
@@ -374,7 +473,9 @@
           ${showOnset ? `<div class="onset"><strong>When you notice changes:</strong> ${esc(item.onset)}</div>` : ``}
           ${item.fact ? `<div class="small" style="opacity:.9">Fact: ${esc(item.fact)}</div>` : ``}
           <div class="dose-label">Available doses:</div>
-          <div class="doses" aria-label="Available strengths">${item.doses.map(makeDose).join('')}</div>
+          <div class="doses" aria-label="Available strengths">
+            ${item.doses.map(d=>makeDoseChip(d, cardId)).join('')}
+          </div>
           <details class="dropdown">
             <summary>More info <span class="small" style="opacity:.7">▼</span></summary>
             <div class="drop-body">${item.more}</div>
@@ -382,11 +483,39 @@
         </article>
       `;
     }
+
     function renderGuide(list){
-      grid.innerHTML = list.map(makeCard).join('');
+      grid.innerHTML = list.map((x,i)=>makeCard(x,i)).join('');
       empty.style.display = list.length ? 'none' : 'block';
+
+      // Wire dose chips -> mini classic calculators
+      grid.querySelectorAll('.dose').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const mgStr = btn.dataset.dose;              // e.g., "10 mg"
+          const mg = parseFloat(mgStr);                // 10
+          const cardId = btn.dataset.for;
+          const miniId = `mini-${cardId}-${mgStr.replace(/\s+/g,'')}`;
+          const mini = document.getElementById(miniId);
+          const isOpen = mini.style.display === 'block';
+
+          // toggle behavior
+          document.querySelectorAll('.mini-wrap').forEach(x=>x.style.display='none');
+          document.querySelectorAll('.dose').forEach(x=>x.setAttribute('aria-expanded','false'));
+
+          if(!isOpen){
+            mini.innerHTML = makeMiniCalcHTML({cardId, mgPerVial: mg, desiredMg: mg});
+            mini.style.display = 'block';
+            btn.setAttribute('aria-expanded','true');
+            attachMiniLogic(mini);
+            // close button
+            mini.querySelector('.close-mini').addEventListener('click', ()=>{
+              mini.style.display = 'none';
+              btn.setAttribute('aria-expanded','false');
+            });
+          }
+        });
+      });
     }
-    renderGuide(GUIDE);
 
     let activeFilter = 'all';
     function applyFilters(){
@@ -398,6 +527,8 @@
       });
       renderGuide(filtered);
     }
+
+    renderGuide(GUIDE);
     q.addEventListener('input', applyFilters);
     document.querySelectorAll('.chip[data-filter]').forEach(ch=>{
       ch.addEventListener('click', ()=>{
