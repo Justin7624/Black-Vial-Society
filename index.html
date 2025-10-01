@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SUBQ Society · Peptide Guide</title>
+  <title>Peptide Guide</title>
   <style>
     :root{
       --bg:#0e0f12; --card:#16171c; --muted:#1e2027; --ink:#e8e9ef; --ink-2:#b8b9c2;
@@ -26,9 +26,7 @@
       display:grid;gap:18px;margin:22px auto 8px auto;align-items:center;
       grid-template-columns:1fr; text-align:left;
     }
-    .toolbar{
-      display:flex;gap:10px;flex-wrap:wrap
-    }
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap}
     .search{
       flex:1 1 340px;display:flex;align-items:center;gap:10px;
       background:var(--card);border:1px solid #272a36;border-radius:999px;
@@ -76,11 +74,6 @@
     }
     .foot-wrap{max-width:1100px;margin:auto;padding:10px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between}
     .notice{font-size:12px;color:var(--ink-2)}
-    .btn{
-      background:linear-gradient(180deg,var(--brand),var(--brand-2));color:#0b1212;border:0;
-      border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer
-    }
-    .btn.ghost{background:#181b22;color:var(--ink);border:1px solid #2a2f3e}
     .empty{color:var(--ink-2);text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
     .small{font-size:12px;color:var(--ink-2)}
   </style>
@@ -91,8 +84,8 @@
       <div class="brand">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 12c3.5-5 9.5-5 13 0-3.5 5-9.5 5-13 0Z" stroke="#63e6be" stroke-width="1.5"/><circle cx="12" cy="12" r="2.8" stroke="#63e6be" stroke-width="1.5"/></svg>
         <div>
-          <h1>SUBQ Society</h1>
-          <div class="tagline">Peptide Guide (people-friendly)</div>
+          <h1>Peptide Guide</h1>
+          <div class="tagline"></div>
         </div>
       </div>
 
@@ -123,135 +116,78 @@
   <footer class="footer">
     <div class="foot-wrap">
       <div class="notice">This guide is for educational use only. It’s not medical advice.</div>
-      <div style="display:flex;gap:8px">
-        <a class="btn ghost" href="#" id="download">Download JSON</a>
-        <a class="btn" href="#" id="print">Print / Save PDF</a>
-      </div>
+      <div></div>
     </div>
   </footer>
 
   <script>
-    // --- Data: people-friendly text + doses ---------------------------------
+    // --- Data ---------------------------------------------------------------
     const DATA = [
-      {
-        key:"reta", name:"Retatrutide (Reta)", badge:"Weight",
-        category:"weight",
+      { key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
         short:"Helps with weight loss and blood sugar by helping you feel full sooner.",
         onset:"Less hunger may be felt in ~2 weeks; weight changes build over 2–3 months.",
-        doses:["5 mg","10 mg","15 mg","30 mg"]
-      },
-      {
-        key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight",
-        category:"weight",
+        doses:["5 mg","10 mg","15 mg","30 mg"] },
+      { key:"tirz", name:"Tirzepatide (Tirz)", badge:"Weight", category:"weight",
         short:"Supports weight loss and lowers blood sugar; already used for type 2 diabetes.",
         onset:"Blood sugar can drop in days; weight and appetite shifts in 1–2 months.",
-        doses:["10 mg","15 mg","30 mg"]
-      },
-      {
-        key:"sema", name:"Semaglutide (Sema)", badge:"Weight",
-        category:"weight",
+        doses:["10 mg","15 mg","30 mg"] },
+      { key:"sema", name:"Semaglutide (Sema)", badge:"Weight", category:"weight",
         short:"Helps you eat less and improves blood sugar; used for weight loss and diabetes.",
         onset:"Sugar improves in days; visible weight change in ~6–8 weeks.",
-        doses:["5 mg","10 mg"]
-      },
-      {
-        key:"motsc", name:"MOTS-C", badge:"Energy",
-        category:"energy",
+        doses:["5 mg","10 mg"] },
+      { key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
         short:"May boost everyday energy and help the body use fat better.",
         onset:"Some people notice more energy within 1–2 weeks.",
-        doses:["10 mg"]
-      },
-      {
-        key:"mt1", name:"Melanotan 1", badge:"Tanning",
-        category:"tanning",
+        doses:["10 mg"] },
+      { key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
         short:"Helps the skin tan more easily; many use it to deepen skin tone.",
         onset:"Tanning usually builds over 1–2 weeks with repeated use.",
-        doses:["10 mg"]
-      },
-      {
-        key:"mt2", name:"Melanotan 2", badge:"Tanning",
-        category:"tanning",
+        doses:["10 mg"] },
+      { key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
         short:"Similar to MT-1 for tanning; some also notice increased libido.",
         onset:"Tanning within days to weeks; libido effects may appear sooner.",
-        doses:["10 mg"]
-      },
-      {
-        key:"glow", name:"Glow", badge:"Beauty",
-        category:"energy",
+        doses:["10 mg"] },
+      { key:"glow", name:"Glow", badge:"Beauty", category:"energy",
         short:"Blend often marketed for skin, hair, and nails (ingredients vary by seller).",
         onset:"Changes are gradual—usually weeks to months.",
-        doses:["70 mg"]
-      },
-      {
-        key:"klow", name:"Klow", badge:"Wellness",
-        category:"energy",
+        doses:["70 mg"] },
+      { key:"klow", name:"Klow", badge:"Wellness", category:"energy",
         short:"General wellness/anti-aging style blend (formula varies).",
         onset:"Typically weeks to months.",
-        doses:["80 mg"]
-      },
-      {
-        key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight",
-        category:"weight",
+        doses:["80 mg"] },
+      { key:"cagril", name:"Cagrilintide (Cagril)", badge:"Weight", category:"weight",
         short:"Helps curb appetite; sometimes paired with other weight-loss meds.",
         onset:"Less hunger in about a week; weight changes in several weeks.",
-        doses:["5 mg"]
-      },
-      {
-        key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery",
-        category:"healing",
+        doses:["5 mg"] },
+      { key:"bpcTb", name:"BPC-157 + TB-500", badge:"Recovery", category:"healing",
         short:"Common duo for joints, tendons, and soft-tissue support.",
         onset:"Some feel less soreness in days; tissue support builds over weeks.",
-        doses:["10 mg"]
-      },
-      {
-        key:"nad", name:"NAD+", badge:"Energy",
-        category:"energy",
+        doses:["10 mg"] },
+      { key:"nad", name:"NAD+", badge:"Energy", category:"energy",
         short:"Supports cellular energy; some use it for fatigue or healthy aging.",
         onset:"Energy/clarity may be felt within hours to days.",
-        doses:["500 mg"]
-      },
-      {
-        key:"ipa", name:"IPA", badge:"Metabolism",
-        category:"energy",
+        doses:["500 mg"] },
+      { key:"ipa", name:"IPA", badge:"Metabolism", category:"energy",
         short:"Sold for fat-burning/energy by some sellers (formulas vary).",
         onset:"Often days to weeks depending on the goal.",
-        doses:["10 mg"]
-      },
-      {
-        key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp",
-        category:"energy",
+        doses:["10 mg"] },
+      { key:"tesa", name:"TESA (Tesamorelin)", badge:"Body Comp", category:"energy",
         short:"Encourages natural growth-hormone release; can reduce belly fat.",
         onset:"Hormone changes in days; shape changes take weeks to months.",
-        doses:["10 mg"]
-      },
-      {
-        key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito",
-        category:"energy",
+        doses:["10 mg"] },
+      { key:"ss31", name:"SS-31 (Elamipretide)", badge:"Mito", category:"energy",
         short:"Supports the cell’s ‘power plants’ (mitochondria) for energy and resilience.",
         onset:"Some report benefits within days to weeks.",
-        doses:["10 mg"]
-      },
-      {
-        key:"bac10", name:"Bacteriostatic Water", badge:"Supply",
-        category:"supplies",
+        doses:["10 mg"] },
+      { key:"bac10", name:"Bacteriostatic Water", badge:"Supply", category:"supplies",
         short:"Sterile water used to mix peptides. Not a treatment by itself.",
-        onset:"—",
-        doses:["10 mL"]
-      },
-      {
-        key:"hospira30", name:"Hospira Bacteriostatic Water", badge:"Supply",
-        category:"supplies",
+        onset:"—", doses:["10 mL"] },
+      { key:"hospira30", name:"Hospira Bacteriostatic Water", badge:"Supply", category:"supplies",
         short:"Same purpose as above, from a brand-name manufacturer.",
-        onset:"—",
-        doses:["30 mL"]
-      },
-      {
-        key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply",
-        category:"supplies",
+        onset:"—", doses:["30 mL"] },
+      { key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
         short:"Sterile acidic diluent for peptides that prefer a lower pH when mixed.",
-        onset:"—",
-        doses:["10 mL"]
-      },
+        onset:"—", doses:["10 mL"] },
     ];
 
     // --- Render --------------------------------------------------------------
@@ -272,7 +208,7 @@
 
         <details class="dropdown">
           <summary>
-            More info (simple)
+            More info
             <span class="small mute">▼</span>
           </summary>
           <div class="drop-body">
@@ -323,17 +259,6 @@
     });
     document.getElementById('collapse').addEventListener('click', ()=>{
       document.querySelectorAll('details.dropdown').forEach(d=>d.open=false);
-    });
-
-    // Utilities: print & download data
-    document.getElementById('print').addEventListener('click', (e)=>{ e.preventDefault(); window.print(); });
-    document.getElementById('download').addEventListener('click', (e)=>{
-      e.preventDefault();
-      const blob = new Blob([JSON.stringify(DATA,null,2)], {type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = Object.assign(document.createElement('a'), {href:url, download:'peptides.json'});
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url), 500);
     });
   </script>
 </body>
