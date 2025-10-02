@@ -8,11 +8,7 @@
   :root{
     --bg:#0e0f12; --card:#16171c; --muted:#1e2027; --ink:#e8e9ef; --ink-2:#b8b9c2;
     --brand:#63e6be; --brand-2:#3fc29a; --accent:#8ab4ff; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
-
-    /* Classic mini syringe colors */
-    --classic-accent:#7c5cff;
-    --classic-accent-b:#5b9dff;
-    --classic-accent-2:#25d0a6;
+    --classic-accent:#7c5cff; --classic-accent-b:#5b9dff; --classic-accent-2:#25d0a6;
   }
   *{box-sizing:border-box}
   html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.45}
@@ -61,10 +57,9 @@
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
 
-  /* NEW: tighter desired-dose row so unit + syringe are always visible */
-  .dose-row{display:grid;grid-template-columns:1fr 86px;gap:8px}
-  .syr-row{display:flex;align-items:end}
-  .syr-row select{min-width:96px}
+  /* Desired dose layout: input + unit select side-by-side, always visible */
+  .dose-row{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:8px}
+  .dose-row select{min-width:92px}
 
   /* Classic syringe visual (mini) */
   .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
@@ -77,8 +72,8 @@
   .tick.major{height:14px}
   .tick .n{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:11px;color:#aab2c5}
 
-  /* MORE space below the bar to avoid any overlap with stats */
-  .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+  /* Extra space below the bar so stats never overlap */
+  .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
   .stat{background:#10131a;border:1px dashed #2c3450;padding:10px;border-radius:10px;font-size:13px}
   .stat b{display:block;font-size:12px;color:#9fb3d2;margin-bottom:4px}
 
@@ -179,10 +174,10 @@ const num = n => n.toFixed(2);
 /* ---------- Classic math with unit handling ---------- */
 function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
   const desiredMg = desiredUnit==='mcg' ? (desired/1000) : desired;  // convert to mg
-  const mlPerUnit = 1/100;                     // U-100 base; percentage scaled by selected syringe
+  const mlPerUnit = 1/100;                     // base U-100
   const mgPerMl   = mgPerVial / diluentMl;
-  const mgPerUnit = mgPerMl * mlPerUnit;       // mg pulled per unit
-  const units     = desiredMg / mgPerUnit;     // how many units for the desired dose
+  const mgPerUnit = mgPerMl * mlPerUnit;       // mg per unit drawn
+  const units     = desiredMg / mgPerUnit;
   const unitsPct  = Math.max(0, Math.min(100, (units/syringeScale)*100));
   return { mgPerUnit, units, unitsPct };
 }
@@ -385,7 +380,7 @@ const PRICES = [
   ["Acetic acid","10 mL",12,"mL"],
 ];
 
-/* ---------- Starter dose map (for auto-fill) ---------- */
+/* ---------- Starter dose map for auto-fill ---------- */
 const STARTERS = {
   reta:  {dose:1.0, unit:'mg'},
   tirz:  {dose:2.5, unit:'mg'},
@@ -396,36 +391,36 @@ const STARTERS = {
   glow:  {dose:35, unit:'mg'},
   klow:  {dose:40, unit:'mg'},
   cagril:{dose:0.3, unit:'mg'},
-  bpcTb: {dose:250, unit:'mcg'},   // using BPC starter as the reference
+  bpcTb: {dose:250, unit:'mcg'},
   nad:   {dose:100, unit:'mg'},
   ipa:   {dose:5, unit:'mg'},
   tesa:  {dose:1, unit:'mg'},
   ss31:  {dose:5, unit:'mg'}
 };
 
-/* ---------- GUIDE RENDER + MINI CLASSIC ---------- */
+/* ---------- GUIDE + MINI CLASSIC ---------- */
 const grid  = document.getElementById('grid');
 const empty = document.getElementById('empty');
 const q     = document.getElementById('q');
 
-function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
-  const diluentDefault = 1.0; // default 1 mL
+function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
+  const diluentDefault = 1.0;
   const res = classicCalc({
-    mgPerVial,
-    diluentMl:diluentDefault,
-    desired: starter.dose,
-    desiredUnit: starter.unit,
-    syringeScale
+    mgPerVial, diluentMl:diluentDefault,
+    desired: starter.dose, desiredUnit: starter.unit, syringeScale
   });
-  const potencyMcgPerUnit = res.mgPerUnit*1000;
+  const mcgPerUnit = res.mgPerUnit*1000;
+
   return `
-    <div class="mini-head">Classic dose calculator <button class="close-mini" data-close="${id}">Close</button></div>
+    <div class="mini-head">Peptide calculator <button class="close-mini" data-close="${id}">Close</button></div>
     <div class="mini-body" data-mini="${id}">
       <div class="mini-grid">
-        <div class="mini-field"><label>Peptide per vial (mg)</label>
+        <div class="mini-field">
+          <label>Peptide per vial (mg)</label>
           <input type="number" step="0.01" value="${isFinite(mgPerVial)?mgPerVial:0}" data-role="mgPerVial">
         </div>
-        <div class="mini-field"><label>Diluent added (mL)</label>
+        <div class="mini-field">
+          <label>Diluent added (mL)</label>
           <input type="number" step="0.01" value="${diluentDefault}" data-role="diluentMl">
         </div>
 
@@ -440,7 +435,8 @@ function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
           </div>
         </div>
 
-        <div class="mini-field syr-row"><label>Syringe scale</label>
+        <div class="mini-field">
+          <label>Syringe scale</label>
           <select data-role="syringe">
             <option value="30">U-30</option>
             <option value="50">U-50</option>
@@ -456,7 +452,7 @@ function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
           <div class="stat"><b>Units to pull</b><span data-out="units">${(isFinite(res.units)?res.units:0).toFixed(2)}</span></div>
           <div class="stat"><b>Potency</b>
             <span><span data-out="mgPerUnit">${(isFinite(res.mgPerUnit)?res.mgPerUnit:0).toFixed(4)}</span> mg per unit
-              (<span data-out="mcgPerUnit">${(isFinite(potencyMcgPerUnit)?potencyMcgPerUnit:0).toFixed(2)}</span> mcg/unit)
+              (<span data-out="mcgPerUnit">${(isFinite(mcgPerUnit)?mcgPerUnit:0).toFixed(2)}</span> mcg/unit)
             </span>
           </div>
         </div>
@@ -490,7 +486,7 @@ function cardHTML(item, idx){
   `;
 }
 
-/* Build ticks for chosen syringe scale */
+/* Build ruler ticks for selected syringe scale */
 function buildTicks(elTicks, scaleMax){
   elTicks.innerHTML='';
   const minorStep = (scaleMax<=30?1:(scaleMax===50?1:2));
@@ -500,8 +496,7 @@ function buildTicks(elTicks, scaleMax){
     div.className = 'tick ' + (i%majorStep===0?'major':'minor');
     elTicks.appendChild(div);
     if(i%majorStep===0){
-      const n=document.createElement('div');
-      n.className='n'; n.textContent=String(i);
+      const n=document.createElement('div'); n.className='n'; n.textContent=String(i);
       div.appendChild(n);
     }
   }
@@ -544,10 +539,9 @@ function renderGuide(list){
   grid.innerHTML = list.map((x,i)=>cardHTML(x,i)).join('');
   empty.style.display = list.length ? 'none' : 'block';
 
-  // Open mini on dose click with peptide-specific starter dose, vial mg & 1 mL diluent
   grid.querySelectorAll('.dose').forEach(btn=>{
     btn.addEventListener('click',()=>{
-      const doseStr = btn.dataset.dose;                 // e.g., "10 mg" or "30 mL"
+      const doseStr = btn.dataset.dose;
       const card    = btn.closest('.card');
       const key     = card.dataset.key;
       const starter = STARTERS[key] || {dose:0, unit:'mg'};
@@ -555,16 +549,15 @@ function renderGuide(list){
 
       const cardId = btn.dataset.for;
       const miniId = `mini-${cardId}-${doseStr.replace(/\s+/g,'')}`;
-      const mini = document.getElementById(miniId);
-      const isOpen = mini.style.display==='block';
+      const mini   = document.getElementById(miniId);
+      const open   = mini.style.display==='block';
 
-      // close others
       document.querySelectorAll('.mini-wrap').forEach(m=>m.style.display='none');
       document.querySelectorAll('.dose').forEach(d=>d.setAttribute('aria-expanded','false'));
 
-      if(!isOpen){
-        const vialMg = isNaN(mgFromChip) ? 0 : mgFromChip;  // use chip strength if mg; supplies will be 0
-        mini.innerHTML = miniClassicHTML(miniId, vialMg, starter, 100);
+      if(!open){
+        const vialMg = isNaN(mgFromChip) ? 0 : mgFromChip;
+        mini.innerHTML = classicMiniHTML(miniId, vialMg, starter, 100);
         mini.style.display = 'block';
         btn.setAttribute('aria-expanded','true');
         wireMini(mini);
