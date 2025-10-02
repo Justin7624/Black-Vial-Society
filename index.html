@@ -57,9 +57,23 @@
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
 
-  /* Desired dose layout: input + unit select side-by-side, always visible */
-  .dose-row{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:8px}
-  .dose-row select{min-width:92px}
+  /* Desired dose layout: big input + compact mg/mcg select (fix) */
+  .dose-row{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr) 76px; /* input gets most of the space, unit is compact */
+    gap:8px;
+  }
+  .dose-row input{
+    min-width:140px;
+    padding:8px 10px;
+    font-size:13px;
+  }
+  .dose-row select{
+    min-width:76px;
+    max-width:90px;
+    padding:6px 8px;
+    font-size:12px;
+  }
 
   /* Classic syringe visual (mini) */
   .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
@@ -404,7 +418,7 @@ const empty = document.getElementById('empty');
 const q     = document.getElementById('q');
 
 function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
-  const diluentDefault = 1.0;
+  const diluentDefault = 1.0; // 1 mL default
   const res = classicCalc({
     mgPerVial, diluentMl:diluentDefault,
     desired: starter.dose, desiredUnit: starter.unit, syringeScale
