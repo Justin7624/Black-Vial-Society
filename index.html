@@ -17,14 +17,8 @@
 
   header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0e0f12 60%,rgba(14,15,18,.7));border-bottom:1px solid #222531}
   .wrap{max-width:1100px;margin:auto;padding:18px}
-
-  /* NEW: full-bleed header wrapper so banner stretches with viewport */
-  .header-wrap{max-width:none;width:100%;padding-left:16px;padding-right:16px}
   .brand-banner{display:flex;justify-content:center}
-  /* NEW: banner scales to viewport; cap for huge screens */
-  .banner-img{width:98vw;max-width:1400px;margin:0 auto;filter:drop-shadow(var(--shadow))}
-  @media (max-width:768px){ .banner-img{width:96vw} }
-
+  .banner-img{width:min(660px,90vw);filter:drop-shadow(var(--shadow))}
   .tabs{display:flex;gap:8px;margin-top:10px}
   .tab{padding:8px 12px;border-radius:999px;border:1px solid #2b2e3b;background:#1b1d24;color:#c7c9d6;cursor:pointer}
   .tab.active{background:rgba(99,230,190,.12);border-color:#3fc29a;color:#e8e9ef}
@@ -119,7 +113,7 @@
 </head>
 <body>
   <header>
-    <div class="wrap header-wrap">
+    <div class="wrap">
       <div class="brand-banner">
         <img src="Black_Vial_Society_Transparent_Header.png" alt="Black Vial Society" class="banner-img"/>
       </div>
@@ -202,8 +196,8 @@ function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeSc
   const want = Number(desired)||0;
   const scale = Number(syringeScale)||100;
 
-  const desiredMg = desiredUnit==='mcg' ? (want/1000) : want;    // to mg
-  const mgPerMl   = (mgV>0 && mlD>0) ? (mgV/mlD) : NaN;          // mg/mL
+  const desiredMg = desiredUnit==='mcg' ? (want/1000) : want;    // convert to mg
+  const mgPerMl   = (mgV>0 && mlD>0) ? (mgV/mlD) : NaN;          // mg per mL
   const mgPerUnit = isFinite(mgPerMl) ? (mgPerMl*0.01) : NaN;    // 1 unit = 0.01 mL
   const units     = (isFinite(mgPerUnit) && desiredMg>=0) ? (desiredMg/mgPerUnit) : NaN;
 
@@ -426,7 +420,7 @@ function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
         </div>
         <div class="mini-field">
           <label>Diluent added (mL)</label>
-          <input type="number" step="0.01" value="1" data-role="diluentMl">
+          <input type="number" step="0.01" value="${diluentDefault}" data-role="diluentMl">
         </div>
 
         <div class="mini-field">
@@ -528,11 +522,11 @@ function wireMini(container){
   const write = (res) => {
     const uOut = classic.querySelector('[data-out="units"]');
     const mgU  = classic.querySelector('[data-out="mgPerUnit"]');
-    theMcg     = classic.querySelector('[data-out="mcgPerUnit"]');
+    const mcgU = classic.querySelector('[data-out="mcgPerUnit"]');
 
     uOut.textContent = isFinite(res.units)?res.units.toFixed(2):'—';
     mgU.textContent  = isFinite(res.mgPerUnit)?res.mgPerUnit.toFixed(4):'—';
-    theMcg.textContent = isFinite(res.mgPerUnit)?(res.mgPerUnit*1000).toFixed(2):'—';
+    mcgU.textContent = isFinite(res.mgPerUnit)?(res.mgPerUnit*1000).toFixed(2):'—';
 
     const pct = (isFinite(res.units)&&res.syringeScale>0) ? Math.max(0,Math.min(100,(res.units/res.syringeScale)*100)) : 0;
     fillEl.style.width = pct + '%';
