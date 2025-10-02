@@ -55,22 +55,30 @@
   .mini-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:700;font-size:13px}
   .close-mini{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:999px;color:#cfd0d8;padding:6px 10px;font-size:12px}
   .mini-body{display:grid;gap:12px;padding:10px 12px;border-top:1px solid #24283a}
+
   .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .mini-field{display:flex;flex-direction:column;gap:6px}
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
+
+  /* NEW: tighter desired-dose row so unit + syringe are always visible */
+  .dose-row{display:grid;grid-template-columns:1fr 86px;gap:8px}
+  .syr-row{display:flex;align-items:end}
+  .syr-row select{min-width:96px}
 
   /* Classic syringe visual (mini) */
   .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
   .tube{position:relative;height:28px;border-radius:16px;background:linear-gradient(180deg,#11131a,#0b0c10);border:1px solid #2a2c33;box-shadow:inset 0 2px 8px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05)}
   .fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,var(--classic-accent),var(--classic-accent-b));border-radius:16px;box-shadow:inset 0 0 12px rgba(255,255,255,.25), 0 0 16px rgba(124,92,255,.45)}
   .cursor{position:absolute;top:-6px;width:2px;background:var(--classic-accent-2);height:40px;border-radius:2px;box-shadow:0 0 0 2px rgba(37,208,166,.15)}
-  .ticks{position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-top:8px;padding:0 2px}
+  .ticks{position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-top:8px;margin-bottom:6px;padding:0 2px}
   .tick{position:relative;width:1px;background:#3a3d47}
   .tick.minor{height:8px;opacity:.55}
   .tick.major{height:14px}
   .tick .n{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:11px;color:#aab2c5}
-  .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px} /* MORE SPACE BELOW BAR */
+
+  /* MORE space below the bar to avoid any overlap with stats */
+  .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
   .stat{background:#10131a;border:1px dashed #2c3450;padding:10px;border-radius:10px;font-size:13px}
   .stat b{display:block;font-size:12px;color:#9fb3d2;margin-bottom:4px}
 
@@ -171,7 +179,7 @@ const num = n => n.toFixed(2);
 /* ---------- Classic math with unit handling ---------- */
 function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
   const desiredMg = desiredUnit==='mcg' ? (desired/1000) : desired;  // convert to mg
-  const mlPerUnit = 1/100;                     // U-100, but we scale by syringeScale below for ticks only
+  const mlPerUnit = 1/100;                     // U-100 base; percentage scaled by selected syringe
   const mgPerMl   = mgPerVial / diluentMl;
   const mgPerUnit = mgPerMl * mlPerUnit;       // mg pulled per unit
   const units     = desiredMg / mgPerUnit;     // how many units for the desired dose
@@ -179,7 +187,7 @@ function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeSc
   return { mgPerUnit, units, unitsPct };
 }
 
-/* ---------- FULL GUIDE DATA (restored) ---------- */
+/* ---------- FULL GUIDE DATA ---------- */
 const GUIDE = [
   {key:"reta", name:"Retatrutide (Reta)", badge:"Weight", category:"weight",
     short:"Drives strong weight loss and steadies blood sugar by helping you feel full quickly.",
@@ -401,7 +409,7 @@ const empty = document.getElementById('empty');
 const q     = document.getElementById('q');
 
 function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
-  const diluentDefault = 1.0; // NEW DEFAULT 1 mL
+  const diluentDefault = 1.0; // default 1 mL
   const res = classicCalc({
     mgPerVial,
     diluentMl:diluentDefault,
@@ -420,9 +428,10 @@ function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
         <div class="mini-field"><label>Diluent added (mL)</label>
           <input type="number" step="0.01" value="${diluentDefault}" data-role="diluentMl">
         </div>
+
         <div class="mini-field">
           <label>Desired dose</label>
-          <div style="display:flex;gap:8px">
+          <div class="dose-row">
             <input type="number" step="0.001" value="${starter.dose}" data-role="desired">
             <select data-role="unit">
               <option value="mg"${starter.unit==='mg'?' selected':''}>mg</option>
@@ -430,7 +439,8 @@ function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
             </select>
           </div>
         </div>
-        <div class="mini-field"><label>Syringe scale</label>
+
+        <div class="mini-field syr-row"><label>Syringe scale</label>
           <select data-role="syringe">
             <option value="30">U-30</option>
             <option value="50">U-50</option>
@@ -439,7 +449,6 @@ function miniClassicHTML(id, mgPerVial, starter, syringeScale=100) {
         </div>
       </div>
 
-      <!-- Classic visual -->
       <div class="classic" data-classic>
         <div class="tube"><div class="fill" data-fill style="width:${res.unitsPct}%"></div><div class="cursor" data-cursor style="left:calc(${res.unitsPct}% - 1px)"></div></div>
         <div class="ticks" data-ticks></div>
@@ -554,8 +563,7 @@ function renderGuide(list){
       document.querySelectorAll('.dose').forEach(d=>d.setAttribute('aria-expanded','false'));
 
       if(!isOpen){
-        // If dose chip has mg amount, use it to set vial mg. If it's a supply (mL), leave as 0.
-        const vialMg = isNaN(mgFromChip) ? 0 : mgFromChip;
+        const vialMg = isNaN(mgFromChip) ? 0 : mgFromChip;  // use chip strength if mg; supplies will be 0
         mini.innerHTML = miniClassicHTML(miniId, vialMg, starter, 100);
         mini.style.display = 'block';
         btn.setAttribute('aria-expanded','true');
