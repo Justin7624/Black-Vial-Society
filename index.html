@@ -57,10 +57,10 @@
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
 
-  /* Desired dose layout: big input + compact mg/mcg select (fix) */
+  /* Desired dose layout: big input + compact mg/mcg select */
   .dose-row{
     display:grid;
-    grid-template-columns:minmax(0, 1fr) 76px; /* input gets most of the space, unit is compact */
+    grid-template-columns:minmax(0, 1fr) 76px;
     gap:8px;
   }
   .dose-row input{
@@ -188,9 +188,9 @@ const num = n => n.toFixed(2);
 /* ---------- Classic math with unit handling ---------- */
 function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
   const desiredMg = desiredUnit==='mcg' ? (desired/1000) : desired;  // convert to mg
-  const mlPerUnit = 1/100;                     // base U-100
+  const mlPerUnit = 1/100;                     // U-100 base; we scale by % for other syringes
   const mgPerMl   = mgPerVial / diluentMl;
-  const mgPerUnit = mgPerMl * mlPerUnit;       // mg per unit drawn
+  const mgPerUnit = mgPerMl * mlPerUnit;       // mg per "unit" on an insulin barrel
   const units     = desiredMg / mgPerUnit;
   const unitsPct  = Math.max(0, Math.min(100, (units/syringeScale)*100));
   return { mgPerUnit, units, unitsPct };
@@ -418,7 +418,7 @@ const empty = document.getElementById('empty');
 const q     = document.getElementById('q');
 
 function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
-  const diluentDefault = 1.0; // 1 mL default
+  const diluentDefault = 1.0; // default 1 mL
   const res = classicCalc({
     mgPerVial, diluentMl:diluentDefault,
     desired: starter.dose, desiredUnit: starter.unit, syringeScale
@@ -541,11 +541,23 @@ function wireMini(container){
   function recalcAndRender(){
     const v = read();
     buildTicks(elTicks, v.scale);
-    const res = classicCalc({mgPerVial:v.mgPerVial, diluentMl:v.diluentMl, desired:v.desired, desiredUnit:v.unit, syringeScale:v.scale});
+    const res = classicCalc({
+      mgPerVial: v.mgPerVial,
+      diluentMl: v.diluentMl,
+      desired:   v.desired,
+      desiredUnit: v.unit,
+      syringeScale: v.scale
+    });
     write(res);
   }
 
-  scope.querySelectorAll('input,select').forEach(el=>el.addEventListener('input', recalcAndRender));
+  /* Listen broadly so every browser updates live (value, unit, syringe, etc.) */
+  ['input','change','keyup'].forEach(evt=>{
+    scope.querySelectorAll('input,select').forEach(el=>{
+      el.addEventListener(evt, recalcAndRender);
+    });
+  });
+
   recalcAndRender();
 }
 
