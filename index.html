@@ -428,7 +428,7 @@ const GUIDE = [
     doses:["10 mg"],
     more:`<ul><li>Higher-risk category—best handled with expert guidance.</li></ul>`},
 
-  /* Supplies (unchanged) */
+  /* Supplies */
   {key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
     short:"Sterile mixing water for reconstitution. Not a treatment.",
     onset:"—",
@@ -449,8 +449,8 @@ const GUIDE = [
     more:`<ul><li>Only use if your peptide instructions require low pH.</li></ul>`},
 ];
 
-/* ---------- PRICES (VIALS ONLY; ALL PEPTIDES INCLUDED) ---------- */
-const PRICES = [
+/* ---------- PRICES (VIALS ONLY; +$10 EXCEPT MIXING SUPPLIES) ---------- */
+const PRICES_RAW = [
   ["GLP-3RT (Retatrutide)","5 mg",14.00,"mg"],
   ["GLP-3RT (Retatrutide)","10 mg",18.00,"mg"],
   ["GLP-3RT (Retatrutide)","15 mg",22.00,"mg"],
@@ -553,13 +553,24 @@ const PRICES = [
 
   ["KissPeptin-10","10 mg",18.00,"mg"],
 
-  /* supplies (still allowed on site; not kits) */
+  /* mixing supplies (DO NOT increase) */
   ["Bacteriostatic water","10 mL",6.00,"mL"],
   ["Hospira bacteriostatic water","30 mL",19.50,"mL"],
   ["Acetic acid","10 mL",12.00,"mL"],
 ];
 
-/* ---------- Starter dose map for auto-fill (neutral defaults) ---------- */
+const NO_INCREASE = new Set([
+  "bacteriostatic water",
+  "hospira bacteriostatic water",
+  "acetic acid",
+]);
+
+const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
+  const skip = NO_INCREASE.has(String(name).toLowerCase());
+  return [name, strength, skip ? Number(price) : (Number(price) + 10), unit];
+});
+
+/* ---------- Starter dose map (neutral defaults) ---------- */
 const STARTERS = Object.fromEntries(GUIDE.map(x => [x.key, {dose:0, unit:'mg'}]));
 STARTERS.mt1 = {dose:0, unit:'mcg'};
 STARTERS.mt2 = {dose:0, unit:'mcg'};
