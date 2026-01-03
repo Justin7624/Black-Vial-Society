@@ -449,7 +449,7 @@ const GUIDE = [
     more:`<ul><li>Only use if your peptide instructions require low pH.</li></ul>`},
 ];
 
-/* ---------- PRICES (VIALS ONLY; +$10 EXCEPT MIXING SUPPLIES) ---------- */
+/* ---------- PRICES (VIALS ONLY; +$16 EXCEPT MIXING SUPPLIES) ---------- */
 const PRICES_RAW = [
   ["GLP-3RT (Retatrutide)","5 mg",14.00,"mg"],
   ["GLP-3RT (Retatrutide)","10 mg",18.00,"mg"],
@@ -567,7 +567,7 @@ const NO_INCREASE = new Set([
 
 const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
   const skip = NO_INCREASE.has(String(name).toLowerCase());
-  return [name, strength, skip ? Number(price) : (Number(price) + 10), unit];
+  return [name, strength, skip ? Number(price) : (Number(price) + 16), unit];
 });
 
 /* ---------- Starter dose map (neutral defaults) ---------- */
