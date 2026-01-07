@@ -566,8 +566,15 @@ const NO_INCREASE = new Set([
 ]);
 /* ---------- Helper: Round UP to nearest 5 or 10 ---------- */
 function roundUpPrice(n){
-  if(n <= 100) return Math.ceil(n/5)*5;   // 0–100 → nearest 5
-  return Math.ceil(n/10)*10;              // >100 → nearest 10
+  let rounded;
+  if(n <= 100){
+    rounded = Math.ceil(n/5)*5;
+  } else {
+    rounded = Math.ceil(n/10)*10;
+  }
+  // If rounding would increase price by less than $1, don't round
+  if(rounded - n < 1) return n;
+  return rounded;
 }
 const PRICE_MULTIPLIER = 4.29;
 
