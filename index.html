@@ -576,7 +576,7 @@ function roundSmart(n){
   }
 
   // If very close to previous step (less than $1 above), round down
-  if(rounded - n < 1){
+  if(rounded - n < 1.5){
     if(n <= 100){
       rounded = Math.floor(n/5)*5;
     } else {
