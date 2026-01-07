@@ -566,22 +566,20 @@ const NO_INCREASE = new Set([
 ]);
 /* ---------- Helper: Round UP to nearest 5 or 10 ---------- */
 function roundSmart(n){
-  let rounded;
+  let step;
+
   if(n <= 100){
-    // nearest multiple of 5
-    rounded = Math.ceil(n/5)*5;
+    step = 5;
   } else {
-    // nearest multiple of 10
-    rounded = Math.ceil(n/10)*10;
+    step = 10;
   }
 
-  // If very close to previous step (less than $1 above), round down
-  if(rounded - n < 1.5){
-    if(n <= 100){
-      rounded = Math.floor(n/5)*5;
-    } else {
-      rounded = Math.floor(n/10)*10;
-    }
+  // normal ceiling to nearest step
+  let rounded = Math.ceil(n / step) * step;
+
+  // if less than $2 above previous step, round down instead
+  if (rounded - n < 2){
+    rounded = Math.floor(n / step) * step;
   }
 
   return rounded;
