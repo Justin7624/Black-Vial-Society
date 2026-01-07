@@ -564,16 +564,18 @@ const NO_INCREASE = new Set([
   "hospira bacteriostatic water",
   "acetic acid",
 ]);
-
+/* ---------- Helper: Round UP to nearest 5 or 10 ---------- */
+function roundUpPrice(n){
+  if(n <= 100) return Math.ceil(n/5)*5;   // 0–100 → nearest 5
+  return Math.ceil(n/10)*10;              // >100 → nearest 10
+}
 const PRICE_MULTIPLIER = 4.29;
 
 const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
   const skip = NO_INCREASE.has(String(name).toLowerCase());
-  const finalPrice = skip
-    ? Number(price)
-    : Number(price) * PRICE_MULTIPLIER;
-
-  return [name, strength, Number(finalPrice.toFixed(2)), unit];
+  const rawPrice = skip ? Number(price) : Number(price) * PRICE_MULTIPLIER;
+  const finalPrice = roundUpPrice(rawPrice);   // ROUND UP HERE
+  return [name, strength, finalPrice, unit];
 });
 
 /* ---------- Starter dose map (neutral defaults) ---------- */
