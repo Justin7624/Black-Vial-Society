@@ -565,9 +565,15 @@ const NO_INCREASE = new Set([
   "acetic acid",
 ]);
 
+const PRICE_MULTIPLIER = 4.29;
+
 const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
   const skip = NO_INCREASE.has(String(name).toLowerCase());
-  return [name, strength, skip ? Number(price) : (Number(price) + 46), unit];
+  const finalPrice = skip
+    ? Number(price)
+    : Number(price) * PRICE_MULTIPLIER;
+
+  return [name, strength, Number(finalPrice.toFixed(2)), unit];
 });
 
 /* ---------- Starter dose map (neutral defaults) ---------- */
