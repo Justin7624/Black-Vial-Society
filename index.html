@@ -566,24 +566,19 @@ const NO_INCREASE = new Set([
 ]);
 /* ---------- Helper: Round UP to nearest 5 or 10 ---------- */
 function roundSmart(n){
-  let step;
+  const step = n <= 100 ? 5 : 10;
 
-  if(n <= 100){
-    step = 5;
-  } else {
-    step = 10;
+  const lower = Math.floor(n / step) * step;
+  const upper = Math.ceil(n / step) * step;
+
+  // If price is within $1.5 of the LOWER step, round DOWN
+  if (n - lower <= 1.5) {
+    return lower;
   }
 
-  // normal ceiling to nearest step
-  let rounded = Math.ceil(n / step) * step;
-
-  // if less than $2 above previous step, round down instead
-  if (rounded - n < 2){
-    rounded = Math.floor(n / step) * step;
-  }
-
-  return rounded;
+  return upper;
 }
+
 const PRICE_MULTIPLIER = 4.29;
 
 const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
