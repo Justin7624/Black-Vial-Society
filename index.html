@@ -565,15 +565,25 @@ const NO_INCREASE = new Set([
   "acetic acid",
 ]);
 /* ---------- Helper: Round UP to nearest 5 or 10 ---------- */
-function roundUpPrice(n){
+function roundSmart(n){
   let rounded;
   if(n <= 100){
+    // nearest multiple of 5
     rounded = Math.ceil(n/5)*5;
   } else {
+    // nearest multiple of 10
     rounded = Math.ceil(n/10)*10;
   }
-  // If rounding would increase price by less than $1, don't round
-  if(rounded - n < 1) return n;
+
+  // If very close to previous step (less than $1 above), round down
+  if(rounded - n < 1){
+    if(n <= 100){
+      rounded = Math.floor(n/5)*5;
+    } else {
+      rounded = Math.floor(n/10)*10;
+    }
+  }
+
   return rounded;
 }
 const PRICE_MULTIPLIER = 4.29;
@@ -581,7 +591,7 @@ const PRICE_MULTIPLIER = 4.29;
 const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
   const skip = NO_INCREASE.has(String(name).toLowerCase());
   const rawPrice = skip ? Number(price) : Number(price) * PRICE_MULTIPLIER;
-  const finalPrice = roundUpPrice(rawPrice);   // ROUND UP HERE
+  const finalPrice = roundSmart(rawPrice);
   return [name, strength, finalPrice, unit];
 });
 
