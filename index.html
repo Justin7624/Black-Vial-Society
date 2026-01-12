@@ -14,6 +14,7 @@
   *{box-sizing:border-box}
   html,body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
   img{max-width:100%;display:block}
+
   header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0e0f12 60%,rgba(14,15,18,.7));border-bottom:1px solid #222531}
   .wrap{max-width:1100px;margin:auto;padding:18px}
   .brand-banner{display:flex;justify-content:center}
@@ -23,14 +24,17 @@
   .tab.active{background:rgba(99,230,190,.12);border-color:#3fc29a;color:#e8e9ef}
   .section{display:none}
   .section.active{display:block}
+
   .title-row{display:flex;align-items:center;gap:10px;margin-top:12px}
   .title-row h1{margin:0;font-size:22px;font-weight:800}
   .vial-icon{width:28px;height:auto;filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))}
+
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
   .search{flex:1 1 340px;display:flex;gap:10px;align-items:center;background:#16171c;border:1px solid #272a36;border-radius:999px;padding:10px 14px;box-shadow:var(--shadow)}
   .search input{flex:1;border:0;background:transparent;color:var(--ink);outline:none}
   .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid #2b2e3b;background:#1e2027;color:#b8b9c2;padding:8px 12px;border-radius:999px;cursor:pointer}
   .chip.active{border-color:#3fc29a;background:rgba(99,230,190,.12);color:#e8e9ef}
+
   .grid{display:grid;gap:16px;margin:16px 0 80px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
   .card{background:linear-gradient(180deg,#16171c,#15161b);border:1px solid #262938;border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
   .title{display:flex;justify-content:space-between;align-items:center}
@@ -42,17 +46,30 @@
   .doses{display:flex;flex-wrap:wrap;gap:8px}
   .dose{padding:6px 10px;border-radius:10px;border:1px solid #2b2e3b;background:#1a1c22;font-size:12px;color:var(--ink);cursor:pointer}
   .empty{color:#b8b9c2;text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
+
+  /* Mini calculator dropdown */
   .mini-wrap{margin-top:8px;border:1px solid #2a2d3c;background:#14161b;border-radius:12px;overflow:hidden;display:none}
   .mini-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:700;font-size:13px}
   .close-mini{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:999px;color:#cfd0d8;padding:6px 10px;font-size:12px}
   .mini-body{display:grid;gap:12px;padding:10px 12px;border-top:1px solid #24283a}
+
   .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .mini-field{display:flex;flex-direction:column;gap:6px}
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
-  .dose-row{display:grid;grid-template-columns:96px 72px;gap:8px;align-items:center;justify-content:start;}
+
+  /* Desired dose row — compact so it never crowds the syringe scale */
+  .dose-row{
+    display:grid;
+    grid-template-columns: 96px 72px;
+    gap:8px;
+    align-items:center;
+    justify-content:start;
+  }
   .dose-row .desired-input{width:96px !important;max-width:96px !important;}
   .dose-row select{width:72px !important;min-width:72px !important;max-width:72px !important;padding:6px 8px;font-size:12px;}
+
+  /* Classic syringe visual (mini) */
   .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
   .tube{position:relative;height:28px;border-radius:16px;background:linear-gradient(180deg,#11131a,#0b0c10);border:1px solid #2a2c33;box-shadow:inset 0 2px 8px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05)}
   .fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,var(--classic-a),var(--classic-b));border-radius:16px;box-shadow:inset 0 0 12px rgba(255,255,255,.25), 0 0 16px rgba(124,92,255,.45)}
@@ -62,10 +79,13 @@
   .tick.minor{height:8px;opacity:.55}
   .tick.major{height:14px}
   .tick .n{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:11px;color:#aab2c5}
+
   .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
   .stat{background:#10131a;border:1px dashed #2c3450;padding:10px;border-radius:10px;font-size:13px}
   .stat b{display:block;font-size:12px;color:#9fb3d2;margin-bottom:4px}
   .warn{margin-top:10px;color:var(--warn);font-weight:700;font-size:13px}
+
+  /* Price table */
   .price-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
   table{width:100%;border-collapse:separate;border-spacing:0 8px}
   th,td{padding:12px 14px;font-size:14px}
@@ -75,6 +95,7 @@
   tbody td:last-child, thead th:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
   .num{text-align:right;font-variant-numeric:tabular-nums}
   .unit-pill{font-size:11px;background:#19212c;border:1px solid #2a3446;color:#9fb3d2;padding:3px 8px;border-radius:999px}
+
   .footer{position:fixed;left:0;right:0;bottom:0;background:#0f1116;border-top:1px solid #242736}
   .foot-wrap{max-width:1100px;margin:auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
   .small{font-size:12px;color:#b8b9c2}
@@ -128,7 +149,7 @@
       <span class="small">Click headers to sort</span>
     </div>
 
-    <div class="small" style="margin-bottom:8px">Price per unit = price ÷ amount (mg or IU). (Vials only.)</div>
+    <div class="small" style="margin-bottom:8px">Price per unit = price ÷ amount (mg for peptides, mL for supplies).</div>
     <table id="priceTable">
       <thead>
         <tr>
@@ -153,434 +174,348 @@
   </footer>
 
 <script>
-// ---------- Utilities ----------
-const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ---------- Utilities ---------- */
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const money = n => `$${n.toFixed(2)}`;
 const num = n => n.toFixed(2);
 
-// ---------- Classic math with unit handling ----------
+/* ---------- Classic math with unit handling ---------- */
 function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
   const mgV = Number(mgPerVial)||0;
   const mlD = Number(diluentMl)||0;
   const want = Number(desired)||0;
   const scale = Number(syringeScale)||100;
 
-  let desiredMg;
-  if(desiredUnit==='mcg') desiredMg = want/1000;
-  else if(desiredUnit==='iu') desiredMg = want; // IU = mg for HGH context
-  else desiredMg = want;
-
+  const desiredMg = desiredUnit==='mcg' ? (want/1000) : want;
   const mgPerMl   = (mgV>0 && mlD>0) ? (mgV/mlD) : NaN;
   const mgPerUnit = isFinite(mgPerMl) ? (mgPerMl*0.01) : NaN;
   const units     = (isFinite(mgPerUnit) && desiredMg>=0) ? (desiredMg/mgPerUnit) : NaN;
+
   const pct = (isFinite(units) && scale>0) ? Math.max(0, Math.min(100, (units/scale)*100)) : 0;
   return { mgPerUnit, units, unitsPct:pct, syringeScale:scale };
-
-
-/* ---------- FULL GUIDE DATA (ALL PEPTIDES INCLUDED) ---------- */
-const GUIDE = [
-  {key:"glp3rt", name:"GLP-3RT (Retatrutide)", badge:"Weight", category:"weight",
-    short:"Strong appetite support; many use it to help cut cravings and stay full longer.",
-    onset:"Some notice appetite changes within 1–2 weeks; results build over time.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","15 mg","20 mg","30 mg"],
-    more:`<ul><li>Often grouped with GLP-style weight and glucose support.</li><li>Keep expectations realistic—consistency matters most.</li></ul>`},
-
-  {key:"glp2tz", name:"GLP-2TZ (Tirzepatide)", badge:"Weight", category:"weight",
-    short:"Helps reduce appetite and can support steadier blood sugar.",
-    onset:"Typically gradual—many describe changes week by week.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","15 mg","20 mg","30 mg","40 mg","50 mg","60 mg"],
-    more:`<ul><li>Commonly associated with appetite control and glucose support.</li></ul>`},
-
-  {key:"glp1sg", name:"GLP-1SG (Semaglutide)", badge:"Weight", category:"weight",
-    short:"Popular for appetite control—can make smaller meals feel satisfying.",
-    onset:"Many notice appetite changes within a few weeks.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","15 mg","20 mg"],
-    more:`<ul><li>Often used as a steady, long-game approach for appetite support.</li></ul>`},
-
-  {key:"cagril", name:"Cagrilintide", badge:"Weight", category:"weight",
-    short:"Amylin-pathway support—often described as “quieting food noise.”",
-    onset:"Gradual over weeks.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Commonly paired (conceptually) with GLP-style appetite support.</li></ul>`},
-
-  {key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
-    short:"Metabolism/energy support—some describe better stamina and “cleaner” energy.",
-    onset:"Subtle at first; often discussed as building over weeks.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg","30 mg","40 mg"],
-    more:`<ul><li>Often mentioned alongside fitness goals and metabolic support.</li></ul>`},
-
-  {key:"bpc157", name:"BPC-157", badge:"Recovery", category:"healing",
-    short:"Often used for injury recovery—tendons, joints, and “nagging” aches.",
-    onset:"Some feel relief in days; deeper recovery takes longer.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg","20 mg"],
-    more:`<ul><li>Most people pair it with rest + rehab work for best results.</li></ul>`},
-
-  {key:"bpctb10", name:"BPC 5mg + TB 5mg (Combo)", badge:"Recovery", category:"healing",
-    short:"Combo recovery vial—often used for joints, mobility, and soft tissue repair support.",
-    onset:"Often described as gradual over weeks.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Popular “stack” for overall recovery support.</li></ul>`},
-
-  {key:"bpctb20", name:"BPC 10mg + TB 10mg (Combo)", badge:"Recovery", category:"healing",
-    short:"Higher strength combo—aimed at longer recovery runs and stubborn issues.",
-    onset:"Often described as gradual over weeks.",
-    fact:"Lyophilized powder.",
-    doses:["20 mg"],
-    more:`<ul><li>Same idea as the 10mg combo, just higher total content.</li></ul>`},
-
-  {key:"tb500", name:"TB500 (Thymosin B4 Acetate)", badge:"Recovery", category:"healing",
-    short:"Commonly used to support mobility, recovery, and soft tissue repair.",
-    onset:"Usually described as building over weeks.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Many people like it for “overall” recovery and movement comfort.</li></ul>`},
-
-  {key:"mt1", name:"Melanotan", badge:"Tanning", category:"tanning",
-    short:"Supports tanning response—can help deepen tone with less sun exposure.",
-    onset:"Often noticeable over days to weeks.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Use sun responsibly—this isn’t a free pass for UV damage.</li></ul>`},
-
-  {key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
-    short:"Similar tanning support—many describe faster/deeper results than MT-1.",
-    onset:"Often noticeable over days to weeks.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Still keep UV habits smart—skin health first.</li></ul>`},
-
-  {key:"glow", name:"GLOW", badge:"Wellness", category:"energy",
-    short:"Beauty-style blend—marketed for skin glow, tone, and overall wellness vibes.",
-    onset:"Usually gradual (weeks+).",
-    fact:"Lyophilized powder.",
-    doses:["70 mg"],
-    more:`<ul><li>Blend contents can vary—always confirm your label.</li></ul>`},
-
-  {key:"klow", name:"KLOW", badge:"Wellness", category:"energy",
-    short:"Wellness blend—often described as “feel-good” support and body balance.",
-    onset:"Usually gradual (weeks+).",
-    fact:"Lyophilized powder.",
-    doses:["80 mg"],
-    more:`<ul><li>Blend contents can vary—always confirm your label.</li></ul>`},
-
-  {key:"nad", name:"NAD+", badge:"Energy", category:"energy",
-    short:"Energy + clarity support—people use it for a “reset” feeling and better drive.",
-    onset:"Some feel it same-day; others notice gradually.",
-    fact:"Lyophilized powder.",
-    doses:["500 mg","1000 mg"],
-    more:`<ul><li>Often associated with cellular energy and anti-fatigue support.</li></ul>`},
-
-  {key:"ipam", name:"Ipamorelin", badge:"Body Comp", category:"energy",
-    short:"GH-support peptide—used for recovery, sleep quality, and body composition goals.",
-    onset:"Often subtle; tends to be gradual.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Commonly grouped with “recovery + physique” protocols.</li></ul>`},
-
-  {key:"tesa", name:"Tesamorelin", badge:"Body Comp", category:"energy",
-    short:"Often used for body composition—especially “stubborn” midsection goals.",
-    onset:"Gradual over weeks to months.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Most effective when paired with consistent training and protein intake.</li></ul>`},
-
-  {key:"serm", name:"Sermorelin Acetate", badge:"Body Comp", category:"energy",
-    short:"GH-pathway support—often used to improve recovery and overall “rested” feeling.",
-    onset:"Gradual.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Commonly chosen as a “gentler” GH-support option.</li></ul>`},
-
-  {key:"ss31", name:"SS-31 2 (Elamipretide)", badge:"Mito", category:"energy",
-    short:"Mito support—marketed for steadier energy and better “cell power.”",
-    onset:"Often subtle; builds with time.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Usually discussed as a “foundation” energy peptide.</li></ul>`},
-
-  {key:"igf1lr3", name:"IGF-1 LR3", badge:"Performance", category:"energy",
-    short:"Performance/growth support—often discussed for muscle and recovery goals.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["1 mg"],
-    more:`<ul><li>Higher-risk category—be careful and do serious research.</li></ul>`},
-
-  {key:"ghkcu", name:"GHK-CU", badge:"Skin", category:"energy",
-    short:"Supports collagen, can soften fine lines, and may improve skin texture.",
-    onset:"Usually gradual (weeks+).",
-    fact:"Lyophilized powder.",
-    doses:["50 mg","100 mg"],
-    more:`<ul><li>Often used in skincare routines and cosmetic formulations.</li></ul>`},
-
-  {key:"dsip", name:"DSIP", badge:"Sleep", category:"energy",
-    short:"Sleep support—used for deeper rest and calmer nights.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","15 mg"],
-    more:`<ul><li>Often paired with basic sleep hygiene (dark room, cool temp, consistent schedule).</li></ul>`},
-
-  {key:"epith", name:"Epithalon", badge:"Anti-aging", category:"energy",
-    short:"Longevity-style peptide—often used for “aging support” and overall vitality.",
-    onset:"Usually gradual.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg","50 mg"],
-    more:`<ul><li>Most people think of this as a slow, long-term support peptide.</li></ul>`},
-
-  {key:"kpv", name:"KPV", badge:"Skin/Gut", category:"healing",
-    short:"Calming support—often used for inflammation-prone skin or sensitive gut vibes.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["(see label)"],
-    more:`<ul><li>Strength varies by vial—always check your label.</li></ul>`},
-
-  {key:"semax", name:"Semax", badge:"Nootropic", category:"energy",
-    short:"Focus support—often used for clarity, motivation, and “sharp” workdays.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","30 mg"],
-    more:`<ul><li>Commonly used during demanding work or study periods.</li></ul>`},
-
-  {key:"selank", name:"Selank", badge:"Nootropic", category:"energy",
-    short:"Calm focus—often used for stress support without feeling “dull.”",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","30 mg"],
-    more:`<ul><li>Many people describe it as “smooth calm” for anxious days.</li></ul>`},
-
-  {key:"amino1mq", name:"5-amino-1mq", badge:"Metabolism", category:"energy",
-    short:"Metabolic support—used for recomposition goals and “leaner” progress.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg","50 mg"],
-    more:`<ul><li>Often paired with diet consistency and training.</li></ul>`},
-
-  {key:"cjc", name:"CJC-1295 (no DAC)", badge:"Body Comp", category:"energy",
-    short:"GH-support peptide—used for recovery, sleep quality, and body goals.",
-    onset:"Gradual.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Often discussed in the same space as other GH secretagogues.</li></ul>`},
-
-  {key:"cjcipa", name:"CJC-1295 (no DAC) + Ipamorelin (Combo)", badge:"Body Comp", category:"energy",
-    short:"Classic GH combo—popular for recovery, sleep, and physique support.",
-    onset:"Gradual.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Often chosen for convenience (combo vial).</li></ul>`},
-
-  {key:"aod", name:"AOD-9604", badge:"Weight", category:"weight",
-    short:"Fat-loss support peptide—often used for stubborn areas and cutting phases.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["5 mg","10 mg"],
-    more:`<ul><li>Most people pair it with diet and steps for best results.</li></ul>`},
-
-  {key:"foxo4", name:"FOXO4-DRI", badge:"Anti-aging", category:"energy",
-    short:"Experimental longevity peptide—often discussed in senescent-cell conversations.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Very research-heavy category—avoid casual self-experimentation.</li></ul>`},
-
-  {key:"ahkcu", name:"AHK-CU", badge:"Skin", category:"energy",
-    short:"Copper peptide—supports healthier-looking skin and smoother texture.",
-    onset:"Gradual (weeks+).",
-    fact:"Lyophilized powder.",
-    doses:["100 mg"],
-    more:`<ul><li>Often used in cosmetic skincare contexts.</li></ul>`},
-
-  {key:"gsh", name:"Glutathione", badge:"Antioxidant", category:"energy",
-    short:"Antioxidant support—often used for overall wellness and “bright” skin routines.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["1500 mg"],
-    more:`<ul><li>Common wellness staple in antioxidant-focused stacks.</li></ul>`},
-
-  {key:"hgh", name:"HGH 191AA (Somatropin)", badge:"Hormone", category:"energy",
-    short:"Prescription hormone—used for GH therapy under medical supervision.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["10 iu","15 iu","24 iu","36 iu"],
-    more:`<ul><li>Only use with a licensed prescriber.</li></ul>`},
-
-  {key:"kiss10", name:"KissPeptin-10", badge:"Hormone", category:"energy",
-    short:"Hormone signaling peptide—often discussed for reproductive axis support.",
-    onset:"Varies.",
-    fact:"Lyophilized powder.",
-    doses:["10 mg"],
-    more:`<ul><li>Higher-risk category—best handled with expert guidance.</li></ul>`},
-
-  /* Supplies */
-  {key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
-    short:"Sterile mixing water for reconstitution. Not a treatment.",
-    onset:"—",
-    fact:"Supply item.",
-    doses:["10 mL"],
-    more:`<ul><li>Keep sterile; label concentration and date once mixed.</li></ul>`},
-  {key:"hospira30", name:"Hospira Bacteriostatic Water (brand)", badge:"Supply", category:"supplies",
-    short:"Brand bacteriostatic water. Useful if you mix often.",
-    onset:"—",
-    fact:"Supply item.",
-    doses:["30 mL"],
-    more:`<ul><li>Multi-use vial. Store clean and sealed.</li></ul>`},
-  {key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
-    short:"Acidic diluent used only when a peptide specifically calls for it.",
-    onset:"—",
-    fact:"Supply item.",
-    doses:["10 mL"],
-    more:`<ul><li>Only use if your peptide instructions require low pH.</li></ul>`},
-];
-
-/* ---------- PRICES (VIALS ONLY; +$46 EXCEPT MIXING SUPPLIES) ---------- */
-const PRICES_RAW = [
-  ["GLP-3RT (Retatrutide)","5 mg",14.00,"mg"],
-  ["GLP-3RT (Retatrutide)","10 mg",18.00,"mg"],
-  ["GLP-3RT (Retatrutide)","15 mg",22.00,"mg"],
-  ["GLP-3RT (Retatrutide)","20 mg",25.00,"mg"],
-  ["GLP-3RT (Retatrutide)","30 mg",35.00,"mg"],
-
-  ["GLP-2TZ (Tirzepatide)","5 mg",12.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","10 mg",14.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","15 mg",17.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","20 mg",20.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","30 mg",25.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","40 mg",30.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","50 mg",35.00,"mg"],
-  ["GLP-2TZ (Tirzepatide)","60 mg",40.00,"mg"],
-
-  ["GLP-1SG (Semaglutide)","5 mg",13.00,"mg"],
-  ["GLP-1SG (Semaglutide)","10 mg",16.00,"mg"],
-  ["GLP-1SG (Semaglutide)","15 mg",19.00,"mg"],
-  ["GLP-1SG (Semaglutide)","20 mg",22.00,"mg"],
-
-  ["Cagrilintide","5 mg",20.00,"mg"],
-  ["Cagrilintide","10 mg",30.00,"mg"],
-
-  ["MOTS-C","10 mg",20.00,"mg"],
-  ["MOTS-C","30 mg",40.00,"mg"],
-  ["MOTS-C","40 mg",50.00,"mg"],
-
-  ["BPC-157","10 mg",16.00,"mg"],
-  ["BPC-157","20 mg",30.00,"mg"],
-
-  ["BPC 5mg + TB 5mg (Combo)","10 mg",22.00,"mg"],
-  ["BPC 10mg + TB 10mg (Combo)","20 mg",32.00,"mg"],
-
-  ["TB500 (Thymosin B4 Acetate)","5 mg",18.00,"mg"],
-  ["TB500 (Thymosin B4 Acetate)","10 mg",24.00,"mg"],
-
-  ["Melanotan","10 mg",15.00,"mg"],
-  ["Melanotan 2","10 mg",15.00,"mg"],
-
-  ["GLOW","70 mg",30.00,"mg"],
-  ["KLOW","80 mg",35.00,"mg"],
-
-  ["NAD+","500 mg",18.00,"mg"],
-  ["NAD+","1000 mg",34.00,"mg"],
-
-  ["Ipamorelin","5 mg",14.00,"mg"],
-  ["Ipamorelin","10 mg",18.00,"mg"],
-
-  ["Tesamorelin","5 mg",20.00,"mg"],
-  ["Tesamorelin","10 mg",28.00,"mg"],
-
-  ["Sermorelin Acetate","5 mg",16.00,"mg"],
-  ["Sermorelin Acetate","10 mg",22.00,"mg"],
-
-  ["SS-31 2 (Elamipretide)","10 mg",20.00,"mg"],
-
-  ["IGF-1 LR3","1 mg",28.00,"mg"],
-
-  ["GHK-CU","50 mg",13.00,"mg"],
-  ["GHK-CU","100 mg",18.00,"mg"],
-
-  ["DSIP","5 mg",15.00,"mg"],
-  ["DSIP","10 mg",18.00,"mg"],
-  ["DSIP","15 mg",21.00,"mg"],
-
-  ["Epithalon","10 mg",15.00,"mg"],
-  ["Epithalon","50 mg",36.00,"mg"],
-
-  ["KPV","(see label)",15.00,"mg"],
-
-  ["Semax","5 mg",13.00,"mg"],
-  ["Semax","10 mg",17.00,"mg"],
-  ["Semax","30 mg",30.00,"mg"],
-
-  ["Selank","5 mg",13.00,"mg"],
-  ["Selank","10 mg",17.00,"mg"],
-  ["Selank","30 mg",30.00,"mg"],
-
-  ["5-amino-1mq","5 mg",14.00,"mg"],
-  ["5-amino-1mq","10 mg",17.00,"mg"],
-  ["5-amino-1mq","50 mg",26.00,"mg"],
-
-  ["CJC-1295 (no DAC)","5 mg",18.00,"mg"],
-  ["CJC-1295 (no DAC)","10 mg",23.00,"mg"],
-  ["CJC-1295 (no DAC) + Ipamorelin","10 mg",20.00,"mg"],
-
-  ["AOD-9604","5 mg",19.00,"mg"],
-  ["AOD-9604","10 mg",27.00,"mg"],
-
-  ["FOXO4-DRI","10 mg",50.00,"mg"],
-
-  ["AHK-CU","100 mg",17.00,"mg"],
-
-  ["Glutathione","1500 mg",20.00,"mg"],
-
-  ["HGH 191AA (Somatropin)","10 iu",16.00,"iu"],
-  ["HGH 191AA (Somatropin)","15 iu",20.00,"iu"],
-  ["HGH 191AA (Somatropin)","24 iu",24.00,"iu"],
-  ["HGH 191AA (Somatropin)","36 iu",28.00,"iu"],
-
-  ["KissPeptin-10","10 mg",18.00,"mg"],
-
-  /* mixing supplies (DO NOT increase) */
-  ["Bacteriostatic water","10 mL",6.00,"mL"],
-  ["Hospira bacteriostatic water","30 mL",19.50,"mL"],
-  ["Acetic acid","10 mL",12.00,"mL"],
-];
-
-const NO_INCREASE = new Set([
-  "bacteriostatic water",
-  "hospira bacteriostatic water",
-  "acetic acid",
-]);
-/* ---------- Helper: Round UP to nearest 5 or 10 ---------- */
-function roundSmart(n){
-  const step = n <= 100 ? 5 : 10;
-
-  const lower = Math.floor(n / step) * step;
-  const upper = Math.ceil(n / step) * step;
-
-  // If price is within $1.5 of the LOWER step, round DOWN
-  if (n - lower <= 1.5) {
-    return lower;
-  }
-
-  return upper;
 }
 
-const PRICE_MULTIPLIER = 4.29;
+/* ---------- FULL GUIDE DATA (updated list) ---------- */
+const GUIDE = [
+  {key:"glp3rt", name:"GLP-3RT (Retatrutide)", badge:"Weight", category:"weight",
+    short:"Appetite and glucose support (GLP-based research peptide).",
+    onset:"Commonly reported appetite changes can begin within ~1–2 weeks.",
+    fact:"Inventory IDs: RT5 / RT10 / RT15 / RT20 / RT30. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","15 mg","20 mg","30 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
 
-const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
-  const skip = NO_INCREASE.has(String(name).toLowerCase());
-  const rawPrice = skip ? Number(price) : Number(price) * PRICE_MULTIPLIER;
-  const finalPrice = roundSmart(rawPrice);
-  return [name, strength, finalPrice, unit];
-});
+  {key:"glp2tz", name:"GLP-2TZ (Tirzepatide)", badge:"Weight", category:"weight",
+    short:"Appetite + glucose support (GLP/GIP research peptide).",
+    onset:"Often discussed as gradual week-to-week changes.",
+    fact:"Inventory IDs: TR5 / TR10 / TR15 / TR20 / TR30 / TR40 / TR50 / TR60. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","15 mg","20 mg","30 mg","40 mg","50 mg","60 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
 
-/* ---------- Starter dose map (neutral defaults) ---------- */
-const STARTERS = Object.fromEntries(GUIDE.map(x => [x.key, {dose:0, unit:'mg'}]));
-STARTERS.mt1 = {dose:0, unit:'mcg'};
-STARTERS.mt2 = {dose:0, unit:'mcg'};
+  {key:"glp1sg", name:"GLP-1SG (Semaglutide)", badge:"Weight", category:"weight",
+    short:"Appetite and glucose support (GLP-1 research peptide).",
+    onset:"Many people describe early appetite changes within weeks.",
+    fact:"Inventory IDs: SM5 / SM10 / SM15 / SM20. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","15 mg","20 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"cagril", name:"Cagrilintide", badge:"Weight", category:"weight",
+    short:"Appetite support via amylin-pathway research (often discussed alongside GLP protocols).",
+    onset:"Commonly discussed as gradual over weeks.",
+    fact:"Inventory: 5mg row shown + CGL10 (10mg). Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"motsc", name:"MOTS-C", badge:"Energy", category:"energy",
+    short:"Mitochondria-related research peptide; discussed for metabolic/energy support.",
+    onset:"Often described as subtle and cumulative across weeks.",
+    fact:"Inventory IDs: MS10 / MS30 / MS40. Form: Lyophilized powder.",
+    doses:["10 mg","30 mg","40 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"bpc157", name:"BPC-157", badge:"Recovery", category:"healing",
+    short:"Commonly discussed for soft tissue recovery and general repair support (research use).",
+    onset:"Some describe soreness relief within days; longer changes are weeks+.",
+    fact:"Inventory IDs: BC10 (10mg) / BC20 (20mg). Form: Lyophilized powder.",
+    doses:["10 mg","20 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"bpctb10", name:"BPC 5mg + TB 5mg (Combo)", badge:"Recovery", category:"healing",
+    short:"Combo vial commonly discussed for recovery support (research use).",
+    onset:"Often described as cumulative across weeks.",
+    fact:"Inventory ID: BB10 (10mg total). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"bpctb20", name:"BPC 10mg + TB 10mg (Combo)", badge:"Recovery", category:"healing",
+    short:"Higher-strength combo vial commonly discussed for recovery support (research use).",
+    onset:"Often described as cumulative across weeks.",
+    fact:"Inventory ID: BB20 (20mg total). Form: Lyophilized powder.",
+    doses:["20 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"tb500", name:"TB500 (Thymosin B4 Acetate)", badge:"Recovery", category:"healing",
+    short:"Research peptide often discussed for mobility and recovery support.",
+    onset:"Often described as building over weeks.",
+    fact:"Inventory IDs: BT5 (5mg) / BT10 (10mg). Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"mt1", name:"Melanotan 1", badge:"Tanning", category:"tanning",
+    short:"Research peptide discussed for tanning support (response varies).",
+    onset:"Often discussed over days to weeks.",
+    fact:"Inventory ID: MT1 (10mg). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"mt2", name:"Melanotan 2", badge:"Tanning", category:"tanning",
+    short:"Research peptide discussed for tanning support (response varies).",
+    onset:"Often discussed over days to weeks.",
+    fact:"Inventory ID: MT2 (10mg). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"glow", name:"GLOW", badge:"Wellness", category:"energy",
+    short:"Blend-style product discussed for appearance/wellness (formula may vary by vendor).",
+    onset:"Usually described as gradual (weeks+).",
+    fact:"Inventory ID: BB70 (70mg). Form: Lyophilized powder.",
+    doses:["70 mg"],
+    more:`<ul><li><b>Note:</b> Confirm contents on your vial label.</li></ul>`},
+
+  {key:"klow", name:"KLOW", badge:"Wellness", category:"energy",
+    short:"Blend-style product discussed for wellness (formula may vary by vendor).",
+    onset:"Usually described as gradual (weeks+).",
+    fact:"Inventory ID: KLOW80 (80mg). Form: Lyophilized powder.",
+    doses:["80 mg"],
+    more:`<ul><li><b>Note:</b> Confirm contents on your vial label.</li></ul>`},
+
+  {key:"nad", name:"NAD+", badge:"Energy", category:"energy",
+    short:"Coenzyme discussed for energy/clarity support (contexts vary).",
+    onset:"Often described as same-day to gradual.",
+    fact:"Inventory IDs: NJ500 (500mg) / NJ1000 (1000mg). Form: Lyophilized powder.",
+    doses:["500 mg","1000 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"ipam", name:"Ipamorelin", badge:"Body Comp", category:"energy",
+    short:"Research peptide discussed in GH-related protocols; effects vary widely.",
+    onset:"Often described as subtle and gradual.",
+    fact:"Inventory IDs: IP5 (5mg) / IP10 (10mg). Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"tesa", name:"Tesamorelin", badge:"Body Comp", category:"energy",
+    short:"GH-secretagogue discussed for body composition support.",
+    onset:"Often described as gradual over weeks to months.",
+    fact:"Inventory IDs: TSM5 (5mg) / TSM10 (10mg). Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"serm", name:"Sermorelin Acetate", badge:"Body Comp", category:"energy",
+    short:"Research peptide discussed for GH signaling support; effects vary.",
+    onset:"Often described as gradual.",
+    fact:"Inventory IDs: SM05 (5mg) / SM10 (10mg). Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"ss31", name:"SS-31 2 (Elamipretide)", badge:"Mito", category:"energy",
+    short:"Mitochondria-targeted research peptide discussed for energy support.",
+    onset:"Often described as subtle and cumulative.",
+    fact:"Inventory ID: 2S10 (10mg). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"igf1lr3", name:"IGF-1 LR3", badge:"Performance", category:"energy",
+    short:"Long-acting IGF-1 analog discussed for growth/performance research contexts.",
+    onset:"Varies widely.",
+    fact:"Inventory ID: IG1 (1mg). Form: Lyophilized powder.",
+    doses:["1 mg"],
+    more:`<ul><li><b>Note:</b> Higher-risk category—medical supervision recommended.</li></ul>`},
+
+  {key:"ghkcu", name:"GHK-CU", badge:"Skin", category:"energy",
+    short:"Copper peptide discussed for skin/hair support; often used topically in cosmetics.",
+    onset:"Typically gradual (weeks+).",
+    fact:"Inventory IDs: CU50 (50mg) / CU100 (100mg). Form: Lyophilized powder.",
+    doses:["50 mg","100 mg"],
+    more:`<ul><li><b>Note:</b> Confirm intended use on label.</li></ul>`},
+
+  {key:"dsip", name:"DSIP", badge:"Sleep", category:"energy",
+    short:"Research peptide discussed for sleep support; evidence varies.",
+    onset:"Varies.",
+    fact:"Inventory IDs: DS5 / DS10 / DS15. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","15 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"epith", name:"Epithalon", badge:"Anti-aging", category:"energy",
+    short:"Research peptide discussed in longevity circles; evidence varies.",
+    onset:"Usually described as gradual.",
+    fact:"Inventory IDs: ET10 (10mg) / ET50 (50mg). Form: Lyophilized powder.",
+    doses:["10 mg","50 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"kpv", name:"KPV", badge:"Skin/Gut", category:"healing",
+    short:"Research peptide discussed for inflammation-related support (skin/gut contexts vary).",
+    onset:"Varies.",
+    fact:"Inventory ID: KP10 (strength not shown in screenshot). Form: Lyophilized powder.",
+    doses:["(see label)"],
+    more:`<ul><li><b>Note:</b> Strength not shown in the screenshot—confirm vial label.</li></ul>`},
+
+  {key:"semax", name:"Semax", badge:"Nootropic", category:"energy",
+    short:"Research nootropic peptide discussed for focus/clarity.",
+    onset:"Varies.",
+    fact:"Inventory IDs: XA5 / XA10 / XA30. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","30 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"selank", name:"Selank", badge:"Nootropic", category:"energy",
+    short:"Research nootropic peptide discussed for calm/focus.",
+    onset:"Varies.",
+    fact:"Inventory IDs: SK5 / SK10 / SK30. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","30 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"amino1mq", name:"5-amino-1mq", badge:"Metabolism", category:"energy",
+    short:"Research compound discussed for metabolic support; evidence varies.",
+    onset:"Varies.",
+    fact:"Inventory IDs: 5AM / 10AM / 50AM. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg","50 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"cjc", name:"CJC-1295 (no DAC)", badge:"Body Comp", category:"energy",
+    short:"Research peptide discussed in GH-related protocols; effects vary.",
+    onset:"Often described as gradual.",
+    fact:"Inventory IDs: CND5 / CND10. Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"cjcipa", name:"CJC-1295 (no DAC) + Ipamorelin (Combo)", badge:"Body Comp", category:"energy",
+    short:"Combo vial discussed in GH-related protocols; effects vary.",
+    onset:"Often described as gradual.",
+    fact:"Inventory ID: CP10 (CJC 5mg + IPA 5mg). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"aod", name:"AOD-9604", badge:"Weight", category:"weight",
+    short:"Research fragment discussed for fat-loss support; evidence varies.",
+    onset:"Varies.",
+    fact:"Inventory IDs: 5AD (5mg) / 10AD (10mg). Form: Lyophilized powder.",
+    doses:["5 mg","10 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"foxo4", name:"FOXO4-DRI", badge:"Anti-aging", category:"energy",
+    short:"High-interest research peptide in longevity discussions; evidence varies.",
+    onset:"Varies.",
+    fact:"Inventory ID: F410 (10mg). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Higher-risk/experimental category—do not self-experiment.</li></ul>`},
+
+  {key:"ahkcu", name:"AHK-CU", badge:"Skin", category:"energy",
+    short:"Copper peptide discussed for cosmetic skin support; often used topically.",
+    onset:"Gradual (weeks+).",
+    fact:"Inventory ID: AU100 (100mg). Form: Lyophilized powder.",
+    doses:["100 mg"],
+    more:`<ul><li><b>Note:</b> Confirm intended use on label.</li></ul>`},
+
+  {key:"gsh", name:"Glutathione", badge:"Wellness", category:"energy",
+    short:"Antioxidant discussed for wellness/skin support; evidence varies by use-case.",
+    onset:"Varies.",
+    fact:"Inventory ID: GTT (1500mg). Form: Lyophilized powder.",
+    doses:["1500 mg"],
+    more:`<ul><li><b>Note:</b> Educational reference only. Follow your label and clinician guidance.</li></ul>`},
+
+  {key:"hgh", name:"HGH 191AA (Somatropin)", badge:"Hormone", category:"energy",
+    short:"Prescription hormone (somatropin). Medical supervision required.",
+    onset:"Varies.",
+    fact:"Inventory IDs: H10 (10iu) / H15 (15iu) / H24 (24iu) / H36 (36iu). Form: Lyophilized powder.",
+    doses:["10 iu","15 iu","24 iu","36 iu"],
+    more:`<ul><li><b>Important:</b> Do not use without a licensed prescriber.</li></ul>`},
+
+  {key:"kiss10", name:"KissPeptin-10", badge:"Hormone", category:"energy",
+    short:"Research peptide discussed in reproductive hormone signaling contexts.",
+    onset:"Varies.",
+    fact:"Inventory ID: KS10 (10mg). Form: Lyophilized powder.",
+    doses:["10 mg"],
+    more:`<ul><li><b>Note:</b> Higher-risk category—medical supervision recommended.</li></ul>`},
+
+  /* Supplies (kept from your original) */
+  {key:"bac10", name:"Bacteriostatic Water (generic)", badge:"Supply", category:"supplies",
+    short:"Sterile water to mix peptides. Not a treatment by itself.",
+    onset:"—",
+    fact:"Generic multi-use bacteriostatic water.",
+    doses:["10 mL"],
+    more:`<ul><li>Use to reconstitute peptides.</li><li>Keep sterile; label concentration/date.</li></ul>`},
+  {key:"hospira30", name:"Hospira Bacteriostatic Water (brand)", badge:"Supply", category:"supplies",
+    short:"Brand-name sterile bacteriostatic water, 30 mL.",
+    onset:"—",
+    fact:"Hospira brand vial.",
+    doses:["30 mL"],
+    more:`<ul><li>Mix to target concentration.</li><li>30 mL multi-use vial.</li></ul>`},
+  {key:"acetic", name:"Acetic Acid (diluent)", badge:"Supply", category:"supplies",
+    short:"Sterile acidic diluent for peptides that require low pH.",
+    onset:"—",
+    fact:"Use only when specified by the peptide.",
+    doses:["10 mL"],
+    more:`<ul><li>Follow product-specific ratios.</li></ul>`},
+];
+
+/* ---------- PRICES (kept your original prices so it doesn’t change behavior) ---------- */
+const PRICES = [
+  ["Retatrutide","5 mg",60,"mg"],["Retatrutide","10 mg",120,"mg"],["Retatrutide","15 mg",180,"mg"],["Retatrutide","30 mg",360,"mg"],
+  ["Tirzepatide","10 mg",70,"mg"],["Tirzepatide","15 mg",105,"mg"],["Tirzepatide","30 mg",210,"mg"],
+  ["Semaglutide","5 mg",40,"mg"],["Semaglutide","10 mg",80,"mg"],
+  ["MOTS-C","10 mg",35,"mg"],
+  ["Melanotan I","10 mg",30,"mg"],
+  ["Melanotan II","10 mg",30,"mg"],
+  ["Glow","70 mg",130,"mg"],
+  ["Klow","80 mg",135,"mg"],
+  ["Cagrilintide","5 mg",70,"mg"],
+  ["BPC-157 + TB-500","10 mg",75,"mg"],
+  ["NAD+","500 mg",55,"mg"],
+  ["IPA (Ipamorelin)","10 mg",45,"mg"],
+  ["Tesamorelin","10 mg",55,"mg"],
+  ["SS-31","10 mg",50,"mg"],
+  ["Bacteriostatic water","10 mL",6,"mL"],
+  ["Hospira bacteriostatic water","30 mL",19.5,"mL"],
+  ["Acetic acid","10 mL",12,"mL"],
+];
+
+/* ---------- Starter dose map for auto-fill ----------
+   (Set to 0 so the calculator doesn’t imply dosing; you can set defaults you prefer.)
+*/
+const STARTERS = {
+  glp3rt:{dose:0, unit:'mg'},
+  glp2tz:{dose:0, unit:'mg'},
+  glp1sg:{dose:0, unit:'mg'},
+  cagril:{dose:0, unit:'mg'},
+  motsc:{dose:0, unit:'mg'},
+  bpc157:{dose:0, unit:'mg'},
+  bpctb10:{dose:0, unit:'mg'},
+  bpctb20:{dose:0, unit:'mg'},
+  tb500:{dose:0, unit:'mg'},
+  mt1:{dose:0, unit:'mcg'},
+  mt2:{dose:0, unit:'mcg'},
+  glow:{dose:0, unit:'mg'},
+  klow:{dose:0, unit:'mg'},
+  nad:{dose:0, unit:'mg'},
+  ipam:{dose:0, unit:'mg'},
+  tesa:{dose:0, unit:'mg'},
+  serm:{dose:0, unit:'mg'},
+  ss31:{dose:0, unit:'mg'},
+  igf1lr3:{dose:0, unit:'mg'},
+  ghkcu:{dose:0, unit:'mg'},
+  dsip:{dose:0, unit:'mg'},
+  epith:{dose:0, unit:'mg'},
+  kpv:{dose:0, unit:'mg'},
+  semax:{dose:0, unit:'mg'},
+  selank:{dose:0, unit:'mg'},
+  amino1mq:{dose:0, unit:'mg'},
+  cjc:{dose:0, unit:'mg'},
+  cjcipa:{dose:0, unit:'mg'},
+  aod:{dose:0, unit:'mg'},
+  foxo4:{dose:0, unit:'mg'},
+  ahkcu:{dose:0, unit:'mg'},
+  gsh:{dose:0, unit:'mg'},
+  hgh:{dose:0, unit:'mg'},
+  kiss10:{dose:0, unit:'mg'}
+};
 
 /* ---------- GUIDE + MINI CLASSIC ---------- */
 const grid  = document.getElementById('grid');
@@ -671,6 +606,7 @@ function cardHTML(item, idx){
   `;
 }
 
+/* Build ruler ticks */
 function buildTicks(elTicks, scaleMax){
   elTicks.innerHTML='';
   const minorStep = (scaleMax<=30?1:(scaleMax===50?1:2));
@@ -812,10 +748,10 @@ function renderPrices(list){
     <tr>
       <td>${esc(r.name)}</td>
       <td>${esc(r.strength)}</td>
-      <td class="num">${r.amount?num(r.amount):'—'}</td>
+      <td class="num">${num(r.amount)}</td>
       <td class="num">${money(r.price)}</td>
       <td class="num">${r.amount?money(r.ppu):'—'}</td>
-      <td><span class="unit-pill">${esc(r.unit)}</span></td>
+      <td><span class="unit-pill">${r.unit}</span></td>
     </tr>`).join('');
   pempty.style.display=list.length?'none':'block';
 }
@@ -827,7 +763,7 @@ pq.addEventListener('input',()=>{
 document.querySelectorAll('th.sort').forEach(th=>{
   let dir=1; th.addEventListener('click',()=>{
     const key=th.dataset.sort;
-    const sorted=[...rows].sort((a,b)=> (typeof a[key]==='number' ? (a[key]-b[key]) : String(a[key]).localeCompare(String(b[key]))) * (dir));
+    const sorted=[...rows].sort((a,b)=> (typeof a[key]==='number' ? (a[key]-b[key]) : a[key].localeCompare(b[key])) * (dir));
     dir*=-1; renderPrices(sorted);
   });
 });
