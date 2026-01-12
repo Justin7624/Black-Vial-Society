@@ -173,34 +173,19 @@ const money = n => `$${n.toFixed(2)}`;
 const num = n => n.toFixed(2);
 
 /* ---------- Classic math with unit handling ---------- */
-function classicCalc({amountPerVial, diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
-  const vialAmt = Number(amountPerVial)||0;
+function classicCalc({mgPerVial, diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
+  const mgV = Number(mgPerVial)||0;
   const mlD = Number(diluentMl)||0;
   const want = Number(desired)||0;
   const scale = Number(syringeScale)||100;
 
-  if (!vialAmt || !mlD) {
-    return { units: NaN, unitsPct: 0, perUnit: NaN, syringeScale: scale };
-  }
+  const desiredMg = desiredUnit==='mcg' ? (want/1000) : want;
+  const mgPerMl   = (mgV>0 && mlD>0) ? (mgV/mlD) : NaN;
+  const mgPerUnit = isFinite(mgPerMl) ? (mgPerMl*0.01) : NaN;
+  const units     = (isFinite(mgPerUnit) && desiredMg>=0) ? (desiredMg/mgPerUnit) : NaN;
 
-  // IU mode (HGH)
-  if (desiredUnit === 'iu') {
-    const iuPerMl   = vialAmt / mlD;
-    const iuPerUnit = iuPerMl * 0.01;
-    const units     = want / iuPerUnit;
-    const pct       = Math.min(100, (units / scale) * 100);
-
-    return { units, unitsPct: pct, perUnit: iuPerUnit, syringeScale: scale };
-  }
-
-  // mg / mcg mode (peptides)
-  const desiredMg = desiredUnit === 'mcg' ? want / 1000 : want;
-  const mgPerMl   = vialAmt / mlD;
-  const mgPerUnit = mgPerMl * 0.01;
-  const units     = desiredMg / mgPerUnit;
-  const pct       = Math.min(100, (units / scale) * 100);
-
-  return { units, unitsPct: pct, perUnit: mgPerUnit, syringeScale: scale };
+  const pct = (isFinite(units) && scale>0) ? Math.max(0, Math.min(100, (units/scale)*100)) : 0;
+  return { mgPerUnit, units, unitsPct:pct, syringeScale:scale };
 }
 
 /* ---------- FULL GUIDE DATA (ALL PEPTIDES INCLUDED) ---------- */
@@ -626,7 +611,7 @@ function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
     <div class="mini-body" data-mini="${id}">
       <div class="mini-grid">
         <div class="mini-field">
-          <label>Amount per vial</label>
+          <label>Peptide per vial (mg)</label>
           <input type="number" step="0.01" value="${isFinite(mgPerVial)?mgPerVial:0}" data-role="mgPerVial">
         </div>
         <div class="mini-field">
@@ -639,9 +624,8 @@ function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
           <div class="dose-row">
             <input class="desired-input" type="number" step="0.001" value="${starter.dose}" data-role="desired">
             <select data-role="unit">
-              <option value="mg">mg</option>
-              <option value="mcg">mcg</option>
-            <option value="iu">IU</option>
+              <option value="mg"${starter.unit==='mg'?' selected':''}>mg</option>
+              <option value="mcg"${starter.unit==='mcg'?' selected':''}>mcg</option>
             </select>
           </div>
         </div>
@@ -662,8 +646,8 @@ function classicMiniHTML(id, mgPerVial, starter, syringeScale=100) {
         <div class="mini-stats">
           <div class="stat"><b>Units to pull</b><span data-out="units">${(isFinite(res.units)?res.units:0).toFixed(2)}</span></div>
           <div class="stat"><b>Potency</b>
-            <span><b>Potency</b>
-            <span data-potency-label>per unit</span>
+            <span><span data-out="mgPerUnit">${(isFinite(res.mgPerUnit)?res.mgPerUnit:0).toFixed(4)}</span> mg per unit
+              (<span data-out="mcgPerUnit">${(isFinite(mcgPerUnit)?mcgPerUnit:0).toFixed(2)}</span> mcg/unit)
             </span>
           </div>
         </div>
@@ -759,13 +743,8 @@ function wireMini(container){
       mgPerVial: v.mgPerVial, diluentMl: v.diluentMl,
       desired: v.desired, desiredUnit: v.unit, syringeScale: v.scale||100
     });
-    if (scope.querySelector('[data-role="unit"]').value === 'iu') {
-      mgU.textContent  = '—';
-      mcgU.textContent = '—';
-    } else {
-      mgU.textContent  = res.perUnit.toFixed(4);
-      mcgU.textContent = (res.perUnit * 1000).toFixed(2);
-    }
+    write(res);
+  }
 
   ['input','change','keyup'].forEach(evt=>{
     scope.querySelectorAll('input,select').forEach(el=>el.addEventListener(evt,recalcAndRender));
@@ -784,17 +763,7 @@ function renderGuide(list){
       const card    = btn.closest('.card');
       const key     = card.dataset.key;
       const starter = STARTERS[key] || {dose:0, unit:'mg'};
-      let vialAmount = 0;
-      let unit = 'mg';
-
-      if (/([\d.]+)\s*mg/i.test(doseStr)) {
-        vialAmount = parseFloat(doseStr);
-        unit = 'mg';
-      }
-      if (/([\d.]+)\s*iu/i.test(doseStr)) {
-        vialAmount = parseFloat(doseStr);
-        unit = 'iu';
-      }
+      const mgFromChip = /([\d.]+)\s*mg/i.test(doseStr) ? parseFloat(doseStr) : NaN;
 
       const cardId = btn.dataset.for;
       const miniId = `mini-${cardId}-${doseStr.replace(/\s+/g,'')}`;
@@ -806,7 +775,7 @@ function renderGuide(list){
 
       if(!open){
         const vialMg = isNaN(mgFromChip) ? 0 : mgFromChip;
-        mini.innerHTML = classicMiniHTML(miniId, vialAmount, { dose: 0, unit }, 100);
+        mini.innerHTML = classicMiniHTML(miniId, vialMg, starter, 100);
         mini.style.display = 'block';
         btn.setAttribute('aria-expanded','true');
         wireMini(mini);
