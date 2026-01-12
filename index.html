@@ -579,16 +579,6 @@ function roundSmart(n){
   return upper;
 }
 
-  // normal ceiling to nearest step
-  let rounded = Math.ceil(n / step) * step;
-
-  // if less than $2 above previous step, round down instead
-  if (rounded - n < 2){
-    rounded = Math.floor(n / step) * step;
-  }
-
-  return rounded;
-}
 const PRICE_MULTIPLIER = 4.29;
 
 const PRICES = PRICES_RAW.map(([name, strength, price, unit]) => {
