@@ -150,6 +150,22 @@
   .coa-placeholder .hint{font-size:12px;color:#b8b9c2;opacity:.9}
 
 
+
+  /* COA modal / lightbox */
+  .bvs-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,.72);backdrop-filter:blur(6px)}
+  .bvs-modal.open{display:flex}
+  .bvs-modal-card{width:min(980px,92vw);max-height:92vh;background:#0f1116;border:1px solid #262938;border-radius:14px;box-shadow:0 18px 60px rgba(0,0,0,.55);overflow:hidden;display:flex;flex-direction:column}
+  .bvs-modal-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #24283a}
+  .bvs-modal-head b{font-size:13px}
+  .bvs-modal-sub{font-size:12px;color:#b8b9c2}
+  .bvs-modal-close{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:999px;color:#cfd0d8;padding:6px 10px;font-size:12px}
+  .bvs-modal-body{padding:12px;overflow:auto}
+  .bvs-modal-img{width:100%;height:auto;border-radius:10px;border:1px solid #2b2e3b;background:#0b0d12}
+  .bvs-modal-nav{display:flex;gap:8px;align-items:center}
+  .bvs-modal-nav button{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:10px;color:#cfd0d8;padding:6px 10px;font-size:12px}
+  .bvs-modal-count{font-size:12px;color:#b8b9c2}
+
+
   /* Price table */
   .price-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;align-items:center}
   table{width:100%;border-collapse:separate;border-spacing:0 8px}
@@ -2125,25 +2141,37 @@ function renderGuide(list){
           btn.setAttribute('aria-expanded','false');
         });
 
-  // COA buttons (one per peptide)
+  // COA buttons (one per peptide) — open modal when available
   grid.querySelectorAll('[data-coa-btn]').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const key = btn.dataset.key;
-      const card = btn.closest('.card');
       const item = (GUIDE||[]).find(x=>x.key===key);
-      const panel = card.querySelector('#coa-'+key);
-      if(!panel || !item) return;
-      const open = panel.classList.contains('open');
-      // close any other open COA panels
-      document.querySelectorAll('.coa-panel.open').forEach(p=>p.classList.remove('open'));
-      if(open){
-        panel.classList.remove('open');
+      if(!item) return;
+
+      const v = COA_MAP[key];
+      const list = !v ? [] : (Array.isArray(v) ? v : [v]);
+
+      if(list.length){
+        // close any inline COA panels for tidiness
+        document.querySelectorAll('.coa-panel.open').forEach(p=>p.classList.remove('open'));
+        BVS_openCoaModal(list, item.name);
         return;
       }
+
+      // No COA yet: toggle the inline placeholder panel
+      const card = btn.closest('.card');
+      const panel = card ? card.querySelector('#coa-'+key) : null;
+      if(!panel) return;
+      const open = panel.classList.contains('open');
+      document.querySelectorAll('.coa-panel.open').forEach(p=>p.classList.remove('open'));
+      if(open){ panel.classList.remove('open'); return; }
       panel.innerHTML = coaPanelHTML(item);
       panel.classList.add('open');
     });
   });
+
+
+});
 
       }
     });
@@ -2268,6 +2296,88 @@ document.querySelectorAll('.tab').forEach(t=>{
 syncOOSToggles();
 applyFilters();
 applyPriceFilters();
+
+/* ---------- COA Modal (lightbox) ---------- */
+let BVS__coaList = [];
+let BVS__coaIndex = 0;
+let BVS__coaName = "";
+
+function BVS_openCoaModal(list, productName){
+  const overlay = document.getElementById('bvsCoaModal');
+  const img     = document.getElementById('bvsCoaImg');
+  const sub     = document.getElementById('bvsCoaModalSub');
+  const prevBtn = document.getElementById('bvsCoaPrev');
+  const nextBtn = document.getElementById('bvsCoaNext');
+  const countEl = document.getElementById('bvsCoaCount');
+
+  BVS__coaList = Array.isArray(list) ? list : (list ? [list] : []);
+  BVS__coaIndex = 0;
+  BVS__coaName = productName || "";
+
+  if(!overlay || !img || !sub) return;
+
+  sub.textContent = BVS__coaName;
+
+  const render = ()=>{
+    const src = BVS__coaList[BVS__coaIndex];
+    img.src = src;
+    img.alt = BVS__coaName ? `COA for ${BVS__coaName}` : 'COA';
+    const many = BVS__coaList.length > 1;
+    if(prevBtn) prevBtn.style.display = many ? 'inline-flex' : 'none';
+    if(nextBtn) nextBtn.style.display = many ? 'inline-flex' : 'none';
+    if(countEl) countEl.style.display = many ? 'inline' : 'none';
+    if(many && countEl) countEl.textContent = `${BVS__coaIndex+1} / ${BVS__coaList.length}`;
+  };
+
+  if(prevBtn) prevBtn.onclick = ()=>{ if(BVS__coaList.length){ BVS__coaIndex = (BVS__coaIndex-1+BVS__coaList.length)%BVS__coaList.length; render(); } };
+  if(nextBtn) nextBtn.onclick = ()=>{ if(BVS__coaList.length){ BVS__coaIndex = (BVS__coaIndex+1)%BVS__coaList.length; render(); } };
+
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  render();
+}
+
+function BVS_closeCoaModal(){
+  const overlay = document.getElementById('bvsCoaModal');
+  if(!overlay) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+
+(function BVS_wireCoaModal(){
+  const overlay = document.getElementById('bvsCoaModal');
+  const closeBtn = document.getElementById('bvsCoaClose');
+  if(!overlay || !closeBtn) return;
+
+  closeBtn.addEventListener('click', BVS_closeCoaModal);
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) BVS_closeCoaModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && overlay.classList.contains('open')) BVS_closeCoaModal(); });
+})();
+
 </script>
+
+  <!-- COA Modal -->
+  <div id="bvsCoaModal" class="bvs-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="bvs-modal-card" role="document">
+      <div class="bvs-modal-head">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <b>COA</b>
+          <span id="bvsCoaModalSub" class="bvs-modal-sub"></span>
+        </div>
+        <div class="bvs-modal-nav">
+          <button id="bvsCoaPrev" type="button" style="display:none">Prev</button>
+          <span id="bvsCoaCount" class="bvs-modal-count" style="display:none"></span>
+          <button id="bvsCoaNext" type="button" style="display:none">Next</button>
+          <button id="bvsCoaClose" class="bvs-modal-close" type="button">Close</button>
+        </div>
+      </div>
+      <div class="bvs-modal-body">
+        <img id="bvsCoaImg" class="bvs-modal-img" alt="COA image">
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
