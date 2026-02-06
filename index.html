@@ -85,6 +85,22 @@
   .stat b{display:block;font-size:12px;color:#9fb3d2;margin-bottom:4px}
   .warn{margin-top:10px;color:var(--warn);font-weight:700;font-size:13px}
 
+
+  /* COA (Certificate of Analysis) */
+  .coa-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .coa-btn{user-select:none}
+  .coa-panel{margin-top:10px;border:1px solid #262938;background:#12141a;border-radius:12px;overflow:hidden;display:none}
+  .coa-panel.open{display:block}
+  .coa-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #24283a}
+  .coa-head b{font-size:13px}
+  .coa-note{font-size:12px;color:#b8b9c2}
+  .coa-body{padding:12px}
+  .coa-img{width:100%;border-radius:10px;border:1px solid #2b2e3b;background:#0f1116}
+  .coa-placeholder{display:flex;flex-direction:column;gap:8px}
+  .coa-placeholder .tag{display:inline-flex;align-items:center;gap:8px;border:1px solid #2b2e3b;background:#1e2027;color:#b8b9c2;padding:6px 10px;border-radius:999px;font-size:12px;width:max-content}
+  .coa-placeholder .hint{font-size:12px;color:#b8b9c2;opacity:.9}
+
+
   /* Price table */
   .price-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;align-items:center}
   table{width:100%;border-collapse:separate;border-spacing:0 8px}
@@ -1696,6 +1712,42 @@ STARTERS.melanotan2 = {dose:0, unit:'mcg'};
 STARTERS.hgh191aasomatropin = {dose:0, unit:'iu'};
 STARTERS.hcg = {dose:0, unit:'iu'};
 
+
+
+/* ---------- COA (Certificate of Analysis) ----------
+   One COA per peptide (NOT per size). Add images later like:
+   COA_MAP["glp3rt"] = "coa_retatrutide.png";
+   COA_MAP["hgh191aa"] = "coa_somatropin.png";
+   Images should sit next to this HTML file (or use full URLs).
+*/
+const COA_MAP = {
+  // "glp3rt": "coa_retatrutide.png",
+};
+
+function coaPanelHTML(item){
+  if(item.category === 'supplies') return '';
+  const src = COA_MAP[item.key];
+  const name = esc(item.name);
+  const note = 'Applies to the peptide (not strength)';
+  if(src){
+    return `
+      <div class="coa-head"><b>COA</b><span class="coa-note">${note}</span></div>
+      <div class="coa-body">
+        <img class="coa-img" src="${esc(src)}" alt="COA for ${name}">
+      </div>
+    `;
+  }
+  return `
+    <div class="coa-head"><b>COA</b><span class="coa-note">${note}</span></div>
+    <div class="coa-body">
+      <div class="coa-placeholder">
+        <span class="tag">COA incoming</span>
+        <div class="hint">COA image for <b>${name}</b> will appear here soon.</div>
+      </div>
+    </div>
+  `;
+}
+
 /* ---------- Shared Out-of-Stock toggle ---------- */
 let hideOOS = false;
 
@@ -1848,6 +1900,12 @@ function cardHTML(item, idx){
       <div class="dose-label">Available sizes:</div>
       <div class="doses">${chips}</div>
       <details class="dropdown"><summary>More info <span class="small" style="opacity:.7">▼</span></summary><div class="drop-body">${item.more}</div></details>
+      ${item.category!=='supplies' ? `
+        <div class="coa-row">
+          <button class="chip coa-btn" data-coa-btn="1" data-key="${item.key}" type="button">COA</button>
+        </div>
+        <div class="coa-panel" id="coa-${item.key}"></div>
+      ` : ``}
     </article>
   `;
 }
@@ -1986,6 +2044,27 @@ function renderGuide(list){
           mini.style.display='none';
           btn.setAttribute('aria-expanded','false');
         });
+
+  // COA buttons (one per peptide)
+  grid.querySelectorAll('[data-coa-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const key = btn.dataset.key;
+      const card = btn.closest('.card');
+      const item = (GUIDE||[]).find(x=>x.key===key);
+      const panel = card.querySelector('#coa-'+key);
+      if(!panel || !item) return;
+      const open = panel.classList.contains('open');
+      // close any other open COA panels
+      document.querySelectorAll('.coa-panel.open').forEach(p=>p.classList.remove('open'));
+      if(open){
+        panel.classList.remove('open');
+        return;
+      }
+      panel.innerHTML = coaPanelHTML(item);
+      panel.classList.add('open');
+    });
+  });
+
       }
     });
   });
