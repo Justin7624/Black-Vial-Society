@@ -54,20 +54,69 @@
   .empty{color:#b8b9c2;text-align:center;padding:40px;border:1px dashed #2b2f3d;border-radius:14px;background:#14161a}
 
   /* Mini calculator dropdown */
-  .mini-wrap{margin-top:8px;border:1px solid #2a2d3c;background:#14161b;border-radius:12px;overflow:hidden;display:none}
+  .mini-wrap{margin-top:8px;border:1px solid #2a2d3c;background:#14161b;border-radius:12px;overflow:visible;display:none}
   .mini-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:700;font-size:13px}
   .mini-sub{font-size:12px;color:#b8b9c2;font-weight:600;margin-top:2px}
   .close-mini{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:999px;color:#cfd0d8;padding:6px 10px;font-size:12px}
   .mini-body{display:grid;gap:12px;padding:10px 12px;border-top:1px solid #24283a}
 
   .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+
+  .mini-field[data-role-wrap="diluent"] input{max-width:112px}
+  .mini-field[data-role-wrap="syringe"] select{max-width:112px}
+  .mini-field input[type="number"]{min-width:0}
+  .mini-field select{min-width:0}
+
+
+  /* Mini calculator layout fixes (prevent dropdown clipping/overlap) */
+  .mini-wrap{position:relative}
+  .mini-body{position:relative}
+  .mini-field select{position:relative; z-index:5}
+  .dose-row select{position:relative; z-index:6}
+  @media (max-width: 560px){
+    .mini-grid{grid-template-columns:1fr}
+    .dose-row{grid-template-columns:1fr 96px}
+    .dose-row .desired-input{width:100% !important; max-width:100% !important;}
+    .dose-row select{width:96px !important; min-width:96px !important; max-width:96px !important;}
+  }
+
   .mini-field{display:flex;flex-direction:column;gap:6px}
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
 
+  /* Mini calculator field width fix (no tile resize) */
+
+  /* Align right-column fields to the right inside the calculator grid */
+  .mini-field[data-role-wrap="diluent"],
+  .mini-field[data-role-wrap="syringe"]{
+    justify-self:end;
+    align-self:start;
+  }
+  .mini-field[data-role-wrap="diluent"] input,
+  .mini-field[data-role-wrap="syringe"] select{
+    width:112px;
+  }
+
+
+  .mini-field[data-role-wrap="diluent"] input{
+    max-width:112px;
+  }
+  .mini-field[data-role-wrap="syringe"] select{
+    max-width:112px;
+  }
+
+
   .dose-row{display:grid;grid-template-columns:96px 72px;gap:8px;align-items:center;justify-content:start;}
   .dose-row .desired-input{width:96px !important;max-width:96px !important;}
   .dose-row select{width:72px !important;min-width:72px !important;max-width:72px !important;padding:6px 8px;font-size:12px;}
+
+  /* Slightly shrink unit dropdowns to avoid collision */
+  .dose-row select{
+    width:64px !important;
+    min-width:64px !important;
+    max-width:64px !important;
+  }
+
 
   /* Classic syringe visual (mini) */
   .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
@@ -250,7 +299,7 @@ const GUIDE = [
     "badge": "Weight",
     "category": "weight",
     "short": "Strong appetite support; many use it to help cut cravings and stay full longer.",
-    "onset": "Some notice appetite changes within 1\u20132 weeks; results build over time.",
+    "onset": "Some notice appetite changes within 1–2 weeks; results build over time.",
     "fact": "Form: Lyophilized powder",
     "doses": [
       "5 mg",
@@ -260,7 +309,9 @@ const GUIDE = [
       "30 mg",
       "40 mg",
       "50 mg",
-      "60 mg"
+      "60 mg",
+      "10mg kit x10",
+      "20mg kit x10"
     ],
     "stock": {
       "5 mg": 35,
@@ -270,9 +321,11 @@ const GUIDE = [
       "30 mg": 10,
       "40 mg": 10,
       "50 mg": 10,
-      "60 mg": 10
+      "60 mg": 10,
+      "10mg kit x10": 8,
+      "20mg kit x10": 9
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "glp2tz",
@@ -280,7 +333,7 @@ const GUIDE = [
     "badge": "Weight",
     "category": "weight",
     "short": "Helps reduce appetite and can support steadier blood sugar.",
-    "onset": "Typically gradual\u2014many describe changes week by week.",
+    "onset": "Typically gradual—many describe changes week by week.",
     "fact": "Form: Lyophilized powder",
     "doses": [
       "5 mg",
@@ -302,14 +355,14 @@ const GUIDE = [
       "50 mg": 10,
       "60 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "glp1sg",
     "name": "GLP-1SG (Semaglutide)",
     "badge": "Weight",
     "category": "weight",
-    "short": "Popular for appetite control\u2014can make smaller meals feel satisfying.",
+    "short": "Popular for appetite control—can make smaller meals feel satisfying.",
     "onset": "Many notice appetite changes within a few weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -324,14 +377,14 @@ const GUIDE = [
       "15 mg": 10,
       "20 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "cagrilintide",
     "name": "Cagrilintide",
     "badge": "Weight",
     "category": "weight",
-    "short": "Amylin-pathway support\u2014often described as \u201cquieting food noise.\u201d",
+    "short": "Amylin-pathway support—often described as “quieting food noise.”",
     "onset": "Gradual over weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -342,14 +395,14 @@ const GUIDE = [
       "5 mg": 14,
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "motsc",
     "name": "MOTS-C",
     "badge": "Metabolic",
     "category": "energy",
-    "short": "Metabolism/energy support\u2014some describe better stamina and \u201ccleaner\u201d energy.",
+    "short": "Metabolism/energy support—some describe better stamina and “cleaner” energy.",
     "onset": "Subtle at first; often discussed as building over weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -362,14 +415,14 @@ const GUIDE = [
       "30 mg": 9,
       "40 mg": 8
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "bpc157",
     "name": "BPC-157",
     "badge": "Recovery",
     "category": "healing",
-    "short": "Often used for injury recovery\u2014tendons, joints, and \u201cnagging\u201d aches.",
+    "short": "Often used for injury recovery—tendons, joints, and “nagging” aches.",
     "onset": "Some feel relief in days; deeper recovery takes longer.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -380,14 +433,14 @@ const GUIDE = [
       "10 mg": 7,
       "20 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "wolverinebpc5mgtb5mg",
     "name": "BPC 5mg + TB 5mg (Combo)",
     "badge": "Recovery",
     "category": "healing",
-    "short": "Combo recovery vial\u2014often used for joints, mobility, and soft tissue repair support.",
+    "short": "Combo recovery vial—often used for joints, mobility, and soft tissue repair support.",
     "onset": "Often described as gradual over weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -396,14 +449,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 9
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "wolverinebpc10mgtb10",
     "name": "BPC 10mg + TB 10mg (Combo)",
     "badge": "Recovery",
     "category": "healing",
-    "short": "Higher strength combo\u2014aimed at longer recovery runs and stubborn issues.",
+    "short": "Higher strength combo—aimed at longer recovery runs and stubborn issues.",
     "onset": "Often described as gradual over weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -412,7 +465,7 @@ const GUIDE = [
     "stock": {
       "20 mg": 8
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "tb500",
@@ -429,14 +482,14 @@ const GUIDE = [
     "stock": {
       "Thymosin B4 Acetate": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "melanotan",
     "name": "Melanotan",
     "badge": "Tanning",
     "category": "tanning",
-    "short": "Supports tanning response\u2014can help deepen tone with less sun exposure.",
+    "short": "Supports tanning response—can help deepen tone with less sun exposure.",
     "onset": "Often noticeable over days to weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -445,14 +498,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 9
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "melanotan2",
     "name": "Melanotan 2",
     "badge": "Tanning",
     "category": "tanning",
-    "short": "Similar tanning support\u2014many describe faster/deeper results than MT-1.",
+    "short": "Similar tanning support—many describe faster/deeper results than MT-1.",
     "onset": "Often noticeable over days to weeks.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -461,14 +514,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 9
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "glow",
     "name": "GLOW",
     "badge": "Wellness",
     "category": "energy",
-    "short": "Beauty-style blend\u2014marketed for skin glow, tone, and overall wellness vibes.",
+    "short": "Beauty-style blend—marketed for skin glow, tone, and overall wellness vibes.",
     "onset": "Usually gradual (weeks+).",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -477,14 +530,14 @@ const GUIDE = [
     "stock": {
       "70 mg": 7
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "klow",
     "name": "KLOW",
     "badge": "Wellness",
     "category": "energy",
-    "short": "Wellness blend\u2014often described as \u201cfeel-good\u201d support and body balance.",
+    "short": "Wellness blend—often described as “feel-good” support and body balance.",
     "onset": "Usually gradual (weeks+).",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -493,14 +546,14 @@ const GUIDE = [
     "stock": {
       "80 mg": 27
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "nad",
     "name": "NAD+",
     "badge": "Wellness",
     "category": "energy",
-    "short": "Energy + clarity support\u2014people use it for a \u201creset\u201d feeling and better drive.",
+    "short": "Energy + clarity support—people use it for a “reset” feeling and better drive.",
     "onset": "Some feel it same-day; others notice gradually.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -511,14 +564,14 @@ const GUIDE = [
       "500 mg": 13,
       "1000 mg": 17
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "ipamorelin",
     "name": "Ipamorelin",
     "badge": "Wellness",
     "category": "energy",
-    "short": "GH-support peptide\u2014used for recovery, sleep quality, and body composition goals.",
+    "short": "GH-support peptide—used for recovery, sleep quality, and body composition goals.",
     "onset": "Often subtle; tends to be gradual.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -529,14 +582,14 @@ const GUIDE = [
       "5 mg": 10,
       "10 mg": 4
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "tesamorelin",
     "name": "Tesamorelin",
     "badge": "Wellness",
     "category": "energy",
-    "short": "Often used for body composition\u2014especially \u201cstubborn\u201d midsection goals.",
+    "short": "Often used for body composition—especially “stubborn” midsection goals.",
     "onset": "Gradual over weeks to months.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -547,14 +600,14 @@ const GUIDE = [
       "5 mg": 6,
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "sermorelinacetate",
     "name": "Sermorelin Acetate",
     "badge": "Wellness",
     "category": "energy",
-    "short": "GH-pathway support\u2014often used to improve recovery and overall \u201crested\u201d feeling.",
+    "short": "GH-pathway support—often used to improve recovery and overall “rested” feeling.",
     "onset": "Gradual.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -565,14 +618,14 @@ const GUIDE = [
       "5 mg": 0,
       "10 mg": 0
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "ss31",
     "name": "SS-31",
     "badge": "Longevity",
     "category": "energy",
-    "short": "Mito support\u2014marketed for steadier energy and better \u201ccell power.\u201d",
+    "short": "Mito support—marketed for steadier energy and better “cell power.”",
     "onset": "Often subtle; builds with time.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -583,14 +636,14 @@ const GUIDE = [
       "10 mg": 18,
       "50 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "igf1lr3",
     "name": "IGF-1 LR3",
     "badge": "Performance",
     "category": "energy",
-    "short": "Performance/growth support\u2014often discussed for muscle and recovery goals.",
+    "short": "Performance/growth support—often discussed for muscle and recovery goals.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -599,14 +652,14 @@ const GUIDE = [
     "stock": {
       "1 mg": 10
     },
-    "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Higher-risk category—do serious research and consider professional guidance.</li><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "ghkcu",
     "name": "GHK-CU",
     "badge": "Skin",
     "category": "energy",
-    "short": "Copper peptide\u2014supports skin texture and collagen-focused routines.",
+    "short": "Copper peptide—supports skin texture and collagen-focused routines.",
     "onset": "Usually gradual (weeks+).",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -617,14 +670,14 @@ const GUIDE = [
       "50 mg": 9,
       "100 mg": 16
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "dsip",
     "name": "DSIP",
     "badge": "Nootropic",
     "category": "energy",
-    "short": "Sleep support\u2014used for deeper rest and calmer nights.",
+    "short": "Sleep support—used for deeper rest and calmer nights.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -637,14 +690,14 @@ const GUIDE = [
       "10 mg": 10,
       "15 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "epithalon",
     "name": "Epithalon",
     "badge": "Longevity",
     "category": "energy",
-    "short": "Longevity-style peptide\u2014often used for \u201caging support\u201d and overall vitality.",
+    "short": "Longevity-style peptide—often used for “aging support” and overall vitality.",
     "onset": "Usually gradual.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -655,7 +708,7 @@ const GUIDE = [
       "10 mg": 16,
       "50 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "kpv",
@@ -671,14 +724,14 @@ const GUIDE = [
     "stock": {
       "(see label)": 3
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "semax",
     "name": "Semax",
     "badge": "Nootropic",
     "category": "energy",
-    "short": "Focus support\u2014often used for clarity, motivation, and \u201csharp\u201d workdays.",
+    "short": "Focus support—often used for clarity, motivation, and “sharp” workdays.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -691,14 +744,14 @@ const GUIDE = [
       "10 mg": 12,
       "30 mg": 0
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "selank",
     "name": "Selank",
     "badge": "Nootropic",
     "category": "energy",
-    "short": "Calm focus\u2014often used for stress support without feeling \u201cdull.\u201d",
+    "short": "Calm focus—often used for stress support without feeling “dull.”",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -711,14 +764,14 @@ const GUIDE = [
       "10 mg": 15,
       "30 mg": 30
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "5amino1mq",
     "name": "5-amino-1mq",
     "badge": "Metabolic",
     "category": "energy",
-    "short": "Metabolic support\u2014often used for recomposition goals and \u201cleaner\u201d progress.",
+    "short": "Metabolic support—often used for recomposition goals and “leaner” progress.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -731,14 +784,14 @@ const GUIDE = [
       "10 mg": 10,
       "50 mg": 9
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "cjc1295nodac",
     "name": "CJC-1295 (no DAC)",
     "badge": "Wellness",
     "category": "energy",
-    "short": "GH-support peptide\u2014often used for recovery, sleep quality, and body goals.",
+    "short": "GH-support peptide—often used for recovery, sleep quality, and body goals.",
     "onset": "Gradual.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -749,7 +802,7 @@ const GUIDE = [
       "5 mg": 10,
       "10 mg": 3
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "cjc1295withdac",
@@ -765,14 +818,14 @@ const GUIDE = [
     "stock": {
       "5 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "cjc1295nodac5mgipa5m",
     "name": "CJC-1295 (no DAC) + Ipamorelin (Combo)",
     "badge": "Wellness",
     "category": "energy",
-    "short": "Classic GH combo\u2014popular for recovery, sleep, and physique support.",
+    "short": "Classic GH combo—popular for recovery, sleep, and physique support.",
     "onset": "Gradual.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -781,14 +834,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "aod9604",
     "name": "AOD-9604",
     "badge": "Weight",
     "category": "weight",
-    "short": "Fat-loss support peptide\u2014often used for stubborn areas and cutting phases.",
+    "short": "Fat-loss support peptide—often used for stubborn areas and cutting phases.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -799,14 +852,14 @@ const GUIDE = [
       "5 mg": 10,
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "foxo4dri",
     "name": "FOXO4-DRI",
     "badge": "Longevity",
     "category": "energy",
-    "short": "Experimental longevity peptide\u2014often discussed in senescent-cell research circles.",
+    "short": "Experimental longevity peptide—often discussed in senescent-cell research circles.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -815,14 +868,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 9
     },
-    "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Higher-risk category—do serious research and consider professional guidance.</li><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "ahkcu",
     "name": "AHK-CU",
     "badge": "Skin",
     "category": "energy",
-    "short": "Copper peptide\u2014supports healthier-looking skin and smoother texture.",
+    "short": "Copper peptide—supports healthier-looking skin and smoother texture.",
     "onset": "Gradual (weeks+).",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -831,14 +884,14 @@ const GUIDE = [
     "stock": {
       "100 mg": 29
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "glutathione",
     "name": "Glutathione",
     "badge": "Antioxidant",
     "category": "energy",
-    "short": "Antioxidant support\u2014often used for overall wellness and \u201cbright\u201d skin routines.",
+    "short": "Antioxidant support—often used for overall wellness and “bright” skin routines.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -847,7 +900,7 @@ const GUIDE = [
     "stock": {
       "1500 mg": 8
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "hgh191aa",
@@ -876,7 +929,7 @@ const GUIDE = [
     "name": "KissPeptin-10",
     "badge": "Hormone",
     "category": "energy",
-    "short": "Hormone signaling peptide\u2014often discussed for reproductive axis support.",
+    "short": "Hormone signaling peptide—often discussed for reproductive axis support.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -885,14 +938,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 9
     },
-    "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Higher-risk category—do serious research and consider professional guidance.</li><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "vip",
     "name": "VIP",
     "badge": "Wellness",
     "category": "energy",
-    "short": "Neuropeptide discussed for recovery and \u201csystem calming\u201d support.",
+    "short": "Neuropeptide discussed for recovery and “system calming” support.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -903,7 +956,7 @@ const GUIDE = [
       "5 mg": 10,
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "snap8",
@@ -919,14 +972,14 @@ const GUIDE = [
     "stock": {
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "hcg",
     "name": "HCG",
     "badge": "Hormone",
     "category": "energy",
-    "short": "Hormone-related compound often discussed in fertility or endocrine contexts\u2014best handled with medical guidance.",
+    "short": "Hormone-related compound often discussed in fertility or endocrine contexts—best handled with medical guidance.",
     "onset": "Varies.",
     "fact": "Form: Lyophilized powder",
     "doses": [
@@ -935,7 +988,7 @@ const GUIDE = [
     "stock": {
       "5000 iu": 20
     },
-    "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Higher-risk category—do serious research and consider professional guidance.</li><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "pt141",
@@ -951,7 +1004,7 @@ const GUIDE = [
     "stock": {
       "10 mg": 7
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "ara290",
@@ -967,7 +1020,7 @@ const GUIDE = [
     "stock": {
       "10 mg": 10
     },
-    "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
   },
   {
     "key": "easytouch31gauge1ml5",
@@ -975,7 +1028,7 @@ const GUIDE = [
     "badge": "Supply",
     "category": "supplies",
     "short": "Insulin syringes used for reconstitution workflows (supply item).",
-    "onset": "\u2014",
+    "onset": "—",
     "fact": "Form: Insulin Syringe",
     "doses": [
       "10 pack"
@@ -991,7 +1044,7 @@ const GUIDE = [
     "badge": "Supply",
     "category": "supplies",
     "short": "Cosmetic liquid product used in aesthetic contexts; follow label guidance.",
-    "onset": "\u2014",
+    "onset": "—",
     "fact": "Form: Liquid",
     "doses": [
       "10 mg/ 10 mL"
@@ -1007,7 +1060,7 @@ const GUIDE = [
     "badge": "Supply",
     "category": "supplies",
     "short": "Sterile bacteriostatic water for reconstitution (supply item).",
-    "onset": "\u2014",
+    "onset": "—",
     "fact": "Form: Liquid",
     "doses": [
       "10 mL"
@@ -1023,7 +1076,7 @@ const GUIDE = [
     "badge": "Supply",
     "category": "supplies",
     "short": "Acidic diluent used only when a peptide specifically calls for it.",
-    "onset": "\u2014",
+    "onset": "—",
     "fact": "Form: Liquid",
     "doses": [
       "10 mL"
@@ -1039,7 +1092,7 @@ const GUIDE = [
     "badge": "Supply",
     "category": "supplies",
     "short": "Brand bacteriostatic water for reconstitution (supply item).",
-    "onset": "\u2014",
+    "onset": "—",
     "fact": "Form: Liquid",
     "doses": [
       "30 mL"
@@ -1110,6 +1163,20 @@ const PRICES_RAW = [
     65.0,
     "mg",
     10
+  ],
+  [
+    "GLP-3RT (Retatrutide)",
+    "10mg kit x10",
+    160.0,
+    "mg",
+    8
+  ],
+  [
+    "GLP-3RT (Retatrutide)",
+    "20mg kit x10",
+    200.0,
+    "mg",
+    9
   ],
   [
     "GLP-2TZ (Tirzepatide)",
@@ -1728,7 +1795,7 @@ function coaPanelHTML(item){
   if(item.category === 'supplies') return '';
   const src = COA_MAP[item.key];
   const name = esc(item.name);
-  const note = 'Applies to the peptide (not strength)';
+  const note = '';
   if(src){
     return `
       <div class="coa-head"><b>COA</b><span class="coa-note">${note}</span></div>
@@ -1809,7 +1876,7 @@ function classicMiniHTML(id, amountPerVial, vialUnit, starter, syringeScale=100,
           </div>
         </div>
 
-        <div class="mini-field">
+        <div class="mini-field" data-role-wrap="diluent">
           <label>Diluent added (mL)</label>
           <input type="number" step="0.01" value="${diluentDefault}" data-role="diluentMl">
         </div>
@@ -1826,7 +1893,7 @@ function classicMiniHTML(id, amountPerVial, vialUnit, starter, syringeScale=100,
           </div>
         </div>
 
-        <div class="mini-field">
+        <div class="mini-field" data-role-wrap="syringe">
           <label>Syringe scale</label>
           <select data-role="syringe">
             <option value="30">U-30</option>
@@ -2012,6 +2079,9 @@ function renderGuide(list){
       const doseStr = btn.dataset.dose;
       const stock   = Number(btn.dataset.stock)||0;
 
+
+      // Kits are bundles/sets (not a single vial concentration). Don't open the syringe calculator.
+      if (/\bkit\b/i.test(doseStr)) { return; }
       const card    = btn.closest('.card');
       const key     = card.dataset.key;
       const starterRaw = STARTERS[key] || {dose:0, unit:'mg'};
@@ -2087,7 +2157,19 @@ const priceTbody=document.querySelector('#priceTable tbody');
 const pempty=document.getElementById('pempty');
 const pq=document.getElementById('pq');
 
-function parseAmt(s){const n=parseFloat(s);return isNaN(n)?0:n;}
+function parseAmt(s){
+  const str = String(s||'');
+  // Kits: "10mg kit x10" => total mg = 10 * 10 = 100
+  const kit = str.match(/([\d.]+)\s*mg\b.*\bkit\b.*\bx(\d+)\b/i);
+  if(kit){
+    const mg = parseFloat(kit[1]);
+    const x  = parseFloat(kit[2]);
+    if(!isNaN(mg) && !isNaN(x)) return mg * x;
+  }
+  // Default: parse leading numeric (e.g., "10 mg", "36 iu", "30 mL")
+  const n = parseFloat(str);
+  return isNaN(n) ? 0 : n;
+}
 const rows=PRICES.map(([name,strength,price,unit,stock])=>{
   const amount=parseAmt(strength);
   return {name,strength,amount,price,ppu: amount?price/amount:0,unit,stock:Number(stock)||0};
