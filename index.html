@@ -1956,7 +1956,7 @@ function renderGuide(list){
 
       const card    = btn.closest('.card');
       const key     = card.dataset.key;
-      const starter = STARTERS[key] || {dose:0, unit:'mg'};
+      const starterRaw = STARTERS[key] || {dose:0, unit:'mg'};
 
       const mgMatch = doseStr.match(/([\d.]+)\s*mg/i);
       const iuMatch = doseStr.match(/([\d.]+)\s*iu/i);
@@ -1965,6 +1965,9 @@ function renderGuide(list){
       let vialUnit = 'mg';
       if (mgMatch) { amountPerVial = parseFloat(mgMatch[1]); vialUnit = 'mg'; }
       else if (iuMatch) { amountPerVial = parseFloat(iuMatch[1]); vialUnit = 'iu'; }
+
+      // If the selected vial is in IU, default desired-dose unit to IU as well
+      const starter = (vialUnit==='iu') ? {...starterRaw, unit:'iu'} : starterRaw;
 
       const cardId = btn.dataset.for;
       const miniId = `mini-${cardId}-${doseStr.replace(/\s+/g,'')}`;
