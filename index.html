@@ -2300,6 +2300,9 @@ function BVS_openCoaModal(list, productName){
   BVS__coaIndex = 0;
   BVS__coaName = productName || "";
 
+  // Ensure modal events are wired (close button / ESC / outside click)
+  BVS_wireCoaModal();
+
   if(!overlay || !img || !sub) return;
 
   sub.textContent = BVS__coaName;
@@ -2332,15 +2335,36 @@ function BVS_closeCoaModal(){
   document.body.style.overflow='';
 }
 
-(function BVS_wireCoaModal(){
+
+function BVS_wireCoaModal(){
   const overlay = document.getElementById('bvsCoaModal');
   const closeBtn = document.getElementById('bvsCoaClose');
-  if(!overlay || !closeBtn) return;
+  if(!overlay || !closeBtn) return false;
 
-  closeBtn.addEventListener('click', BVS_closeCoaModal);
-  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) BVS_closeCoaModal(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && overlay.classList.contains('open')) BVS_closeCoaModal(); });
-})();
+  // Prevent double-wiring
+  if(overlay.dataset.wired === '1') return true;
+  overlay.dataset.wired = '1';
+
+  closeBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    BVS_closeCoaModal();
+  });
+
+  overlay.addEventListener('click', (e)=>{
+    // click outside the card closes
+    if(e.target===overlay) BVS_closeCoaModal();
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape' && overlay.classList.contains('open')) BVS_closeCoaModal();
+  });
+
+  return true;
+}
+
+// Wire after DOM is ready (modal HTML sits after the main script in this file)
+document.addEventListener('DOMContentLoaded', ()=>{ BVS_wireCoaModal(); });
+
 
 /* Capture clicks on COA buttons: if a COA image exists, open modal and prevent inline panel */
 document.addEventListener('click', (e)=>{
