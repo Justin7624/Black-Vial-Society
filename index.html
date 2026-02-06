@@ -80,84 +80,11 @@
     .dose-row select{width:96px !important; min-width:96px !important; max-width:96px !important;}
   }
 
-  /* Mobile: stack calculator fields to prevent dropdown collisions */
-  @media (max-width: 560px){
-    .mini-grid{grid-template-columns:1fr !important}
-    .mini-field[data-role-wrap="diluent"], .mini-field[data-role-wrap="syringe"]{justify-self:stretch !important}
-    .mini-field[data-role-wrap="diluent"] input,
-    .mini-field[data-role-wrap="syringe"] select{
-      width:100% !important;
-      max-width:100% !important;
-    }
-    .dose-row{grid-template-columns:1fr 80px !important}
-    .dose-row select{
-      width:80px !important;
-      min-width:80px !important;
-      max-width:80px !important;
-    }
-  }
-
   .mini-field{display:flex;flex-direction:column;gap:6px}
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
 
   /* Mini calculator field width fix (no tile resize) */
-
-  
-  /* Mobile-only calculator collision fix (phones) */
-  @media (max-width: 520px){
-    /* Keep 2-column layout but tighten controls so nothing overlaps */
-    .mini-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:8px !important}
-    .mini-field{min-width:0}
-    .mini-field input, .mini-field select{min-width:0}
-
-    /* Reduce padding a bit on mobile to gain space */
-    .mini-field input, .mini-field select{
-      padding:7px 8px !important;
-      font-size:12px !important;
-    }
-
-    /* Unit dropdowns (mg/mcg/IU) */
-    .dose-row{grid-template-columns:minmax(0,1fr) 46px !important; gap:8px !important}
-    .dose-row select,
-    select[data-role="unit"]{
-      width:46px !important;
-      min-width:46px !important;
-      max-width:46px !important;
-    }
-
-    /* Diluent + syringe: target real elements by data-role */
-    input[data-role="diluentMl"],
-    select[data-role="syringe"]{
-      width:86px !important;
-      max-width:86px !important;
-    }
-  }
-
-
-    /* Shrink the unit dropdowns slightly */
-    .dose-row{grid-template-columns:minmax(0,1fr) 46px !important; gap:8px !important}
-    .dose-row select{
-      width:46px !important;
-      min-width:46px !important;
-      max-width:46px !important;
-    }
-
-    /* Make right-column fields (Diluent + Syringe) narrower and keep them right-aligned */
-    .mini-field[data-role-wrap="diluent"],
-    .mini-field[data-role-wrap="syringe"]{justify-self:end !important}
-
-    .mini-field[data-role-wrap="diluent"] input{
-      width:110px !important;
-      max-width:110px !important;
-    }
-    .mini-field[data-role-wrap="syringe"] select{
-      width:110px !important;
-      max-width:110px !important;
-    }
-  }
-
-
 
   /* Align right-column fields to the right inside the calculator grid */
   .mini-field[data-role-wrap="diluent"],
@@ -182,6 +109,49 @@
   .dose-row{display:grid;grid-template-columns:96px 72px;gap:8px;align-items:center;justify-content:start;}
   .dose-row .desired-input{width:96px !important;max-width:96px !important;}
   .dose-row select{width:72px !important;min-width:72px !important;max-width:72px !important;padding:6px 8px;font-size:12px;}
+
+  /* Mobile-only: tighter calculator controls to prevent overlap */
+  @media (max-width: 520px){
+    .mini-grid{gap:8px !important}
+    .mini-field{min-width:0}
+    .mini-field input, .mini-field select{
+      min-width:0 !important;
+      padding:6px 8px !important;
+      font-size:12px !important;
+    }
+
+    /* Keep diluent & syringe right-aligned but narrower */
+    input[data-role="diluentMl"],
+    select[data-role="syringe"]{
+      width:64px !important;
+      max-width:64px !important;
+    }
+    /* If mgPerVial is long, keep it reasonable */
+    input[data-role="mgPerVial"]{
+      width:100% !important;
+      max-width:120px !important;
+    }
+
+    /* Desired dose row: shrink unit dropdown and keep centered */
+    .dose-row{
+      grid-template-columns:minmax(0,1fr) 34px !important;
+      gap:8px !important;
+      align-items:center !important;
+    }
+    .dose-row select,
+    select[data-role="unit"]{
+      width:34px !important;
+      min-width:34px !important;
+      max-width:34px !important;
+      justify-self:center !important;
+    }
+    .dose-row .desired-input{
+      width:100% !important;
+      max-width:120px !important;
+      justify-self:start !important;
+    }
+  }
+
 
   /* Slightly shrink unit dropdowns to avoid collision */
   .dose-row select{
