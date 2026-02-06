@@ -123,8 +123,8 @@
     /* Keep diluent & syringe right-aligned but narrower */
     input[data-role="diluentMl"],
     select[data-role="syringe"]{
-      width:60px !important;
-      max-width:60px !important;
+      width:56px !important;
+      max-width:56px !important;
     }
     /* If mgPerVial is long, keep it reasonable */
     input[data-role="mgPerVial"]{
@@ -134,32 +134,23 @@
 
     /* Desired dose row: shrink unit dropdown and keep centered */
     .dose-row{
-      grid-template-columns:minmax(0,1fr) 34px !important;
+      grid-template-columns:minmax(0,1fr) 28px !important;
       gap:8px !important;
       align-items:center !important;
     }
     .dose-row select,
     select[data-role="unit"]{
-      width:34px !important;
-      min-width:34px !important;
-      max-width:34px !important;
+      width:28px !important;
+      min-width:28px !important;
+      max-width:28px !important;
       justify-self:center !important;
     }
     .dose-row .desired-input{
       width:100% !important;
-      max-width:100px !important;
+      max-width:90px !important;
       justify-self:start !important;
     }
   }
-
-
-  /* Slightly shrink unit dropdowns to avoid collision */
-  .dose-row select{
-    width:60px !important;
-    min-width:60px !important;
-    max-width:60px !important;
-  }
-
 
   /* Classic syringe visual (mini) */
   .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
