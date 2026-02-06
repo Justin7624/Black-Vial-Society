@@ -110,12 +110,18 @@
     .mini-field{min-width:0}
     .mini-field input, .mini-field select{min-width:0}
 
+    /* Reduce padding a bit on mobile to gain space */
+    .mini-field input, .mini-field select{
+      padding:7px 8px !important;
+      font-size:12px !important;
+    }
+
     /* Shrink the unit dropdowns slightly */
-    .dose-row{grid-template-columns:minmax(0,1fr) 58px !important; gap:8px !important}
+    .dose-row{grid-template-columns:minmax(0,1fr) 46px !important; gap:8px !important}
     .dose-row select{
-      width:58px !important;
-      min-width:58px !important;
-      max-width:58px !important;
+      width:46px !important;
+      min-width:46px !important;
+      max-width:46px !important;
     }
 
     /* Make right-column fields (Diluent + Syringe) narrower and keep them right-aligned */
