@@ -80,6 +80,23 @@
     .dose-row select{width:96px !important; min-width:96px !important; max-width:96px !important;}
   }
 
+  /* Mobile: stack calculator fields to prevent dropdown collisions */
+  @media (max-width: 560px){
+    .mini-grid{grid-template-columns:1fr !important}
+    .mini-field[data-role-wrap="diluent"], .mini-field[data-role-wrap="syringe"]{justify-self:stretch !important}
+    .mini-field[data-role-wrap="diluent"] input,
+    .mini-field[data-role-wrap="syringe"] select{
+      width:100% !important;
+      max-width:100% !important;
+    }
+    .dose-row{grid-template-columns:1fr 80px !important}
+    .dose-row select{
+      width:80px !important;
+      min-width:80px !important;
+      max-width:80px !important;
+    }
+  }
+
   .mini-field{display:flex;flex-direction:column;gap:6px}
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px}
