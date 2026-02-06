@@ -78,6 +78,19 @@
     .dose-row{grid-template-columns:1fr 96px}
     .dose-row .desired-input{width:100% !important; max-width:100% !important;}
     .dose-row select{width:96px !important; min-width:96px !important; max-width:96px !important;}
+  
+    /* Mobile: prevent "staggered" right-column alignment in single-column layout */
+    .mini-field[data-role-wrap="diluent"],
+    .mini-field[data-role-wrap="syringe"]{
+      justify-self:stretch !important;
+      align-self:stretch !important;
+    }
+    .mini-field[data-role-wrap="diluent"] input,
+    .mini-field[data-role-wrap="syringe"] select{
+      width:100% !important;
+      max-width:100% !important;
+    }
+
   }
 
   .mini-field{display:flex;flex-direction:column;gap:6px}
