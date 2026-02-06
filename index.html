@@ -1772,6 +1772,25 @@ const PRICES = PRICES_RAW.map(([name, strength, price, unit, stock]) => {
   return [name, strength, finalPrice, unit, Number(stock)||0];
 });
 
+
+/* ---------- COA IMAGES (per peptide, not per strength) ----------
+   Put these image files next to this HTML file (or change to "coa/<file>.jpg" if you store them in /coa).
+*/
+const COA_MAP = {
+  // Retatrutide
+  glp3rt: ["coa_retatrutide.jpg"],
+
+  // GHK-CU
+  ghkcu: ["coa_ghk_cu.jpg"],
+
+  // Tesamorelin
+  tesamorelin: ["coa_tesamorelin.jpg"],
+
+  // HGH 191AA (Somatropin)
+  hgh191aa: ["coa_hgh_191aa.jpg"],
+};
+
+
 /* ---------- Starter dose map (neutral defaults) ---------- */
 const STARTERS = Object.fromEntries(GUIDE.map(x => [x.key, {dose:0, unit:'mg'}]));
 STARTERS.melanotan = {dose:0, unit:'mcg'};
@@ -1782,43 +1801,46 @@ STARTERS.hcg = {dose:0, unit:'iu'};
 
 
 /* ---------- COA (Certificate of Analysis) ----------
-   One COA per peptide. Add images later like:
+   One COA per peptide (NOT per size). Add images later like:
    COA_MAP["glp3rt"] = "coa_retatrutide.png";
    COA_MAP["hgh191aa"] = "coa_somatropin.png";
    Images should sit next to this HTML file (or use full URLs).
 */
 const COA_MAP = {
-  "glp3rt": [
-    { label: "Finnrick COA", src: "coa/coa_retatrutide.jpg" },
-    { label: "Manufacturer COA", src: "coa/coa_retatrutide_manufacturer.jpg" }
-  ],
-
-  /* Skin */
-  "ghkcu": [
-    { label: "Finnrick COA", src: "coa/coa_ghk_cu.jpg" }
-  ],
-
-  /* Body Composition */
-  "tesa": [
-    { label: "Finnrick COA", src: "coa/coa_tesamorelin.jpg" }
-  ],
-
-  /* Hormone */
-  "hgh": [
-    { label: "Finnrick COA", src: "coa/coa_hgh_191aa.jpg" }
-  ]
+  // "glp3rt": "coa_retatrutide.png",
 };
-</script>
-};
+
 
 function coaPanelHTML(item){
   if(item.category === 'supplies') return '';
-  const src = COA_MAP[item.key];
+  const v = COA_MAP[item.key];
+  const list = !v ? [] : (Array.isArray(v) ? v : [v]);
   const name = esc(item.name);
-  const note = '';
-  if(src){
+
+  if(list.length){
+    const imgs = list.map((src, i)=>`
+      <div style="margin-bottom:${i<list.length-1?'10px':'0'}">
+        <img class="coa-img" src="${esc(src)}" alt="COA for ${name}">
+      </div>
+    `).join('');
     return `
-      <div class="coa-head"><b>COA</b><span class="coa-note">${note}</span></div>
+      <div class="coa-head"><b>COA</b><span class="coa-note"></span></div>
+      <div class="coa-body">${imgs}</div>
+    `;
+  }
+
+  return `
+    <div class="coa-head"><b>COA</b><span class="coa-note"></span></div>
+    <div class="coa-body">
+      <div class="coa-placeholder">
+        <span class="tag">COA incoming</span>
+        <div class="hint">COA image for <b>${name}</b> will appear here soon.</div>
+      </div>
+    </div>
+  `;
+}
+
+</span></div>
       <div class="coa-body">
         <img class="coa-img" src="${esc(src)}" alt="COA for ${name}">
       </div>
