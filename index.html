@@ -213,6 +213,53 @@
   .footer{position:fixed;left:0;right:0;bottom:0;background:#0f1116;border-top:1px solid #242736}
   .foot-wrap{max-width:1100px;margin:auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
   .small{font-size:12px;color:#b8b9c2}
+
+/* === Mobile-only calculator layout fix (does NOT affect desktop) === */
+@media (max-width: 520px) and (hover: none) and (pointer: coarse){
+  /* Stack calculator fields to eliminate overlaps */
+  .mini-grid{
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .mini-field{min-width:0 !important}
+  .mini-field input,
+  .mini-field select{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    padding:8px 10px !important;
+    font-size:13px !important;
+  }
+
+  /* Desired dose row keeps input + unit side-by-side */
+  .dose-row{
+    grid-template-columns: minmax(0,1fr) 76px !important;
+    gap: 10px !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+  .dose-row .desired-input{
+    width:100% !important;
+    max-width:100% !important;
+  }
+  .dose-row select,
+  select[data-role="unit"]{
+    width:76px !important;
+    min-width:76px !important;
+    max-width:76px !important;
+    justify-self:end !important;
+  }
+
+  /* Keep syringe scale dropdown full width on phone */
+  select[data-role="syringe"],
+  input[data-role="diluentMl"],
+  input[data-role="mgPerVial"]{
+    width:100% !important;
+    max-width:100% !important;
+  }
+}
+/* === End mobile-only calculator layout fix === */
+
 </style>
 </head>
 <body>
