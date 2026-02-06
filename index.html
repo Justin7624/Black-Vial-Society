@@ -1782,13 +1782,33 @@ STARTERS.hcg = {dose:0, unit:'iu'};
 
 
 /* ---------- COA (Certificate of Analysis) ----------
-   One COA per peptide (NOT per size). Add images later like:
+   One COA per peptide. Add images later like:
    COA_MAP["glp3rt"] = "coa_retatrutide.png";
    COA_MAP["hgh191aa"] = "coa_somatropin.png";
    Images should sit next to this HTML file (or use full URLs).
 */
 const COA_MAP = {
-  // "glp3rt": "coa_retatrutide.png",
+  "glp3rt": [
+    { label: "Finnrick COA", src: "coa/coa_retatrutide.jpg" },
+    { label: "Manufacturer COA", src: "coa/coa_retatrutide_manufacturer.jpg" }
+  ],
+
+  /* Skin */
+  "ghkcu": [
+    { label: "Finnrick COA", src: "coa/coa_ghk_cu.jpg" }
+  ],
+
+  /* Body Composition */
+  "tesa": [
+    { label: "Finnrick COA", src: "coa/coa_tesamorelin.jpg" }
+  ],
+
+  /* Hormone */
+  "hgh": [
+    { label: "Finnrick COA", src: "coa/coa_hgh_191aa.jpg" }
+  ]
+};
+</script>
 };
 
 function coaPanelHTML(item){
