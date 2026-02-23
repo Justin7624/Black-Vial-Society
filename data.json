@@ -22,11 +22,11 @@
         "20mg kit x10"
       ],
       "stock": {
-        "5 mg": 31,
+        "5 mg": 28,
         "10 mg": 105,
         "15 mg": 9,
         "20 mg": 99,
-        "30 mg": 6,
+        "30 mg": 7,
         "40 mg": 9,
         "50 mg": 10,
         "60 mg": 10,
@@ -59,7 +59,7 @@
         "10 mg": 19,
         "15 mg": 19,
         "20 mg": 7,
-        "30 mg": 8,
+        "30 mg": 7,
         "40 mg": 10,
         "50 mg": 10,
         "60 mg": 10,
@@ -83,7 +83,7 @@
       ],
       "stock": {
         "5 mg": 26,
-        "10 mg": 28,
+        "10 mg": 18,
         "15 mg": 10,
         "20 mg": 10
       },
@@ -138,7 +138,7 @@
       ],
       "stock": {
         "10 mg": 17,
-        "30 mg": 9,
+        "30 mg": 8,
         "40 mg": 5
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -189,7 +189,7 @@
         "20 mg"
       ],
       "stock": {
-        "20 mg": 8
+        "20 mg": 6
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -255,7 +255,7 @@
         "70 mg"
       ],
       "stock": {
-        "70 mg": 17
+        "70 mg": 12
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -288,7 +288,7 @@
         "1000 mg"
       ],
       "stock": {
-        "500 mg": 22,
+        "500 mg": 21,
         "1000 mg": 27
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -377,7 +377,7 @@
         "1 mg"
       ],
       "stock": {
-        "1 mg": 10
+        "1 mg": 8
       },
       "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -510,8 +510,8 @@
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 10,
-        "50 mg": 9
+        "10 mg": 20,
+        "50 mg": 8
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -529,7 +529,7 @@
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 3
+        "10 mg": 13
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -561,7 +561,7 @@
         "10 mg"
       ],
       "stock": {
-        "10 mg": 10
+        "10 mg": 8
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -874,7 +874,7 @@
       "5 mg",
       15.0,
       "mg",
-      31
+      28
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -902,7 +902,7 @@
       "30 mg",
       35.0,
       "mg",
-      6
+      7
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -972,7 +972,7 @@
       "30 mg",
       30.0,
       "mg",
-      8
+      7
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1014,7 +1014,7 @@
       "10 mg",
       20.0,
       "mg",
-      28
+      18
     ],
     [
       "GLP-1SG (Semaglutide)",
@@ -1063,7 +1063,7 @@
       "30 mg",
       40.0,
       "mg",
-      9
+      8
     ],
     [
       "MOTS-C",
@@ -1098,7 +1098,7 @@
       "20 mg",
       35.0,
       "mg",
-      8
+      6
     ],
     [
       "TB500 (Thymosin B4 Acetate)",
@@ -1133,7 +1133,7 @@
       "70 mg",
       30.0,
       "mg",
-      17
+      12
     ],
     [
       "KLOW",
@@ -1147,7 +1147,7 @@
       "500 mg",
       20.0,
       "mg",
-      22
+      21
     ],
     [
       "NAD+",
@@ -1217,7 +1217,7 @@
       "1 mg",
       30.0,
       "mg",
-      10
+      8
     ],
     [
       "GHK-CU",
@@ -1336,14 +1336,14 @@
       "10 mg",
       20.0,
       "mg",
-      10
+      20
     ],
     [
       "5-amino-1mq",
       "50 mg",
       35.0,
       "mg",
-      9
+      8
     ],
     [
       "CJC-1295 (no DAC)",
@@ -1357,7 +1357,7 @@
       "10 mg",
       30.0,
       "mg",
-      3
+      13
     ],
     [
       "CJC-1295 (with DAC)",
@@ -1371,7 +1371,7 @@
       "10 mg",
       20.0,
       "mg",
-      10
+      8
     ],
     [
       "AOD-9604",
@@ -1483,7 +1483,7 @@
       "10000 iu",
       30.0,
       "iu",
-      20
+      10
     ],
     [
       "PT-141 (Bremelanotide)",
