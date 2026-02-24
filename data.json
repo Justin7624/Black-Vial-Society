@@ -20,6 +20,7 @@
         "60 mg",
         "5mg kit x10",
         "10mg kit x10",
+        "15mg kit x10",
         "20mg kit x10"
       ],
       "stock": {
@@ -33,6 +34,7 @@
         "60 mg": 10,
         "5mg kit x10": 2,
         "10mg kit x10": 10,
+        "15mg kit x10": 0,
         "20mg kit x10": 9
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -940,6 +942,13 @@
       200.0,
       "mg",
       8
+    ],
+     [
+      "GLP-3RT (Retatrutide)",
+      "10mg kit x10",
+      250.0,
+      "mg",
+      0
     ],
     [
       "GLP-3RT (Retatrutide)",
