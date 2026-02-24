@@ -21,7 +21,9 @@
         "5mg kit x10",
         "10mg kit x10",
         "15mg kit x10",
-        "20mg kit x10"
+        "20mg kit x10",
+        "50mg kit x10",
+        "60mg kit x10"
       ],
       "stock": {
         "5 mg": 28,
@@ -35,7 +37,9 @@
         "5mg kit x10": 2,
         "10mg kit x10": 10,
         "15mg kit x10": 0,
-        "20mg kit x10": 9
+        "20mg kit x10": 9,
+        "50mg kit x10": 1,
+        "60mg kit x 10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -56,7 +60,13 @@
         "40 mg",
         "50 mg",
         "60 mg",
-        "100 mg"
+        "100 mg",
+        "5mg kit x10",
+        "10mg kit x10",
+        "15mg kit x10",
+        "50mg kit x10",
+        "60mg kit x10",
+        "100mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
@@ -67,7 +77,13 @@
         "40 mg": 0,
         "50 mg": 10,
         "60 mg": 10,
-        "100 mg": 10
+        "100 mg": 10,
+        "5mg kit x10": 1,
+        "10mg kit x10": 1,
+        "15mg kit x10": 1,
+        "50mg kit x10": 1,
+        "60mg kit x10": 1,
+        "100mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -945,7 +961,7 @@
     ],
      [
       "GLP-3RT (Retatrutide)",
-      "10mg kit x10",
+      "15mg kit x10",
       250.0,
       "mg",
       0
@@ -956,6 +972,20 @@
       300.0,
       "mg",
       9
+    ],
+    [
+      "GLP-3RT (Retatrutide)",
+      "50mg kit x10",
+      550.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-3RT (Retatrutide)",
+      "60mg kit x10",
+      600.0,
+      "mg",
+      1
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1019,6 +1049,55 @@
       75.0,
       "mg",
       10
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "5mg kit x10",
+      130.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "10mg kit x10",
+      150.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "15mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "15mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "50mg kit x10",
+      400.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "60mg kit x10",
+      500.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "100mg kit x10",
+      750.0,
+      "mg",
+      1
     ],
     [
       "GLP-1SG (Semaglutide)",
