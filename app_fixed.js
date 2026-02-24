@@ -100,6 +100,8 @@ let sortDir = store.get('bvs.priceSortDir', 'asc');
 
 // Price inflation (hard-coded like original)
 const PRICE_MULTIPLIER = 4.29;
+// Kit-specific multiplier
+const KIT_MULTIPLIER = 2.5;
 
 const NO_INCREASE = new Set([
   "bacteriostatic water",
@@ -482,7 +484,11 @@ function computePrices(){
     // - Do NOT inflate units "mL" or "pack"
     const skip = NO_INCREASE.has(String(name).toLowerCase()) || unitNorm === 'mL' || unitNorm === 'pack';
 
-    const inflated = skip ? base : base * PRICE_MULTIPLIER;
+    const isKit = /\bkit\b/i.test(String(strength)) || /\bkit\b/i.test(String(name));
+
+    const multiplier = isKit ? KIT_MULTIPLIER : PRICE_MULTIPLIER;
+
+    const inflated = skip ? base : base * multiplier;
 
     // NEW behavior: cutoff rounding (<= $0.30 down; otherwise up)
     const finalPrice = roundDollarCutoff(inflated);
@@ -499,8 +505,10 @@ function computePrices(){
       ppu,
       stock: s,
       unit: unitNorm,
-      skipInflation: skip
-    };
+      skipInflation: skip,
+      isKit,
+      multiplierUsed: multiplier
+  };
   });
 }
 
@@ -540,7 +548,7 @@ function renderPrices(){
         <td>${esc(r.name)}</td>
         <td>${esc(r.strength)}</td>
         <td class="num">${isFinite(r.amount)?num(r.amount):'—'}</td>
-        <td class="num" title="Raw ${money(r.priceBase)} × ${PRICE_MULTIPLIER}">${money(r.price)}</td>
+        <td class="num" title="Raw ${money(r.priceBase)} × ${r.multiplierUsed}${r.isKit ? ' (kit)' : '' }">${money(r.price)}</td>
         <td class="num">${isFinite(r.ppu)?money(r.ppu):'—'}</td>
         <td class="num"><span class="stock-badge ${cls}">${r.stock}</span></td>
         <td><span class="unit-pill">${esc(r.unit)}</span></td>
