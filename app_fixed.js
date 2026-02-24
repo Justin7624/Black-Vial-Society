@@ -111,12 +111,21 @@ const NO_INCREASE = new Set([
   "easytouch 31 gauge 1ml 5/16\" 8mm"
 ]);
 
-function roundSmart(n){
-  const step = n <= 100 ? 5 : 10;
-  const lower = Math.floor(n / step) * step;
-  const upper = Math.ceil(n / step) * step;
-  if (n - lower <= 1.5) return lower;
-  return upper;
+/**
+ * Round price up to the next whole dollar if there are any cents.
+ * - 193.00 => 193
+ * - 193.01 => 194
+ * Never rounds down.
+ */
+function roundUpDollar(n){
+  const v = Number(n);
+  if(!isFinite(v)) return NaN;
+
+  // Snap to 2 decimals first to avoid float artifacts
+  const cents = Math.round(v * 100) / 100;
+
+  // If already whole dollar, keep; otherwise go to next dollar
+  return (cents % 1 === 0) ? cents : Math.floor(cents) + 1;
 }
 
 /* ---------- Tabs (ARIA + keyboard) ---------- */
@@ -381,7 +390,6 @@ function openMini(card, btn, doseLabel){
     metaEl.textContent = stockTxt ? `${doseTxt} • ${stockTxt}` : (doseTxt || '');
   }
 
-
   if(isFinite(amount)) amountInput.value = String(amount);
   if(vialUnitSel){ vialUnitSel.value = (unit === 'iu') ? 'iu' : 'mg'; }
   // Autofill per your request
@@ -465,7 +473,9 @@ function computePrices(){
     const skip = NO_INCREASE.has(String(name).toLowerCase()) || unitNorm === 'mL' || unitNorm === 'pack';
 
     const inflated = skip ? base : base * PRICE_MULTIPLIER;
-    const finalPrice = roundSmart(inflated);
+
+    // NEW behavior: round up to next whole dollar if there are any cents (never down)
+    const finalPrice = roundUpDollar(inflated);
 
     const amt = isFinite(amount) ? amount : NaN;
     const ppu = (isFinite(amt) && amt>0) ? (finalPrice/amt) : NaN;
@@ -483,7 +493,6 @@ function computePrices(){
     };
   });
 }
-
 
 function pricePasses(item, q){
   const query = q.trim().toLowerCase();
