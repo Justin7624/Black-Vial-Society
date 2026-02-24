@@ -126,10 +126,12 @@
       "onset": "Gradual, often over weeks",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x 10"
       ],
       "stock": {
-        "10 mg": 10
+        "10 mg": 10,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -143,11 +145,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 14,
-        "10 mg": 10
+        "10 mg": 10,
+        "5mg kit x10": 1,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1171,6 +1177,13 @@
       10
     ],
     [
+      "Survodutide",
+      "10mg kit x10",
+      400.0,
+      "mg",
+      1
+    ],
+    [
       "Cagrilintide",
       "5 mg",
       20.0,
@@ -1183,6 +1196,20 @@
       30.0,
       "mg",
       10
+    ],
+    [
+      "Cagrilintide",
+      "5mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "Cagrilintide",
+      "10mg kit x10",
+      300.0,
+      "mg",
+      1
     ],
     [
       "MOTS-C",
