@@ -112,20 +112,30 @@ const NO_INCREASE = new Set([
 ]);
 
 /**
- * Round price up to the next whole dollar if there are any cents.
- * - 193.00 => 193
- * - 193.01 => 194
- * Never rounds down.
+ * Dollar rounding with a cutoff:
+ * - exact .00 stays
+ * - cents <= 0.30 => down to current dollar
+ * - cents >  0.30 => up to next dollar
+ *
+ * Examples:
+ * 42.00 => 42
+ * 42.30 => 42
+ * 42.31 => 43
+ * 41.50 => 42
  */
-function roundUpDollar(n){
+function roundDollarCutoff(n){
   const v = Number(n);
   if(!isFinite(v)) return NaN;
 
-  // Snap to 2 decimals first to avoid float artifacts
+  // Snap to 2 decimals to avoid float artifacts
   const cents = Math.round(v * 100) / 100;
 
-  // If already whole dollar, keep; otherwise go to next dollar
-  return (cents % 1 === 0) ? cents : Math.floor(cents) + 1;
+  const whole = Math.floor(cents);
+  const frac = cents - whole; // 0.00 .. 0.99
+
+  if(frac === 0) return whole;
+  if(frac <= 0.30) return whole;
+  return whole + 1;
 }
 
 /* ---------- Tabs (ARIA + keyboard) ---------- */
@@ -474,8 +484,8 @@ function computePrices(){
 
     const inflated = skip ? base : base * PRICE_MULTIPLIER;
 
-    // NEW behavior: round up to next whole dollar if there are any cents (never down)
-    const finalPrice = roundUpDollar(inflated);
+    // NEW behavior: cutoff rounding (<= $0.30 down; otherwise up)
+    const finalPrice = roundDollarCutoff(inflated);
 
     const amt = isFinite(amount) ? amount : NaN;
     const ppu = (isFinite(amt) && amt>0) ? (finalPrice/amt) : NaN;
