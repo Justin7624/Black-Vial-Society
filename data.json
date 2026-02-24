@@ -99,13 +99,21 @@
         "5 mg",
         "10 mg",
         "15 mg",
-        "20 mg"
+        "20 mg",
+        "5mg kit x10",
+        "10mg kit x10",
+        "15mg kit x10",
+        "20mg kit x10"
       ],
       "stock": {
         "5 mg": 26,
         "10 mg": 18,
         "15 mg": 10,
-        "20 mg": 10
+        "20 mg": 10,
+        "5mg kit x10": 2,
+        "10mg kit x10": 1,
+        "15mg kit x10": 1,
+        "20mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1126,6 +1134,34 @@
       30.0,
       "mg",
       10
+    ],
+    [
+      "GLP-1SG (Semaglutide)",
+      "5mg kit",
+      150.0,
+      "mg",
+      2
+    ],
+    [
+      "GLP-1SG (Semaglutide)",
+      "10mg kit",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-1SG (Semaglutide)",
+      "15mg kit",
+      250.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-1SG (Semaglutide)",
+      "20mg kit",
+      300.0,
+      "mg",
+      1
     ],
     [
       "Survodutide",
