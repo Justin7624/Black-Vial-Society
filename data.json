@@ -294,10 +294,12 @@
       "onset": "Usually gradual (weeks+).",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "70 mg"
+        "70 mg",
+        "70mg kit x10",
       ],
       "stock": {
-        "70 mg": 12
+        "70 mg": 12,
+        "70mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -310,10 +312,12 @@
       "onset": "Usually gradual (weeks+).",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "80 mg"
+        "80 mg",
+        "80mg kit x10"
       ],
       "stock": {
-        "80 mg": 25
+        "80 mg": 25,
+        "80mg kit x10": 2
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1332,11 +1336,25 @@
       12
     ],
     [
+      "GLOW",
+      "70 mg",
+      300.0,
+      "mg",
+      1
+    ],
+    [
       "KLOW",
       "80 mg",
       35.0,
       "mg",
       25
+    ],
+    [
+      "KLOW",
+      "80 mg",
+      350.0,
+      "mg",
+      2
     ],
     [
       "NAD+",
