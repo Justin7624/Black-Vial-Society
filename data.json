@@ -18,6 +18,7 @@
         "40 mg",
         "50 mg",
         "60 mg",
+        "5mg kit x10",
         "10mg kit x10",
         "20mg kit x10"
       ],
@@ -30,6 +31,7 @@
         "40 mg": 9,
         "50 mg": 10,
         "60 mg": 10,
+        "5mg kit x10": 2,
         "10mg kit x10": 10,
         "20mg kit x10": 9
       },
@@ -924,6 +926,13 @@
       65.0,
       "mg",
       10
+    ],
+    [
+      "GLP-3RT (Retatrutide)",
+      "5mg kit x10",
+      150.0,
+      "mg",
+      2
     ],
     [
       "GLP-3RT (Retatrutide)",
