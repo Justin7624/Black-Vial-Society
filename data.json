@@ -168,12 +168,14 @@
       "doses": [
         "10 mg",
         "30 mg",
-        "40 mg"
+        "40 mg",
+        "10mg kit x10"
       ],
       "stock": {
         "10 mg": 17,
         "30 mg": 8,
-        "40 mg": 5
+        "40 mg": 5,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -187,11 +189,13 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "10 mg",
-        "20 mg"
+        "20 mg",
+        "20mg kit x10"
       ],
       "stock": {
         "10 mg": 7,
-        "20 mg": 10
+        "20 mg": 10,
+        "20mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1233,6 +1237,13 @@
       5
     ],
     [
+      "MOTS-C",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
       "BPC-157",
       "10 mg",
       20.0,
@@ -1245,6 +1256,13 @@
       35.0,
       "mg",
       10
+    ],
+    [
+      "BPC-157",
+      "20mg kit x10",
+      350.0,
+      "mg",
+      1
     ],
     [
       "BPC 5mg + TB 5mg (Combo)",
