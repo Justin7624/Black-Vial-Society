@@ -241,11 +241,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit 10x",
+        "10mg kit 10x"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 10
+        "10 mg": 10,
+        "5mg kit x10": 1,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1291,6 +1295,20 @@
       30.0,
       "mg",
       10
+    ],
+    [
+      "TB500 (Thymosin B4 Acetate)",
+      "5mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "TB500 (Thymosin B4 Acetate)",
+      "10mg kit x10",
+      300.0,
+      "mg",
+      1
     ],
     [
       "Melanotan",
