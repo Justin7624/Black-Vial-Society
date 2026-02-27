@@ -484,7 +484,7 @@
         "10 mg": 10,
         "15 mg": 10,
         "10mg kit x10": 1,
-        "15mg kit x10"
+        "15mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -526,7 +526,7 @@
       "stock": {
         "5 mg": 10,
         "10 mg": 3,
-        "5mg kit x10"
+        "5mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -569,7 +569,6 @@
         "5mg kit x10",
         "10mg kit x10",
         "30mg kit x10"
-        
       ],
       "stock": {
         "5 mg": 10,
