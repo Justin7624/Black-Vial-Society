@@ -331,11 +331,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "500 mg",
-        "1000 mg"
+        "1000 mg",
+        "500mg kit x10",
+        "1000mg kit x10"
       ],
       "stock": {
         "500 mg": 20,
-        "1000 mg": 17
+        "1000 mg": 17,
+        "500mg kit x10": 2,
+        "1000mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -349,11 +353,13 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 7,
-        "10 mg": 14
+        "10 mg": 14,
+        "10mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -367,11 +373,13 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 6,
-        "10 mg": 10
+        "10 mg": 10,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -385,11 +393,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 10
+        "10 mg": 10,
+        "5mg kit x10",
+        "10mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -403,11 +415,16 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "10 mg",
-        "50 mg"
+        "50 mg",
+        "10mg kit x10",
+        "50mg kit x10"
+        
       ],
       "stock": {
         "10 mg": 18,
-        "50 mg": 10
+        "50 mg": 10,
+        "10mg kit x10": 1,
+        "50mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -437,11 +454,13 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "50 mg",
-        "100 mg"
+        "100 mg",
+        "100mg kit x10"
       ],
       "stock": {
         "50 mg": 9,
-        "100 mg": 13
+        "100 mg": 13,
+        "100mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -456,12 +475,16 @@
       "doses": [
         "5 mg",
         "10 mg",
-        "15 mg"
+        "15 mg",
+        "10mg kit x10",
+        "15mg kit x10"
       ],
       "stock": {
         "5 mg": 7,
         "10 mg": 10,
-        "15 mg": 10
+        "15 mg": 10,
+        "10mg kit x10": 1,
+        "15mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -475,11 +498,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "10 mg",
-        "50 mg"
+        "50 mg",
+        "10mg kit x10",
+        "50mg kit x10"
       ],
       "stock": {
         "10 mg": 16,
-        "50 mg": 10
+        "50 mg": 10,
+        "10mg kit x10"
+        "50mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -493,11 +520,13 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 3
+        "10 mg": 3,
+        "5mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -512,12 +541,16 @@
       "doses": [
         "5 mg",
         "10 mg",
-        "30 mg"
+        "30 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
         "10 mg": 12,
-        "30 mg": 0
+        "30 mg": 0,
+        "5mg kit x10": 1,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -532,12 +565,19 @@
       "doses": [
         "5 mg",
         "10 mg",
-        "30 mg"
+        "30 mg",
+        "5mg kit x10",
+        "10mg kit x10",
+        "30mg kit x10"
+        
       ],
       "stock": {
         "5 mg": 10,
         "10 mg": 15,
-        "30 mg": 30
+        "30 mg": 30,
+        "5mg kit x10": 1,
+        "10mg kit x10: 1",
+        "30mg kit x10" 3"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -552,12 +592,16 @@
       "doses": [
         "5 mg",
         "10 mg",
-        "50 mg"
+        "50 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
         "10 mg": 20,
-        "50 mg": 8
+        "50 mg": 8,
+        "5mg kit x10": 1,
+        "10mg kit x10": 2
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1371,6 +1415,13 @@
       17
     ],
     [
+      "NAD+",
+      "500mg kit x10",
+      200.0,
+      "mg",
+      2
+    ],
+    [
       "Ipamorelin",
       "5 mg",
       16.0,
@@ -1383,6 +1434,13 @@
       24.0,
       "mg",
       14
+    ],
+    [
+      "Ipamorelin",
+      "10mg kit x10",
+      240.0,
+      "mg",
+      1
     ],
     [
       "Tesamorelin",
@@ -1399,6 +1457,13 @@
       10
     ],
     [
+      "Tesamorelin",
+      "10mg kit x10",
+      350.0,
+      "mg",
+      1
+    ],
+    [
       "Sermorelin Acetate",
       "5 mg",
       18.0,
@@ -1411,6 +1476,20 @@
       24.0,
       "mg",
       10
+    ],
+    [
+      "Sermorelin Acetate",
+      "5mg kit x10",
+      180.0,
+      "mg",
+      1
+    ],
+    [
+      "Sermorelin Acetate",
+      "10mg kit x10",
+      240.0,
+      "mg",
+      1
     ],
     [
       "SS-31 (Elamipretide)",
@@ -1448,6 +1527,13 @@
       13
     ],
     [
+      "GHK-CU",
+      "100mg kit x10",
+      300.0,
+      "mg",
+      1
+    ],
+    [
       "DSIP",
       "5 mg",
       15.0,
@@ -1483,6 +1569,20 @@
       10
     ],
     [
+      "Epithalon",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "Epithalon",
+      "50mg kit x10",
+      400.0,
+      "mg",
+      1
+    ],
+    [
       "KPV",
       "5 mg",
       18.0,
@@ -1495,6 +1595,13 @@
       24.0,
       "mg",
       3
+    ],
+    [
+      "KPV",
+      "5mg kit x10",
+      180.0,
+      "mg",
+      1
     ],
     [
       "Semax",
@@ -1558,6 +1665,20 @@
       35.0,
       "mg",
       8
+    ],
+    [
+      "5-amino-1mq",
+      "5mg kit x10",
+      150.0,
+      "mg",
+      1
+    ],
+    [
+      "5-amino-1mq",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      2
     ],
     [
       "CJC-1295 (no DAC)",
