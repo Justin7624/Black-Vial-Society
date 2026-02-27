@@ -697,10 +697,12 @@
       "onset": "Gradual (weeks+).",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "100 mg"
+        "100 mg",
+        "100mg kit x10"
       ],
       "stock": {
-        "100 mg": 29
+        "100 mg": 29,
+        "100mg kit x10": 2
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -733,14 +735,24 @@
         "12iu",
         "15iu",
         "24iu",
-        "36iu"
+        "36iu",
+        "10iu kit x10",
+        "12iu kit x10",
+        "15iu kit x10",
+        "24iu kit x10",
+        "36iu kit x10"
       ],
       "stock": {
         "10iu": 49,
         "12iu": 20,
         "15iu": 30,
         "24iu": 39,
-        "36iu": 13
+        "36iu": 13,
+        "10iu kit x10": 4,
+        "12iu kit x10": 2,
+        "15iu kit x10": 3,
+        "24iu kit x10": 3,
+        "36iu kit x10": 1
       },
       "more": "<ul><li>Only use with a licensed prescriber.</li><li>Educational info only\u2014always confirm your label, strength (IU), and storage.</li></ul>"
     },
@@ -1736,6 +1748,13 @@
       29
     ],
     [
+      "AHK-CU",
+      "100mg kit x10",
+      180.0,
+      "mg",
+      2
+    ],
+    [
       "Glutathione",
       "1500 mg",
       25.0,
@@ -1776,6 +1795,41 @@
       45.0,
       "iu",
       13
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "10iu kit x10",
+      200.0,
+      "iu",
+      4
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "12iu kit x10",
+      220.0,
+      "iu",
+      2
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "15iu kit x10",
+      250.0,
+      "iu",
+      3
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "24iu kit x10",
+      350.0,
+      "iu",
+      3
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "36iu kit x10",
+      450.0,
+      "iu",
+      1
     ],
     [
       "KissPeptin-10",
