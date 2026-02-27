@@ -26,18 +26,18 @@
         "60mg kit x10"
       ],
       "stock": {
-        "5 mg": 28,
-        "10 mg": 105,
-        "15 mg": 9,
-        "20 mg": 99,
-        "30 mg": 7,
+        "5 mg": 27,
+        "10 mg": 43,
+        "15 mg": 19,
+        "20 mg": 16,
+        "30 mg": 5,
         "40 mg": 9,
         "50 mg": 10,
         "60 mg": 10,
         "5mg kit x10": 2,
-        "10mg kit x10": 10,
-        "15mg kit x10": 0,
-        "20mg kit x10": 9,
+        "10mg kit x10": 4,
+        "15mg kit x10": 1,
+        "20mg kit x10": 1,
         "50mg kit x10": 1,
         "60mg kit x 10": 1
       },
@@ -920,35 +920,35 @@
       "5 mg",
       15.0,
       "mg",
-      28
+      27
     ],
     [
       "GLP-3RT (Retatrutide)",
       "10 mg",
       20.0,
       "mg",
-      105
+      43
     ],
     [
       "GLP-3RT (Retatrutide)",
       "15 mg",
       25.0,
       "mg",
-      9
+      19
     ],
     [
       "GLP-3RT (Retatrutide)",
       "20 mg",
       30.0,
       "mg",
-      99
+      16
     ],
     [
       "GLP-3RT (Retatrutide)",
       "30 mg",
       35.0,
       "mg",
-      7
+      5
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -983,21 +983,21 @@
       "10mg kit x10",
       200.0,
       "mg",
-      8
+      4
     ],
      [
       "GLP-3RT (Retatrutide)",
       "15mg kit x10",
       250.0,
       "mg",
-      0
+      1
     ],
     [
       "GLP-3RT (Retatrutide)",
       "20mg kit x10",
       300.0,
       "mg",
-      9
+      1
     ],
     [
       "GLP-3RT (Retatrutide)",
