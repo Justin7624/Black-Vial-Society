@@ -39,7 +39,7 @@
         "15mg kit x10": 1,
         "20mg kit x10": 1,
         "50mg kit x10": 1,
-        "60mg kit x 10": 1
+        "60mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -359,7 +359,7 @@
       "stock": {
         "5 mg": 7,
         "10 mg": 14,
-        "10mg kit x10"
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -400,8 +400,8 @@
       "stock": {
         "5 mg": 10,
         "10 mg": 10,
-        "5mg kit x10",
-        "10mg kit x10"
+        "5mg kit x10": 1,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -505,8 +505,8 @@
       "stock": {
         "10 mg": 16,
         "50 mg": 10,
-        "10mg kit x10"
-        "50mg kit x10"
+        "10mg kit x10": 1,
+        "50mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -576,8 +576,8 @@
         "10 mg": 15,
         "30 mg": 30,
         "5mg kit x10": 1,
-        "10mg kit x10: 1",
-        "30mg kit x10" 3"
+        "10mg kit x10": 1,
+        "30mg kit x10": 3
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
