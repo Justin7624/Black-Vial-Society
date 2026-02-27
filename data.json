@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-19",
+  "updated": "2026-02-26",
   "guide": [
     {
       "key": "glp3rt",
@@ -151,9 +151,9 @@
       ],
       "stock": {
         "5 mg": 14,
-        "10 mg": 10,
+        "10 mg": 4,
         "5mg kit x10": 1,
-        "10mg kit x10": 1
+        "10mg kit x10": 0
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -174,7 +174,7 @@
       "stock": {
         "10 mg": 17,
         "30 mg": 8,
-        "40 mg": 5,
+        "40 mg": 4,
         "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -265,7 +265,7 @@
         "10 mg"
       ],
       "stock": {
-        "10 mg": 9
+        "10 mg": 8
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -316,7 +316,7 @@
         "80mg kit x10"
       ],
       "stock": {
-        "80 mg": 25,
+        "80 mg": 24,
         "80mg kit x10": 2
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -334,8 +334,8 @@
         "1000 mg"
       ],
       "stock": {
-        "500 mg": 21,
-        "1000 mg": 27
+        "500 mg": 20,
+        "1000 mg": 17
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -441,7 +441,7 @@
       ],
       "stock": {
         "50 mg": 9,
-        "100 mg": 16
+        "100 mg": 13
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -673,7 +673,7 @@
         "1500 mg"
       ],
       "stock": {
-        "1500 mg": 8
+        "1500 mg": 7
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1207,7 +1207,7 @@
       "10 mg",
       30.0,
       "mg",
-      10
+      4
     ],
     [
       "Cagrilintide",
@@ -1242,7 +1242,7 @@
       "40 mg",
       50.0,
       "mg",
-      5
+      4
     ],
     [
       "MOTS-C",
@@ -1347,11 +1347,11 @@
       "80 mg",
       35.0,
       "mg",
-      25
+      24
     ],
     [
       "KLOW",
-      "80 mg",
+      "80 mg kit x10",
       350.0,
       "mg",
       2
@@ -1361,14 +1361,14 @@
       "500 mg",
       20.0,
       "mg",
-      21
+      20
     ],
     [
       "NAD+",
       "1000 mg",
       35.0,
       "mg",
-      27
+      17
     ],
     [
       "Ipamorelin",
@@ -1445,7 +1445,7 @@
       "100 mg",
       30.0,
       "mg",
-      16
+      13
     ],
     [
       "DSIP",
@@ -1620,7 +1620,7 @@
       "1500 mg",
       25.0,
       "mg",
-      8
+      7
     ],
     [
       "HGH 191AA (Somatropin)",
