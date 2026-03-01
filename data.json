@@ -647,10 +647,12 @@
       "onset": "Gradual.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 8
+        "10 mg": 8,
+        "10mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -1718,6 +1720,13 @@
       20.0,
       "mg",
       8
+    ],
+    [
+      "CJC-1295 (no DAC) + Ipamorelin (Combo)",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
     ],
     [
       "AOD-9604",
