@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-26",
+  "updated": "2026-03-01",
   "guide": [
     {
       "key": "glp3rt",
@@ -75,13 +75,13 @@
         "20 mg": 7,
         "30 mg": 7,
         "40 mg": 0,
-        "50 mg": 10,
+        "50 mg": 0,
         "60 mg": 10,
         "100 mg": 10,
         "5mg kit x10": 1,
         "10mg kit x10": 1,
         "15mg kit x10": 1,
-        "50mg kit x10": 1,
+        "50mg kit x10": 0,
         "60mg kit x10": 1,
         "100mg kit x10": 1
       },
@@ -1117,7 +1117,7 @@
       "50 mg",
       40.0,
       "mg",
-      10
+      00
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1166,7 +1166,7 @@
       "50mg kit x10",
       400.0,
       "mg",
-      1
+      0
     ],
     [
       "GLP-2TZ (Tirzepatide)",
