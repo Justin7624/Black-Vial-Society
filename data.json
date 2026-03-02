@@ -651,7 +651,7 @@
         "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 8,
+        "10 mg": 0,
         "10mg kit x10": 0
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -1717,14 +1717,14 @@
     [
       "CJC-1295 (no DAC) + Ipamorelin (Combo)",
       "10 mg",
-      20.0,
+      28.0,
       "mg",
-      8
+      0
     ],
     [
       "CJC-1295 (no DAC) + Ipamorelin (Combo)",
       "10mg kit x10",
-      200.0,
+      280.0,
       "mg",
       0
     ],
