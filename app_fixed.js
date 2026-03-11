@@ -99,9 +99,9 @@ let sortKey = store.get('bvs.priceSortKey', 'name');
 let sortDir = store.get('bvs.priceSortDir', 'asc');
 
 // Price inflation (hard-coded like original)
-const PRICE_MULTIPLIER = 4.00;
+const PRICE_MULTIPLIER = 4.29;
 // Kit-specific multiplier
-const KIT_MULTIPLIER = 1.5;
+const KIT_MULTIPLIER = 2;
 
 const NO_INCREASE = new Set([
   "bacteriostatic water",
