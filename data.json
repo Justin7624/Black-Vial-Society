@@ -990,28 +990,28 @@
       "5 mg",
       13.0,
       "mg",
-      107
+      10
     ],
     [
       "GLP-2TZ (Tirzepatide)",
       "10 mg",
       15.0,
       "mg",
-      19
+      107
     ],
     [
       "GLP-2TZ (Tirzepatide)",
       "15 mg",
       20.0,
       "mg",
-      73
+      19
     ],
     [
       "GLP-2TZ (Tirzepatide)",
       "20 mg",
       25.0,
       "mg",
-      27
+      73
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1063,20 +1063,6 @@
       6
     ],
     [
-      "GLP-2TZ (Tirzepatide)",
-      "60mg kit x10",
-      500.0,
-      "mg",
-      0
-    ],
-    [
-      "GLP-2TZ (Tirzepatide)",
-      "100mg kit x10",
-      750.0,
-      "mg",
-      1
-    ],
-    [
       "GLP-1SG (Semaglutide)",
       "5 mg",
       15.0,
@@ -1109,27 +1095,6 @@
       "5mg kit x10",
       150.0,
       "mg",
-      2
-    ],
-    [
-      "GLP-1SG (Semaglutide)",
-      "10mg kit x10",
-      200.0,
-      "mg",
-      1
-    ],
-    [
-      "GLP-1SG (Semaglutide)",
-      "15mg kit x10",
-      250.0,
-      "mg",
-      1
-    ],
-    [
-      "GLP-1SG (Semaglutide)",
-      "20mg kit x10",
-      300.0,
-      "mg",
       1
     ],
     [
@@ -1138,13 +1103,6 @@
       40.0,
       "mg",
       10
-    ],
-    [
-      "Survodutide",
-      "10mg kit x10",
-      400.0,
-      "mg",
-      1
     ],
     [
       "Cagrilintide",
@@ -1158,21 +1116,7 @@
       "10 mg",
       30.0,
       "mg",
-      14
-    ],
-    [
-      "Cagrilintide",
-      "5mg kit x10",
-      200.0,
-      "mg",
-      1
-    ],
-    [
-      "Cagrilintide",
-      "10mg kit x10",
-      300.0,
-      "mg",
-      1
+      13
     ],
     [
       "MOTS-C",
@@ -1193,14 +1137,14 @@
       "40 mg",
       50.0,
       "mg",
-      4
+      63
     ],
     [
       "MOTS-C",
-      "10mg kit x10",
+      "40mg kit x10",
       200.0,
       "mg",
-      1
+      5
     ],
     [
       "BPC-157",
@@ -1252,20 +1196,6 @@
       10
     ],
     [
-      "TB500 (Thymosin B4 Acetate)",
-      "5mg kit x10",
-      200.0,
-      "mg",
-      1
-    ],
-    [
-      "TB500 (Thymosin B4 Acetate)",
-      "10mg kit x10",
-      300.0,
-      "mg",
-      1
-    ],
-    [
       "Melanotan",
       "10 mg",
       20.0,
@@ -1284,14 +1214,7 @@
       "70 mg",
       30.0,
       "mg",
-      2
-    ],
-    [
-      "GLOW",
-      "70mg kit x10",
-      300.0,
-      "mg",
-      1
+      12
     ],
     [
       "KLOW",
@@ -1301,32 +1224,18 @@
       14
     ],
     [
-      "KLOW",
-      "80mg kit x10",
-      350.0,
-      "mg",
-      2
-    ],
-    [
       "NAD+",
       "500 mg",
       20.0,
       "mg",
-      20
+      19
     ],
     [
       "NAD+",
       "1000 mg",
       35.0,
       "mg",
-      16
-    ],
-    [
-      "NAD+",
-      "500mg kit x10",
-      200.0,
-      "mg",
-      2
+      15
     ],
     [
       "Ipamorelin",
@@ -1364,13 +1273,6 @@
       10
     ],
     [
-      "Tesamorelin",
-      "10mg kit x10",
-      350.0,
-      "mg",
-      1
-    ],
-    [
       "Sermorelin Acetate",
       "5 mg",
       18.0,
@@ -1385,25 +1287,11 @@
       10
     ],
     [
-      "Sermorelin Acetate",
-      "5mg kit x10",
-      180.0,
-      "mg",
-      1
-    ],
-    [
-      "Sermorelin Acetate",
-      "10mg kit x10",
-      240.0,
-      "mg",
-      1
-    ],
-    [
       "SS-31 (Elamipretide)",
       "10 mg",
       20.0,
       "mg",
-      18
+      8
     ],
     [
       "SS-31 (Elamipretide)",
@@ -1417,14 +1305,14 @@
       "1 mg",
       30.0,
       "mg",
-      7
+      5
     ],
     [
       "GHK-CU",
       "50 mg",
       20.0,
       "mg",
-      9
+      0
     ],
     [
       "GHK-CU",
@@ -1434,18 +1322,11 @@
       13
     ],
     [
-      "GHK-CU",
-      "100mg kit x10",
-      300.0,
-      "mg",
-      1
-    ],
-    [
       "DSIP",
       "5 mg",
       15.0,
       "mg",
-      7
+      6
     ],
     [
       "DSIP",
@@ -1476,20 +1357,6 @@
       10
     ],
     [
-      "Epithalon",
-      "10mg kit x10",
-      200.0,
-      "mg",
-      1
-    ],
-    [
-      "Epithalon",
-      "50mg kit x10",
-      400.0,
-      "mg",
-      1
-    ],
-    [
       "KPV",
       "5 mg",
       18.0,
@@ -1501,14 +1368,7 @@
       "10 mg",
       24.0,
       "mg",
-      3
-    ],
-    [
-      "KPV",
-      "5mg kit x10",
-      180.0,
-      "mg",
-      1
+      12
     ],
     [
       "Semax",
@@ -1522,7 +1382,7 @@
       "10 mg",
       20.0,
       "mg",
-      19
+      18
     ],
     [
       "Semax",
@@ -1543,7 +1403,7 @@
       "10 mg",
       20.0,
       "mg",
-      15
+      13
     ],
     [
       "Selank",
@@ -1585,7 +1445,7 @@
       "10mg kit x10",
       200.0,
       "mg",
-      2
+      1
     ],
     [
       "CJC-1295 (no DAC)",
@@ -1613,14 +1473,7 @@
       "10 mg",
       28.0,
       "mg",
-      0
-    ],
-    [
-      "CJC-1295 (no DAC) + Ipamorelin (Combo)",
-      "10mg kit x10",
-      280.0,
-      "mg",
-      0
+      6
     ],
     [
       "AOD-9604",
@@ -1655,7 +1508,7 @@
       "100mg kit x10",
       180.0,
       "mg",
-      2
+      1
     ],
     [
       "Glutathione",
@@ -1669,7 +1522,7 @@
       "10iu",
       20.0,
       "iu",
-      29
+      19
     ],
     [
       "HGH 191AA (Somatropin)",
@@ -1697,40 +1550,12 @@
       "36iu",
       45.0,
       "iu",
-      12
-    ],
-    [
-      "HGH 191AA (Somatropin)",
-      "10iu kit x10",
-      200.0,
-      "iu",
-      4
+      10
     ],
     [
       "HGH 191AA (Somatropin)",
       "12iu kit x10",
       220.0,
-      "iu",
-      2
-    ],
-    [
-      "HGH 191AA (Somatropin)",
-      "15iu kit x10",
-      250.0,
-      "iu",
-      3
-    ],
-    [
-      "HGH 191AA (Somatropin)",
-      "24iu kit x10",
-      350.0,
-      "iu",
-      3
-    ],
-    [
-      "HGH 191AA (Somatropin)",
-      "36iu kit x10",
-      450.0,
       "iu",
       1
     ],
@@ -1781,7 +1606,7 @@
       "10 mg",
       20.0,
       "mg",
-      6
+      4
     ],
     [
       "Ara-290",
@@ -1802,7 +1627,7 @@
       "5 mg",
       25.0,
       "mg",
-      10
+      0
     ],
     [
       "easytouch 31 gauge 1ml 5/16\" 8mm",
@@ -1837,7 +1662,7 @@
       "30 mL",
       15.0,
       "mL",
-      23
+      17
     ]
   ],
   "price_multiplier_default": 1.0
