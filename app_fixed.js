@@ -202,7 +202,23 @@ function renderGuide(){
   $('#empty').style.display = filtered.length ? 'none' : 'block';
   $('#gstatus').textContent = filtered.length ? `Showing ${filtered.length} item${filtered.length===1?'':'s'}.` : '';
 
-  for(const item of filtered){
+  const singles = filtered.filter(item => !item.isKit);
+  const kits = filtered.filter(item => item.isKit);
+
+  if(!filtered.length) return;
+
+  grid.innerHTML = `
+    <h2 class="section-title">Single Vials</h2>
+    <div class="section-grid" id="singleGrid"></div>
+
+    <h2 class="section-title kits">Kits</h2>
+    <div class="section-grid" id="kitGrid"></div>
+  `;
+
+  const singleGrid = document.getElementById('singleGrid');
+  const kitGrid = document.getElementById('kitGrid');
+
+  function renderCard(item, targetGrid){
     const detailsOpen = guideExpanded;
     const doses = (item.doses||[]).map(label=>{
       const stock = (item.stock && item.stock[label] != null) ? Number(item.stock[label]) : null;
@@ -256,54 +272,57 @@ function renderGuide(){
                 <label>Peptide per vial</label>
                 <input type="number" step="any" min="0" data-role="amountPerVial" value="" inputmode="decimal"/>
               </div>
-              <div class="mini-field mini-unit field-pepUnit">
-                <label class="sr-only">Peptide per vial unit</label>
-                <select data-role="vialUnit" aria-label="Peptide per vial unit">
+              <div class="mini-field mini-unit">
+                <label>Unit</label>
+                <select data-role="amountUnit">
                   <option value="mg">mg</option>
                   <option value="iu">IU</option>
                 </select>
               </div>
-              <div class="mini-field field-diluent">
-                <label>Diluent added (mL)</label>
+              <div class="mini-field">
+                <label>Diluent added</label>
                 <input type="number" step="any" min="0" data-role="diluentMl" value="1" inputmode="decimal"/>
               </div>
-
-              <div class="mini-field field-desired">
+              <div class="mini-field">
                 <label>Desired dose</label>
-                <input type="number" step="any" min="0" data-role="desired" value="0" inputmode="decimal"/>
+                <input type="number" step="any" min="0" data-role="desiredDose" value="0" inputmode="decimal"/>
               </div>
-              <div class="mini-field mini-unit field-desiredUnit">
-                <label class="sr-only">Desired dose unit</label>
-                <select data-role="desiredUnit" aria-label="Desired dose unit">
-                  <option value="iu">IU</option>
-                  <option value="mcg">mcg</option>
+              <div class="mini-field mini-unit">
+                <label>Dose unit</label>
+                <select data-role="desiredUnit">
                   <option value="mg">mg</option>
+                  <option value="mcg">mcg</option>
+                  <option value="iu">IU</option>
                 </select>
               </div>
-              <div class="mini-field field-syringe">
-                <label>Syringe scale</label>
-                <select data-role="syringeScale" aria-label="Syringe scale">
-                  <option value="100">U-100</option>
-                  <option value="50">50 units (0.5 mL)</option>
-                  <option value="30">30 units (0.3 mL)</option>
+              <div class="mini-field mini-unit">
+                <label>Syringe</label>
+                <select data-role="syringeType">
+                  <option value="100">U-100 / 1 mL</option>
+                  <option value="50">U-50 / 0.5 mL</option>
+                  <option value="30">U-30 / 0.3 mL</option>
                 </select>
               </div>
             </div>
 
-            <div class="classic" hidden>
-              <div class="tube" aria-hidden="true">
-                <div class="fill"></div>
-                <div class="cursor"></div>
-              </div>
-              <div class="ticks" aria-hidden="true"></div>
+            <div class="quick-presets">
+              <button type="button" data-preset="1">1</button>
+              <button type="button" data-preset="2">2</button>
+              <button type="button" data-preset="5">5</button>
+              <button type="button" data-preset="10">10</button>
             </div>
 
             <div class="mini-stats">
-              <div class="stat"><b>Syringe units to pull</b><span data-out="units">—</span></div>
-              <div class="stat"><b>Vial units per syringe unit</b><span data-out="vpu">—</span></div>
+              <div class="stat"><span class="k">Concentration</span><span class="v" data-role="conc">—</span></div>
+              <div class="stat"><span class="k">Draw</span><span class="v" data-role="draw">—</span></div>
+              <div class="stat"><span class="k">Units</span><span class="v" data-role="units">—</span></div>
             </div>
 
-            <div class="warn" data-out="note" style="display:none"></div>
+            <div class="syringe-wrap">
+              <div class="syringe" data-role="syringeVisual"></div>
+            </div>
+
+            <div class="mini-warning" data-role="warning"></div>
           </div>
         </div>
 
@@ -313,7 +332,24 @@ function renderGuide(){
         </details>
       </article>
     `;
-    grid.insertAdjacentHTML('beforeend', html);
+
+    targetGrid.insertAdjacentHTML('beforeend', html);
+  }
+
+  if(singles.length){
+    for(const item of singles){
+      renderCard(item, singleGrid);
+    }
+  }else{
+    singleGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No single vials found.</div>`);
+  }
+
+  if(kits.length){
+    for(const item of kits){
+      renderCard(item, kitGrid);
+    }
+  }else{
+    kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
   }
 }
 
