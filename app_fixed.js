@@ -545,11 +545,8 @@ function renderPrices(){
       <tr>
         <td>${esc(r.name)}</td>
         <td>${esc(r.strength)}</td>
-        <td class="num">${isFinite(r.amount)?num(r.amount):'—'}</td>
         <td class="num" title="Raw ${money(r.priceBase)} × ${r.multiplierUsed}${r.isKit ? ' (kit)' : '' }">${money(r.price)}</td>
-        <td class="num">${isFinite(r.ppu)?money(r.ppu):'—'}</td>
         <td class="num"><span class="stock-badge ${cls}">${r.stock}</span></td>
-        <td><span class="unit-pill">${esc(r.unit)}</span></td>
       </tr>
     `);
   }
