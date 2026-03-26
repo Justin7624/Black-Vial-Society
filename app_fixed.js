@@ -494,15 +494,13 @@ function computePrices(){
     const finalPrice = roundDollarCutoff(inflated);
 
     const amt = isFinite(amount) ? amount : NaN;
-    const ppu = (isFinite(amt) && amt>0) ? (finalPrice/amt) : NaN;
-
+    
     return {
       name,
       strength,
       amount: amt,
       price: finalPrice,
       priceBase: base,
-      ppu,
       stock: s,
       unit: unitNorm,
       skipInflation: skip,
