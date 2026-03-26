@@ -585,10 +585,10 @@
       "onset": "Gradual.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg",
+        "10 mg"
       ],
       "stock": {
-        "10 mg": 6,
+        "10 mg": 6
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -674,7 +674,7 @@
         "15iu",
         "24iu",
         "36iu",
-        "12iu kit x10",
+        "12iu kit x10"
       ],
       "stock": {
         "10iu": 19,
@@ -682,7 +682,7 @@
         "15iu": 10,
         "24iu": 19,
         "36iu": 12,
-        "12iu kit x10": 1,
+        "12iu kit x10": 1
       },
       "more": "<ul><li>Only use with a licensed prescriber.</li><li>Educational info only\u2014always confirm your label, strength (IU), and storage.</li></ul>"
     },
@@ -878,7 +878,7 @@
         "10 mL"
       ],
       "stock": {
-        "17 mL": 3
+        "10 mL": 3
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     },
@@ -969,7 +969,6 @@
       200.0,
       "mg",
       9
-    ],
     ],
     [
       "GLP-3RT (Retatrutide)",
