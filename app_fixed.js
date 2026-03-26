@@ -554,7 +554,6 @@ function renderPrices(){
       </tr>
     `);
   }
-
   updateSortUI();
 }
 
