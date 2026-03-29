@@ -65,7 +65,10 @@
   .mini-body{display:grid;gap:12px;padding:10px 12px;border-top:1px solid #24283a}
 
   /* Mini calculator fields */
-  .mini-wrap{position:relative}
+  .mini-wrap{
+      position:relative;
+      z-index:10;
+    }
   .mini-field{display:flex;flex-direction:column;gap:6px;min-width:0}
   .mini-field label{font-size:12px;color:#b8b9c2}
   .mini-field input, .mini-field select{width:100%;background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px;min-width:0}
@@ -84,6 +87,27 @@
     gap:12px;
     align-items:end;
   }
+  .quick-presets{
+  display:flex;
+  gap:6px;
+  margin-top:4px;
+}
+
+.quick-presets button{
+  background:#1a1c22;
+  border:1px solid #2b2e3b;
+  color:#e8e9ef;
+  border-radius:8px;
+  padding:6px 10px;
+  font-size:12px;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+
+.quick-presets button:hover{
+  border-color:#3fc29a;
+  background:rgba(99,230,190,.12);
+}
   .field-pep{grid-area:pep}
   .field-pepUnit{grid-area:pepUnit}
   .field-diluent{grid-area:dil}
