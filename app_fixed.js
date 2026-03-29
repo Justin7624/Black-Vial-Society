@@ -927,56 +927,50 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   // ===== ADD THIS RIGHT HERE =====
   document.addEventListener('click', (e) => {
 
-  // 🚨 IGNORE clicks inside calculator
-    if (e.target.closest('.mini-wrap')) return;
-  
-    const btn = e.target.closest('.dose');
-    if (!btn) return;
+  // ONLY react to dose buttons
+  const btn = e.target.closest('.dose');
+  if (!btn) return;
 
-    const key = btn.dataset.key;
-    const dose = btn.dataset.dose;
+  const key = btn.dataset.key;
+  const dose = btn.dataset.dose;
 
-    const card = btn.closest('.card');
-    if (!card) return;
+  const card = btn.closest('.card');
+  if (!card) return;
 
-    const mini = card.querySelector(`.mini-wrap[data-mini="${key}"]`);
-    const parking = card.querySelector(`.mini-parking[data-mini-parking="${key}"]`);
+  const mini = card.querySelector(`.mini-wrap[data-mini="${key}"]`);
+  const parking = card.querySelector(`.mini-parking[data-mini-parking="${key}"]`);
 
-    if (!mini || !parking) {
-      console.log('Mini not found for key:', key);
-      return;
-    }
+  if (!mini || !parking) return;
 
-    parking.appendChild(mini);
-    mini.style.display = 'block';
+  // move mini
+  parking.appendChild(mini);
+
+  // show
+  mini.style.display = 'block';
+
+  // autofill
+  const parsed = parseAmount(dose);
+
+  const amtInput = mini.querySelector('[data-role="amountPerVial"]');
+  const unitSelect = mini.querySelector('[data-role="amountUnit"]');
+
+  if (amtInput && !isNaN(parsed.amount)) amtInput.value = parsed.amount;
+  if (unitSelect && parsed.unit) unitSelect.value = parsed.unit;
+
+  // ✅ wire calculator ONCE
+  if (!mini.dataset.wired) {
     wireMiniCalculator(mini);
-
-    const parsed = parseAmount(dose);
-
-    const amtInput = mini.querySelector('[data-role="amountPerVial"]');
-    const unitSelect = mini.querySelector('[data-role="amountUnit"]');
-
-    if (amtInput && !isNaN(parsed.amount)) {
-      amtInput.value = parsed.amount;
-    }
-
-    if (unitSelect && parsed.unit) {
-      unitSelect.value = parsed.unit;
-    }
-  });
+    mini.dataset.wired = "true";
+  }
+});
 
   document.addEventListener('click', (e) => {
+  const close = e.target.closest('[data-close-mini]');
+  if (!close) return;
 
-    if (e.target.closest('.mini-wrap') && !e.target.closest('[data-close-mini]')) return;
-  
-    const close = e.target.closest('[data-close-mini]');
-    if (!close) return;
-
-    const key = close.dataset.closeMini;
-    const mini = document.querySelector(`.mini-wrap[data-mini="${key}"]`);
-
-    if (mini) mini.style.display = 'none';
-  });
+  const mini = close.closest('.mini-wrap');
+  if (mini) mini.style.display = 'none';
+});
 
   // Restore persisted states
   setTab(activeTab);
