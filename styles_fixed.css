@@ -247,3 +247,52 @@ button.chip, button.tab{
   border-color:#9a7b20;
   color:#f5d06f;
 }
+
+.guide-section{
+  margin-top:22px;
+  width:100%;
+}
+
+.kits-section{
+  margin-top:34px;
+  width:100%;
+}
+
+#grid{
+  display:block;
+}
+
+.section-title{
+  font-size:20px;
+  font-weight:800;
+  margin:0 0 14px;
+  color:#e8e9ef;
+  letter-spacing:.3px;
+}
+
+.section-title.kits{
+  color:#f5d06f;
+}
+
+.section-grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+}
+
+.empty-note{
+  color:#b8b9c2;
+  padding:6px 2px 4px;
+  font-size:13px;
+}
+
+.kit-card{
+  border-color:#4d4120;
+  box-shadow:0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(245,208,111,.08) inset;
+}
+
+.pill-kit{
+  background:rgba(245,208,111,.10);
+  border-color:#9a7b20;
+  color:#f5d06f;
+}
