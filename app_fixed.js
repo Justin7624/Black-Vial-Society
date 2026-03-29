@@ -429,6 +429,55 @@ function renderGuide(){
   }
 }
 
+// 🔥 HANDLE DOSE CLICK → OPEN MINI CALC
+document.querySelectorAll('.dose').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    const key = btn.dataset.key;
+    const dose = btn.dataset.dose;
+
+    const mini = document.querySelector(`[data-mini="${key}"]`);
+    const parking = document.querySelector(`[data-mini-parking="${key}"]`);
+
+    if(!mini || !parking) return;
+
+    // Move mini under clicked card
+    parking.appendChild(mini);
+
+    // Show it
+    mini.classList.add('open');
+
+    // Autofill from clicked dose
+    const parsed = parseAmount(dose);
+
+    const amtInput = mini.querySelector('[data-role="amountPerVial"]');
+    const unitSelect = mini.querySelector('[data-role="amountUnit"]');
+
+    if(parsed.amount){
+      amtInput.value = parsed.amount;
+    }
+
+    if(parsed.unit){
+      unitSelect.value = parsed.unit;
+    }
+
+    // Update label
+    const meta = mini.querySelector('[data-role="miniMeta"]');
+    if(meta){
+      meta.textContent = `${dose} selected`;
+    }
+  });
+});
+
+document.querySelectorAll('.close-mini').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const key = btn.dataset.closeMini;
+    const mini = document.querySelector(`[data-mini="${key}"]`);
+    if(mini){
+      mini.classList.remove('open');
+    }
+  });
+});
+
 function setGuideFilter(filter){
   guideFilter = filter;
   store.set('bvs.guideFilter', filter);
