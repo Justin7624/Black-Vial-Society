@@ -47,7 +47,8 @@
     }
    .mini-wrap{
       position:relative;
-      z-index:999;
+      z-index:9999;
+      pointer-events:auto;
     }
    .section-grid{
       position:relative;
