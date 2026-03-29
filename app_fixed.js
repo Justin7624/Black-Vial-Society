@@ -871,6 +871,10 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
   // ===== ADD THIS RIGHT HERE =====
   document.addEventListener('click', (e) => {
+
+  // 🚨 IGNORE clicks inside calculator
+    if (e.target.closest('.mini-wrap')) return;
+  
     const btn = e.target.closest('.dose');
     if (!btn) return;
 
@@ -906,6 +910,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   });
 
   document.addEventListener('click', (e) => {
+
+    if (e.target.closest('.mini-wrap') && !e.target.closest('[data-close-mini]')) return;
+  
     const close = e.target.closest('[data-close-mini]');
     if (!close) return;
 
