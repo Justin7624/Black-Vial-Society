@@ -869,6 +869,52 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     return;
   }
 
+  // ===== ADD THIS RIGHT HERE =====
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.dose');
+    if (!btn) return;
+
+    const key = btn.dataset.key;
+    const dose = btn.dataset.dose;
+
+    const card = btn.closest('.card');
+    if (!card) return;
+
+    const mini = card.querySelector(`.mini-wrap[data-mini="${key}"]`);
+    const parking = card.querySelector(`.mini-parking[data-mini-parking="${key}"]`);
+
+    if (!mini || !parking) {
+      console.log('Mini not found for key:', key);
+      return;
+    }
+
+    parking.appendChild(mini);
+    mini.style.display = 'block';
+
+    const parsed = parseAmount(dose);
+
+    const amtInput = mini.querySelector('[data-role="amountPerVial"]');
+    const unitSelect = mini.querySelector('[data-role="amountUnit"]');
+
+    if (amtInput && !isNaN(parsed.amount)) {
+      amtInput.value = parsed.amount;
+    }
+
+    if (unitSelect && parsed.unit) {
+      unitSelect.value = parsed.unit;
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const close = e.target.closest('[data-close-mini]');
+    if (!close) return;
+
+    const key = close.dataset.closeMini;
+    const mini = document.querySelector(`.mini-wrap[data-mini="${key}"]`);
+
+    if (mini) mini.style.display = 'none';
+  });
+
   // Restore persisted states
   setTab(activeTab);
   setGuideFilter(guideFilter);
