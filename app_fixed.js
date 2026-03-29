@@ -622,6 +622,7 @@ function pricePasses(item, q){
 }
 
 function renderPrices(){
+  const cls = stock <=0 ? 'out-stock' : stock <=5 ? 'low-stock' : 'in-stock';
   const q = $('#pq').value || '';
   const tbody = $('#priceTable tbody');
   tbody.innerHTML = '';
