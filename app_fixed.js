@@ -418,6 +418,7 @@ function renderGuide(){
       kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
     }
   }
+  wireCardTilt();
 }
 
 function setGuideFilter(filter){
@@ -827,3 +828,30 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   renderGuide();
   renderPrices();
 });
+
+function wireCardTilt(){
+  document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const midX = rect.width / 2;
+      const midY = rect.height / 2;
+
+      const rotateX = ((y - midY) / midY) * 6;
+      const rotateY = ((x - midX) / midX) * -6;
+
+      card.style.transform = `
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        scale(1.05)
+        translateY(-10px)
+      `;
+    });
+
+    card.addEventListener('mouseleave', ()=>{
+      card.style.transform = '';
+    });
+  });
+}
