@@ -45,6 +45,17 @@
       flex-direction:column;
       gap:10px;
     }
+   .mini-wrap{
+      position:relative;
+      z-index:999;
+    }
+   .section-grid{
+      position:relative;
+      z-index:0;
+    }
+   .card *{
+      pointer-events:auto;
+    }
   .title{display:flex;justify-content:space-between;align-items:center}
   .title h3{margin:0;font-size:16px}
   .pill{font-size:11px;background:rgba(99,230,190,.12);color:#63e6be;border:1px solid #3fc29a;padding:5px 8px;border-radius:999px}
