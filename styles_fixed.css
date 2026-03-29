@@ -315,3 +315,20 @@ button.chip, button.tab{
   color:#f5d06f;
   background:rgba(245,208,111,.06);
 }
+
+.section-title.kits{
+  color: gold;
+  text-shadow: 0 0 12px rgba(255,215,0,.4);
+}
+
+.kit-card{
+  border: 1px solid rgba(255,215,0,.35);
+  background: linear-gradient(180deg,#19170f,#14130e);
+  box-shadow: 0 0 18px rgba(255,215,0,.15);
+}
+
+.pill-kit{
+  background: rgba(255,215,0,.15);
+  color: gold;
+  border: 1px solid rgba(255,215,0,.4);
+}
