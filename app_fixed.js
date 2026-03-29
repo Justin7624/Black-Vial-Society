@@ -587,7 +587,7 @@ function computePrices(){
     // - Do NOT inflate units "mL" or "pack"
     const skip = NO_INCREASE.has(String(name).toLowerCase()) || unitNorm === 'mL' || unitNorm === 'pack';
 
-    const isKit = /\bkit\b/i.test(String(strength)) || /\bkit\b/i.test(String(name));
+    const isKit = /kit\s*x\s*10/i.test(String(strength)) || /\bkit\b/i.test(String(name));
 
     const multiplier = isKit ? KIT_MULTIPLIER : PRICE_MULTIPLIER;
 
