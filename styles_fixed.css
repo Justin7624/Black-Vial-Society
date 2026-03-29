@@ -33,7 +33,18 @@
   .chip.active{border-color:#3fc29a;background:rgba(99,230,190,.12);color:#e8e9ef}
 
   .grid{display:grid;gap:16px;margin:16px 0 80px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-  .card{background:linear-gradient(180deg,#16171c,#15161b);border:1px solid #262938;border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+  .card{
+      position:relative;
+      z-index:1;
+      background:linear-gradient(180deg,#16171c,#15161b);
+      border:1px solid #262938;
+      border-radius:14px;
+      padding:16px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
   .title{display:flex;justify-content:space-between;align-items:center}
   .title h3{margin:0;font-size:16px}
   .pill{font-size:11px;background:rgba(99,230,190,.12);color:#63e6be;border:1px solid #3fc29a;padding:5px 8px;border-radius:999px}
