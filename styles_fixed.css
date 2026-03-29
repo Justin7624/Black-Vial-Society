@@ -302,3 +302,16 @@ button.chip, button.tab{
   border-color:#9a7b20;
   color:#f5d06f;
 }
+
+.section-row td{
+  padding:14px 10px;
+  font-weight:800;
+  font-size:14px;
+  color:#e8e9ef;
+  background:rgba(255,255,255,.03);
+}
+
+.section-row.kits td{
+  color:#f5d06f;
+  background:rgba(245,208,111,.06);
+}
