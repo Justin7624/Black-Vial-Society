@@ -843,10 +843,10 @@ function wireCardTilt(){
       const rotateY = ((x - midX) / midX) * -6;
 
       card.style.transform = `
+        perspective(800px)
         rotateX(${rotateX}deg)
         rotateY(${rotateY}deg)
         scale(1.05)
-        translateY(-10px)
       `;
     });
 
