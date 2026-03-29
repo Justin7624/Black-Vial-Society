@@ -418,7 +418,11 @@ function renderGuide(){
       kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
     }
   }
-  wireCardTilt();
+  try{
+    wireCardTilt();
+  }catch(e){
+    console.log("Tilt error:", e);
+  }
 }
 
 function setGuideFilter(filter){
