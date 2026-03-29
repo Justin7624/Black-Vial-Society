@@ -654,17 +654,64 @@ function renderPrices(){
   $('#pempty').style.display = rows.length ? 'none' : 'block';
   $('#pstatus').textContent = rows.length ? `Showing ${rows.length} row${rows.length===1?'':'s'}.` : '';
 
-  for(const r of rows){
-    const cls = stockClass(r.stock);
-    tbody.insertAdjacentHTML('beforeend', `
+  const singles = rows.filter(r => !r.isKit);
+  const kits = rows.filter(r => r.isKit);
+
+  let html = '';
+
+  html += `
+    <tr class="section-row">
+      <td colspan="4">Single Vials</td>
+    </tr>
+  `;
+
+  if(singles.length){
+    for(const r of singles){
+      const cls = stockClass(r.stock);
+      html += `
+        <tr>
+          <td>${esc(r.name)}</td>
+          <td>${esc(r.strength)}</td>
+          <td class="num" title="Raw ${money(r.priceBase)} × ${r.multiplierUsed}">${money(r.price)}</td>
+          <td class="num"><span class="stock-badge ${cls}">${r.stock}</span></td>
+        </tr>
+      `;
+    }
+  } else {
+    html += `
       <tr>
-        <td>${esc(r.name)}</td>
-        <td>${esc(r.strength)}</td>
-        <td class="num" title="Raw ${money(r.priceBase)} × ${r.multiplierUsed}${r.isKit ? ' (kit)' : '' }">${money(r.price)}</td>
-        <td class="num"><span class="stock-badge ${cls}">${r.stock}</span></td>
+        <td colspan="4" class="empty-note">No single vials found.</td>
       </tr>
-    `);
+    `;
   }
+
+  html += `
+    <tr class="section-row kits">
+      <td colspan="4">Kits</td>
+    </tr>
+  `;
+
+  if(kits.length){
+    for(const r of kits){
+      const cls = stockClass(r.stock);
+      html += `
+        <tr>
+          <td>${esc(r.name)}</td>
+          <td>${esc(r.strength)}</td>
+          <td class="num" title="Raw ${money(r.priceBase)} × ${r.multiplierUsed} (kit)">${money(r.price)}</td>
+          <td class="num"><span class="stock-badge ${cls}">${r.stock}</span></td>
+        </tr>
+      `;
+    }
+  } else {
+    html += `
+      <tr>
+        <td colspan="4" class="empty-note">No kits found.</td>
+      </tr>
+    `;
+  }
+
+  tbody.innerHTML = html;
   updateSortUI();
 }
 
