@@ -182,7 +182,14 @@ function guidePasses(item, q){
   const query = q.trim().toLowerCase();
   const inText = (item.name + ' ' + item.short + ' ' + (item.badge||'') + ' ' + (item.category||'')).toLowerCase();
   const passQ = !query || inText.includes(query);
-  const passFilter = guideFilter === 'all' || item.category === guideFilter;
+  let passFilter = true;
+
+  if(guideFilter === 'kits'){
+    const hasKit = (item.doses || []).some(d => /kit\s*x\s*10/i.test(String(d)));
+    passFilter = hasKit;
+  }else if(guideFilter !== 'all'){
+    passFilter = item.category === guideFilter;
+  }
 
   let inStock = false;
   if(item.stock && typeof item.stock === 'object'){
@@ -250,20 +257,45 @@ function renderGuide(){
     if(kitItem) kits.push(kitItem);
   }
 
-  grid.innerHTML = `
-    <div class="guide-section">
-      <h2 class="section-title">Single Vials</h2>
-      <div class="section-grid" id="singleGrid"></div>
-    </div>
-
-    <div class="guide-section kits-section">
-      <h2 class="section-title kits">Kits</h2>
-      <div class="section-grid" id="kitGrid"></div>
-    </div>
-  `;
+  if(guideFilter === 'kits'){
+      grid.innerHTML = `
+        <div class="guide-section kits-section">
+          <h2 class="section-title kits">Kits</h2>
+          <div class="section-grid" id="kitGrid"></div>
+        </div>
+      `;
+    }else{
+      grid.innerHTML = `
+        <div class="guide-section">
+          <h2 class="section-title">Single Vials</h2>
+          <div class="section-grid" id="singleGrid"></div>
+        </div>
+    
+        <div class="guide-section kits-section">
+          <h2 class="section-title kits">Kits</h2>
+          <div class="section-grid" id="kitGrid"></div>
+        </div>
+      `;
+    }
 
   const singleGrid = document.getElementById('singleGrid');
   const kitGrid = document.getElementById('kitGrid');
+
+  if(singleGrid){
+    if(singles.length){
+      for(const item of singles) renderCard(item, singleGrid);
+    } else {
+      singleGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No single vials found.</div>`);
+    }
+  }
+  
+  if(kitGrid){
+    if(kits.length){
+      for(const item of kits) renderCard(item, kitGrid);
+    } else {
+      kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
+    }
+  }
 
   function renderCard(item, targetGrid){
     const detailsOpen = guideExpanded;
