@@ -752,11 +752,13 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5000 iu",
-        "10000 iu"
+        "10000 iu",
+        "5000iu x10"
       ],
       "stock": {
         "5000 iu": 20,
-        "10000 iu": 10
+        "10000 iu": 10,
+        "5000iu x10": 1
       },
       "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -911,7 +913,7 @@
       "5 mg",
       15.0,
       "mg",
-      32
+      30
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -932,14 +934,14 @@
       "20 mg",
       30.0,
       "mg",
-      155
+      145
     ],
     [
       "GLP-3RT (Retatrutide)",
       "30 mg",
       35.0,
       "mg",
-      69
+      49
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -981,12 +983,12 @@
       "20mg kit x10",
       300.0,
       "mg",
-      14
+      13
     ],
     [
       "GLP-3RT (Retatrutide)",
-      "50mg kit x10",
-      550.0,
+      "30mg kit x10",
+      350.0,
       "mg",
       10
     ],
@@ -1044,7 +1046,7 @@
       "60 mg",
       50.0,
       "mg",
-      0
+      10
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1066,6 +1068,20 @@
       250.0,
       "mg",
       6
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "30mg kit x10",
+      300.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "40mg kit x10",
+      350.0,
+      "mg",
+      9
     ],
     [
       "GLP-1SG (Semaglutide)",
@@ -1107,7 +1123,7 @@
       "10 mg",
       40.0,
       "mg",
-      10
+      8
     ],
     [
       "Cagrilintide",
@@ -1128,7 +1144,7 @@
       "10 mg",
       20.0,
       "mg",
-      6
+      66
     ],
     [
       "MOTS-C",
@@ -1142,14 +1158,21 @@
       "40 mg",
       50.0,
       "mg",
-      63
+      43
+    ],
+    [
+      "MOTS-C",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      5
     ],
     [
       "MOTS-C",
       "40mg kit x10",
       500.0,
       "mg",
-      5
+      3
     ],
     [
       "BPC-157",
@@ -1184,7 +1207,14 @@
       "20 mg",
       35.0,
       "mg",
-      0
+      40
+    ],
+    [
+      "BPC 10mg + TB 10mg (Combo)",
+      "20mg kit x10",
+      350.0,
+      "mg",
+      40
     ],
     [
       "TB500 (Thymosin B4 Acetate)",
@@ -1219,14 +1249,14 @@
       "70 mg",
       30.0,
       "mg",
-      12
+      2
     ],
     [
       "KLOW",
       "80 mg",
       35.0,
       "mg",
-      14
+      4
     ],
     [
       "NAD+",
@@ -1275,7 +1305,7 @@
       "10 mg",
       35.0,
       "mg",
-      10
+      0
     ],
     [
       "Sermorelin Acetate",
@@ -1478,7 +1508,14 @@
       "10 mg",
       28.0,
       "mg",
-      6
+      86
+    ],
+    [
+      "CJC-1295 (no DAC) + Ipamorelin (Combo)",
+      "10mg kit x10",
+      280.0,
+      "mg",
+      7
     ],
     [
       "AOD-9604",
@@ -1605,6 +1642,13 @@
       30.0,
       "iu",
       10
+    ],
+    [
+      "HCG",
+      "5000iu x10",
+      200.0,
+      "iu",
+      1
     ],
     [
       "PT-141 (Bremelanotide)",
