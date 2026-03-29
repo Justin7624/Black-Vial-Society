@@ -296,3 +296,9 @@ button.chip, button.tab{
   border-color:#9a7b20;
   color:#f5d06f;
 }
+
+.chip[data-filter="kits"].active{
+  background:rgba(245,208,111,.15);
+  border-color:#9a7b20;
+  color:#f5d06f;
+}
