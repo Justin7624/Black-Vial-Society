@@ -419,19 +419,6 @@ function renderGuide(){
     targetGrid.insertAdjacentHTML('beforeend', html);
   }
 
-  if(singles.length){
-    for(const item of singles) renderCard(item, singleGrid);
-  } else {
-    singleGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No single vials found.</div>`);
-  }
-
-  if(kits.length){
-    for(const item of kits) renderCard(item, kitGrid);
-  } else {
-    kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
-  }
-}
-
 function setGuideFilter(filter){
   guideFilter = filter;
   store.set('bvs.guideFilter', filter);
