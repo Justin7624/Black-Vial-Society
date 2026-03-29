@@ -356,3 +356,8 @@ td.out-stock{
 td.in-stock{
   color: #63e6be;
 }
+
+.card{
+  transform-style: preserve-3d;
+  will-change: transform;
+}
