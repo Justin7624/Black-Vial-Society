@@ -281,22 +281,6 @@ function renderGuide(){
   const singleGrid = document.getElementById('singleGrid');
   const kitGrid = document.getElementById('kitGrid');
 
-  if(singleGrid){
-    if(singles.length){
-      for(const item of singles) renderCard(item, singleGrid);
-    } else {
-      singleGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No single vials found.</div>`);
-    }
-  }
-  
-  if(kitGrid){
-    if(kits.length){
-      for(const item of kits) renderCard(item, kitGrid);
-    } else {
-      kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
-    }
-  }
-
   function renderCard(item, targetGrid){
     const detailsOpen = guideExpanded;
 
