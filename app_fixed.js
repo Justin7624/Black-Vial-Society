@@ -856,6 +856,61 @@ function wirePrices(){
   });
 }
 
+function wireMiniCalculator(mini){
+
+  const amount = mini.querySelector('[data-role="amountPerVial"]');
+  const unit = mini.querySelector('[data-role="amountUnit"]');
+  const diluent = mini.querySelector('[data-role="diluentMl"]');
+  const desired = mini.querySelector('[data-role="desiredDose"]');
+  const desiredUnit = mini.querySelector('[data-role="desiredUnit"]');
+  const syringe = mini.querySelector('[data-role="syringeType"]');
+
+  const concEl = mini.querySelector('[data-role="conc"]');
+  const drawEl = mini.querySelector('[data-role="draw"]');
+  const unitsEl = mini.querySelector('[data-role="units"]');
+  const warnEl = mini.querySelector('[data-role="warning"]');
+
+  function update(){
+    const result = classicCalc({
+      amountPerVial: amount.value,
+      vialUnit: unit.value,
+      diluentMl: diluent.value,
+      desired: desired.value,
+      desiredUnit: desiredUnit.value,
+      syringeScale: syringe.value
+    });
+
+    if(!isFinite(result.vialUnitsPerUnit)){
+      concEl.textContent = '—';
+      drawEl.textContent = '—';
+      unitsEl.textContent = '—';
+      return;
+    }
+
+    concEl.textContent = `${num(result.vialUnitsPerUnit)} ${result.vialUnit}/unit`;
+    drawEl.textContent = isFinite(result.units) ? `${num(result.units)} units` : '—';
+    unitsEl.textContent = isFinite(result.units) ? num(result.units) : '—';
+
+    warnEl.textContent = result.note || '';
+  }
+
+  // 🔥 attach listeners
+  [amount, unit, diluent, desired, desiredUnit, syringe].forEach(el=>{
+    el.addEventListener('input', update);
+    el.addEventListener('change', update);
+  });
+
+  // 🔥 preset buttons
+  mini.querySelectorAll('[data-preset]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      desired.value = btn.dataset.preset;
+      update();
+    });
+  });
+
+  update();
+}
+
 /* ---------- Init ---------- */
 document.addEventListener('DOMContentLoaded', async ()=>{
   wireTabs();
@@ -894,6 +949,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
     parking.appendChild(mini);
     mini.style.display = 'block';
+    wireMiniCalculator(mini);
 
     const parsed = parseAmount(dose);
 
