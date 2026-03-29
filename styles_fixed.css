@@ -332,3 +332,12 @@ button.chip, button.tab{
   color: gold;
   border: 1px solid rgba(255,215,0,.4);
 }
+
+.card{
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,.6);
+}
