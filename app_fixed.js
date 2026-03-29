@@ -236,7 +236,7 @@ function renderGuide(){
 
     const kitItem = kitDoses.length ? {
       ...item,
-      key: `${item.key}-kit`,
+      key: item.key,
       name: `${item.name} — Kit`,
       badge: 'KIT',
       doses: kitDoses,
