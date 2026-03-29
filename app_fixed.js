@@ -202,17 +202,64 @@ function renderGuide(){
   $('#empty').style.display = filtered.length ? 'none' : 'block';
   $('#gstatus').textContent = filtered.length ? `Showing ${filtered.length} item${filtered.length===1?'':'s'}.` : '';
 
-  const singles = filtered.filter(item => !item.isKit);
-  const kits = filtered.filter(item => item.isKit);
-
   if(!filtered.length) return;
 
-  grid.innerHTML = `
-    <h2 class="section-title">Single Vials</h2>
-    <div class="section-grid" id="singleGrid"></div>
+  const KIT_RE = /kit\s*x\s*10/i;
 
-    <h2 class="section-title kits">Kits</h2>
-    <div class="section-grid" id="kitGrid"></div>
+  function splitItem(item){
+    const doses = Array.isArray(item.doses) ? item.doses : [];
+    const singleDoses = doses.filter(label => !KIT_RE.test(String(label)));
+    const kitDoses = doses.filter(label => KIT_RE.test(String(label)));
+
+    const makeStock = (labels) => {
+      const out = {};
+      for(const label of labels){
+        out[label] = item.stock && item.stock[label] != null ? item.stock[label] : 0;
+      }
+      return out;
+    };
+
+    const singleItem = singleDoses.length ? {
+      ...item,
+      key: item.key,
+      doses: singleDoses,
+      stock: makeStock(singleDoses),
+      isKitCard: false
+    } : null;
+
+    const kitItem = kitDoses.length ? {
+      ...item,
+      key: `${item.key}-kit`,
+      name: `${item.name} — Kit`,
+      badge: 'KIT',
+      doses: kitDoses,
+      stock: makeStock(kitDoses),
+      fact: 'Form: 10 vial kit',
+      isKitCard: true
+    } : null;
+
+    return { singleItem, kitItem };
+  }
+
+  const singles = [];
+  const kits = [];
+
+  for(const item of filtered){
+    const { singleItem, kitItem } = splitItem(item);
+    if(singleItem) singles.push(singleItem);
+    if(kitItem) kits.push(kitItem);
+  }
+
+  grid.innerHTML = `
+    <div class="guide-section">
+      <h2 class="section-title">Single Vials</h2>
+      <div class="section-grid" id="singleGrid"></div>
+    </div>
+
+    <div class="guide-section kits-section">
+      <h2 class="section-title kits">Kits</h2>
+      <div class="section-grid" id="kitGrid"></div>
+    </div>
   `;
 
   const singleGrid = document.getElementById('singleGrid');
@@ -220,11 +267,13 @@ function renderGuide(){
 
   function renderCard(item, targetGrid){
     const detailsOpen = guideExpanded;
+
     const doses = (item.doses||[]).map(label=>{
       const stock = (item.stock && item.stock[label] != null) ? Number(item.stock[label]) : null;
       const out = stock!=null && stock<=0;
       const cls = stockClass(stock);
       let badge = '';
+
       if(stock!=null){
         let labelTxt = '';
         if(out) labelTxt = 'Out of stock';
@@ -232,6 +281,7 @@ function renderGuide(){
         else labelTxt = `${stock} in stock`;
         badge = `<span class="stock-badge ${cls}">${labelTxt}</span>`;
       }
+
       return `
         <button class="dose" type="button" data-key="${esc(item.key)}" data-dose="${esc(label)}" ${out?'disabled':''}>
           <span>${esc(label)}</span>
@@ -243,11 +293,12 @@ function renderGuide(){
     const more = item.more ? item.more : '<ul><li>Educational info only.</li></ul>';
 
     const html = `
-      <article class="card" data-key="${esc(item.key)}">
+      <article class="card ${item.isKitCard ? 'kit-card' : ''}" data-key="${esc(item.key)}">
         <div class="title">
           <h3>${esc(item.name)}</h3>
-          <span class="pill">${esc(item.badge||'')}</span>
+          <span class="pill ${item.isKitCard ? 'pill-kit' : ''}">${esc(item.badge||'')}</span>
         </div>
+
         <div class="desc">${esc(item.short||'')}</div>
         <div class="onset">${esc(item.onset||'')}</div>
 
@@ -337,18 +388,14 @@ function renderGuide(){
   }
 
   if(singles.length){
-    for(const item of singles){
-      renderCard(item, singleGrid);
-    }
-  }else{
+    for(const item of singles) renderCard(item, singleGrid);
+  } else {
     singleGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No single vials found.</div>`);
   }
 
   if(kits.length){
-    for(const item of kits){
-      renderCard(item, kitGrid);
-    }
-  }else{
+    for(const item of kits) renderCard(item, kitGrid);
+  } else {
     kitGrid.insertAdjacentHTML('beforeend', `<div class="empty-note">No kits found.</div>`);
   }
 }
