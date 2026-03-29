@@ -341,3 +341,19 @@ button.chip, button.tab{
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0,0,0,.6);
 }
+
+td{
+  font-weight:600;
+}
+
+td.low-stock{
+  color: #ffe7a6;
+}
+
+td.out-stock{
+  color: #ff6b6b;
+}
+
+td.in-stock{
+  color: #63e6be;
+}
