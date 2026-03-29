@@ -427,9 +427,7 @@ function renderGuide(){
   }catch(e){
     console.log("Tilt error:", e);
   }
-}
-
-// 🔥 HANDLE DOSE CLICK → OPEN MINI CALC
+  // 🔥 HANDLE DOSE CLICK → OPEN MINI CALC
 document.querySelectorAll('.dose').forEach(btn=>{
   btn.addEventListener('click', (e)=>{
     const key = btn.dataset.key;
@@ -477,6 +475,8 @@ document.querySelectorAll('.close-mini').forEach(btn=>{
     }
   });
 });
+}
+
 
 function setGuideFilter(filter){
   guideFilter = filter;
