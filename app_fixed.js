@@ -920,7 +920,21 @@ function wireMiniCalculator(mini){
       desired: desired.value,
       desiredUnit: desiredUnit.value,
       syringeScale: syringe.value
+    const syringeBar = mini.querySelector('[data-role="syringeVisual"]');
+
+    if (syringeBar && isFinite(result.unitsPct)) {
+      syringeBar.innerHTML = `
+        <div style="
+          height:100%;
+          width:${result.unitsPct}%;
+          background:linear-gradient(90deg,#7c5cff,#5b9dff);
+          border-radius:8px;
+          transition:width .2s ease;
+        "></div>
+      `;
+    }
     });
+      
 
     if(!isFinite(result.vialUnitsPerUnit)){
       concEl.textContent = '—';
