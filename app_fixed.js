@@ -475,8 +475,50 @@ document.querySelectorAll('.close-mini').forEach(btn=>{
     }
   });
 });
+  attachDoseHandlers();
 }
 
+function attachDoseHandlers(){
+
+  document.querySelectorAll('.dose').forEach(btn => {
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // 🚨 CRITICAL
+
+      const key = btn.dataset.key;
+      const dose = btn.dataset.dose;
+
+      const card = btn.closest('.card');
+      if (!card) return;
+
+      const mini = card.querySelector(`.mini-wrap[data-mini="${key}"]`);
+      const parking = card.querySelector(`.mini-parking[data-mini-parking="${key}"]`);
+
+      if (!mini || !parking) return;
+
+      // move mini
+      parking.appendChild(mini);
+      mini.style.display = 'block';
+
+      // autofill
+      const parsed = parseAmount(dose);
+
+      const amtInput = mini.querySelector('[data-role="amountPerVial"]');
+      const unitSelect = mini.querySelector('[data-role="amountUnit"]');
+
+      if (amtInput && !isNaN(parsed.amount)) amtInput.value = parsed.amount;
+      if (unitSelect && parsed.unit) unitSelect.value = parsed.unit;
+
+      // wire calculator ONCE
+      if (!mini.dataset.wired) {
+        wireMiniCalculator(mini);
+        mini.dataset.wired = "true";
+      }
+    });
+
+  });
+
+}
 
 function setGuideFilter(filter){
   guideFilter = filter;
@@ -924,8 +966,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     return;
   }
 
-  // ===== ADD THIS RIGHT HERE =====
-  document.addEventListener('click', (e) => {
 
   // ONLY react to dose buttons
   const btn = e.target.closest('.dose');
@@ -964,7 +1004,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
   }
 });
 
-  document.addEventListener('click', (e) => {
   const close = e.target.closest('[data-close-mini]');
   if (!close) return;
 
