@@ -428,97 +428,11 @@ function renderGuide(){
     console.log("Tilt error:", e);
   }
   // 🔥 HANDLE DOSE CLICK → OPEN MINI CALC
-document.querySelectorAll('.dose').forEach(btn=>{
-  btn.addEventListener('click', (e)=>{
-    const key = btn.dataset.key;
-    const dose = btn.dataset.dose;
-
-    const mini = document.querySelector(`[data-mini="${key}"]`);
-    const parking = document.querySelector(`[data-mini-parking="${key}"]`);
-
-    if(!mini || !parking) return;
-
-    // Move mini under clicked card
-    parking.appendChild(mini);
-
-    // Show it
-    mini.classList.add('open');
-
-    // Autofill from clicked dose
-    const parsed = parseAmount(dose);
-
-    const amtInput = mini.querySelector('[data-role="amountPerVial"]');
-    const unitSelect = mini.querySelector('[data-role="amountUnit"]');
-
-    if(parsed.amount){
-      amtInput.value = parsed.amount;
-    }
-
-    if(parsed.unit){
-      unitSelect.value = parsed.unit;
-    }
-
-    // Update label
-    const meta = mini.querySelector('[data-role="miniMeta"]');
-    if(meta){
-      meta.textContent = `${dose} selected`;
-    }
-  });
 });
 
-document.querySelectorAll('.close-mini').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const key = btn.dataset.closeMini;
-    const mini = document.querySelector(`[data-mini="${key}"]`);
-    if(mini){
-      mini.classList.remove('open');
-    }
-  });
 });
-  attachDoseHandlers();
-}
+  }
 
-function attachDoseHandlers(){
-
-  document.querySelectorAll('.dose').forEach(btn => {
-
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // 🚨 CRITICAL
-
-      const key = btn.dataset.key;
-      const dose = btn.dataset.dose;
-
-      const card = btn.closest('.card');
-      if (!card) return;
-
-      const mini = card.querySelector(`.mini-wrap[data-mini="${key}"]`);
-      const parking = card.querySelector(`.mini-parking[data-mini-parking="${key}"]`);
-
-      if (!mini || !parking) return;
-
-      // move mini
-      parking.appendChild(mini);
-      mini.style.display = 'block';
-
-      // autofill
-      const parsed = parseAmount(dose);
-
-      const amtInput = mini.querySelector('[data-role="amountPerVial"]');
-      const unitSelect = mini.querySelector('[data-role="amountUnit"]');
-
-      if (amtInput && !isNaN(parsed.amount)) amtInput.value = parsed.amount;
-      if (unitSelect && parsed.unit) unitSelect.value = parsed.unit;
-
-      // wire calculator ONCE
-      if (!mini.dataset.wired) {
-        wireMiniCalculator(mini);
-        mini.dataset.wired = "true";
-      }
-    });
-
-  });
-
-}
 
 function setGuideFilter(filter){
   guideFilter = filter;
@@ -595,7 +509,7 @@ function openMini(card, btn, doseLabel){
   const amountInput = mini.querySelector('[data-role="amountPerVial"]');
   const vialUnitSel = mini.querySelector('[data-role="vialUnit"]');
   const diluentInput = mini.querySelector('[data-role="diluentMl"]');
-  const desiredInput = mini.querySelector('[data-role="desired"]');
+  const desiredInput = mini.querySelector('[data-role="desiredDose"]');
   const desiredUnitSel = mini.querySelector('[data-role="desiredUnit"]');
 
   const metaEl = mini.querySelector('[data-role="miniMeta"]');
@@ -632,9 +546,9 @@ function closeMini(mini){
 function updateMini(mini){
   const amountPerVial = Number(mini.querySelector('[data-role="amountPerVial"]').value||0);
   const diluentMl = Number(mini.querySelector('[data-role="diluentMl"]').value||0);
-  const desired = Number(mini.querySelector('[data-role="desired"]').value||0);
+  const desired = Number(mini.querySelector('[data-role="desiredDose"]').value||0);
   const desiredUnit = mini.querySelector('[data-role="desiredUnit"]').value;
-  const syringeScale = Number(mini.querySelector('[data-role="syringeScale"]').value||100);
+  const syringeScale = Number(mini.querySelector('[data-role="syringeType"]').value||100);
   const vialUnit = (mini.querySelector('[data-role="vialUnit"]')?.value || mini.dataset.vialUnit || 'mg');
 
   const res = classicCalc({amountPerVial, vialUnit, diluentMl, desired, desiredUnit, syringeScale});
@@ -655,18 +569,17 @@ function updateMini(mini){
   }
 
   // update visual
-  const classic = mini.querySelector('.classic');
-  const fill = mini.querySelector('.fill');
-  const cursor = mini.querySelector('.cursor');
-  const ticks = mini.querySelector('.ticks');
+  const syringe = mini.querySelector('[data-role="syringeVisual"]');
 
-  if(isFinite(res.units) && res.units >= 0){
-    classic.hidden = false;
-    fill.style.width = `${res.unitsPct}%`;
-    cursor.style.left = `calc(${res.unitsPct}% - 1px)`;
-    ensureTicks(ticks, syringeScale);
-  }else{
-    classic.hidden = true;
+  if (syringe && isFinite(res.unitsPct)) {
+    syringe.innerHTML = `
+      <div style="
+        height:10px;
+        width:${res.unitsPct}%;
+        background:linear-gradient(90deg,#7c5cff,#5b9dff);
+        border-radius:6px;
+      "></div>
+    `;
   }
 }
 
@@ -920,21 +833,7 @@ function wireMiniCalculator(mini){
       desired: desired.value,
       desiredUnit: desiredUnit.value,
       syringeScale: syringe.value
-    const syringeBar = mini.querySelector('[data-role="syringeVisual"]');
-
-    if (syringeBar && isFinite(result.unitsPct)) {
-      syringeBar.innerHTML = `
-        <div style="
-          height:100%;
-          width:${result.unitsPct}%;
-          background:linear-gradient(90deg,#7c5cff,#5b9dff);
-          border-radius:8px;
-          transition:width .2s ease;
-        "></div>
-      `;
-    }
     });
-      
 
     if(!isFinite(result.vialUnitsPerUnit)){
       concEl.textContent = '—';
@@ -980,50 +879,6 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     return;
   }
 
-
-  // ONLY react to dose buttons
-  const btn = e.target.closest('.dose');
-  if (!btn) return;
-
-  const key = btn.dataset.key;
-  const dose = btn.dataset.dose;
-
-  const card = btn.closest('.card');
-  if (!card) return;
-
-  const mini = card.querySelector(`.mini-wrap[data-mini="${key}"]`);
-  const parking = card.querySelector(`.mini-parking[data-mini-parking="${key}"]`);
-
-  if (!mini || !parking) return;
-
-  // move mini
-  parking.appendChild(mini);
-
-  // show
-  mini.style.display = 'block';
-
-  // autofill
-  const parsed = parseAmount(dose);
-
-  const amtInput = mini.querySelector('[data-role="amountPerVial"]');
-  const unitSelect = mini.querySelector('[data-role="amountUnit"]');
-
-  if (amtInput && !isNaN(parsed.amount)) amtInput.value = parsed.amount;
-  if (unitSelect && parsed.unit) unitSelect.value = parsed.unit;
-
-  // ✅ wire calculator ONCE
-  if (!mini.dataset.wired) {
-    wireMiniCalculator(mini);
-    mini.dataset.wired = "true";
-  }
-});
-
-  const close = e.target.closest('[data-close-mini]');
-  if (!close) return;
-
-  const mini = close.closest('.mini-wrap');
-  if (mini) mini.style.display = 'none';
-});
 
   // Restore persisted states
   setTab(activeTab);
