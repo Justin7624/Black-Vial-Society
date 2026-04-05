@@ -27,6 +27,24 @@ function stockClass(n){
   return 'ok';
 }
 
+function getPrice(itemName, doseLabel){
+  const base = parseAmount(doseLabel).amount || 0;
+
+  // detect kit
+  const isKit = /kit/i.test(doseLabel);
+
+  let price = base;
+
+  if(isKit){
+    price *= 10; // 10 vials
+    price *= KIT_MULTIPLIER;
+  } else {
+    price *= PRICE_MULTIPLIER;
+  }
+
+  return roundDollarCutoff(price);
+}
+
 /* ---------- Classic math with unit handling ---------- */
 function classicCalc({amountPerVial, vialUnit='mg', diluentMl, desired, desiredUnit='mg', syringeScale=100}) {
   const amt   = Number(amountPerVial)||0;
@@ -184,6 +202,10 @@ function guidePasses(item, q){
   const passQ = !query || inText.includes(query);
   let passFilter = true;
 
+  <div class="price-range">
+  $${min.toFixed(2)} – $${max.toFixed(2)} range
+</div>
+
   if(guideFilter === 'kits'){
     const hasKit = (item.doses || []).some(d => /kit\s*x\s*10/i.test(String(d)));
     passFilter = hasKit;
@@ -315,6 +337,11 @@ function renderGuide(){
           <span class="pill ${item.isKitCard ? 'pill-kit' : ''}">${esc(item.badge||'')}</span>
         </div>
 
+
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button class="view-btn" onclick="openModal('${item.key}')">View</button>
+        </div>
+
         <div class="desc">${esc(item.short||'')}</div>
         <div class="onset">${esc(item.onset||'')}</div>
 
@@ -402,6 +429,38 @@ function renderGuide(){
 
     targetGrid.insertAdjacentHTML('beforeend', html);
   }
+
+  function openModal(key){
+  const item = GUIDE.find(x => x.key === key);
+  if(!item) return;
+
+  $('#productModal').classList.add('open');
+  $('#modalTitle').textContent = item.name;
+  $('#modalCategory').textContent = item.badge;
+
+  const dosesHTML = item.doses.map(d => {
+    return `<button onclick="selectDose('${key}','${d}')">${d}</button>`;
+  }).join('');
+
+  $('#modalDoses').innerHTML = dosesHTML;
+
+  // default first dose
+  selectDose(key, item.doses[0]);
+
+  $('#modalInfo').innerHTML = item.more || '';
+}
+
+function closeModal(){
+  $('#productModal').classList.remove('open');
+}
+
+function selectDose(key, dose){
+  const item = GUIDE.find(x => x.key === key);
+  const price = getPrice(item.name, dose);
+
+  $('#modalPrice').textContent = `$${price.toFixed(2)}`;
+  $('#modalLine').textContent = `${item.name} — ${dose} — $${price.toFixed(2)}`;
+}
 
   if(singleGrid){
     if(singles.length){
