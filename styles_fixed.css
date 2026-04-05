@@ -490,3 +490,40 @@ td.in-stock{
     gap:8px;
   }
 }
+
+.price-range{
+  font-size:20px;
+  font-weight:800;
+  margin-top:6px;
+  color:#fff;
+}
+
+.view-btn{
+  border:1px solid #2b2e3b;
+  background:#1a1c22;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.bvs-modal-body{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  padding:20px;
+}
+
+.price-big{
+  font-size:32px;
+  font-weight:900;
+}
+
+.add-btn{
+  margin-top:10px;
+  background:linear-gradient(90deg,#ff2d2d,#b30000);
+  border:none;
+  padding:12px;
+  border-radius:10px;
+  color:#fff;
+  font-weight:700;
+}
