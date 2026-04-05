@@ -3,6 +3,14 @@
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
+/* ---------- RAW PRICE MAP ---------- */
+const RAW_PRICE_MAP = {};
+
+(DATA.prices_raw || []).forEach(([name, dose, price]) => {
+  if (!RAW_PRICE_MAP[name]) RAW_PRICE_MAP[name] = {};
+  RAW_PRICE_MAP[name][dose] = price;
+});
+
 /* ---------- Utilities ---------- */
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const money = n => `$${Number(n).toFixed(2)}`;
@@ -28,21 +36,24 @@ function stockClass(n){
 }
 
 function getPrice(itemName, doseLabel){
-  const base = parseAmount(doseLabel).amount || 0;
+  let base = RAW_PRICE_MAP[itemName]?.[doseLabel];
 
-  // detect kit
+  if(base == null){
+    console.warn("Missing raw price:", itemName, doseLabel);
+    return 0;
+  }
+
   const isKit = /kit/i.test(doseLabel);
 
   let price = base;
 
   if(isKit){
-    price *= 10; // 10 vials
-    price *= KIT_MULTIPLIER;
+    price *= PRICE_MULTIPLIER;
   } else {
     price *= PRICE_MULTIPLIER;
   }
 
-  return roundDollarCutoff(price);
+  return Math.round(price);
 }
 
 /* ---------- Classic math with unit handling ---------- */
