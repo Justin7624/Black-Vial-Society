@@ -31,9 +31,6 @@
         <button class="tab active" id="tab-guide" role="tab" aria-selected="true" aria-controls="panel-guide" data-tab="guide" type="button">
           Guide
         </button>
-        <button class="tab" id="tab-prices" role="tab" aria-selected="false" aria-controls="panel-prices" data-tab="prices" type="button">
-          Price Sheet
-        </button>
       </div>
     </div>
   </header>
@@ -73,40 +70,6 @@
     </div>
   </main>
 
-  <!-- PRICE SHEET -->
-  <main class="wrap section" id="panel-prices" role="tabpanel" aria-labelledby="tab-prices" tabindex="0">
-    <div class="title-row" style="margin-top:6px">
-      <img src="Black_Vial_Society_Transparent_Logo.png" class="vial-icon" alt="Vial" width="56" height="56" loading="lazy" decoding="async"/>
-      <h1>Price Sheet</h1>
-    </div>
-
-    <div class="price-toolbar" aria-label="Price sheet controls">
-      <div class="search">
-        <label class="sr-only" for="pq">Search price sheet</label>
-        <input id="pq" inputmode="search" autocomplete="off" placeholder="Search product or strength…"/>
-      </div>
-
-      <button class="chip" id="ptoggleOOS" type="button" aria-pressed="false">Hide out-of-stock</button>
-<span class="small">Click headers to sort</span>
-      <span class="small" id="updated"></span>
-    </div>
-
-    <div class="status" id="pstatus" aria-live="polite"></div>
-
-<table id="priceTable">
-  <thead>
-    <tr>
-      <th class="sort" data-sort="name" scope="col">Product <span class="arrow" aria-hidden="true"></span></th>
-      <th class="sort" data-sort="strength" scope="col">Strength <span class="arrow" aria-hidden="true"></span></th>
-      <th class="sort num" data-sort="price" scope="col">Price <span class="arrow" aria-hidden="true"></span></th>
-      <th class="sort num" data-sort="stock" scope="col">Stock <span class="arrow" aria-hidden="true"></span></th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-    <div id="pempty" class="empty" style="display:none">No matches.</div>
-  </main>
-
     <footer class="footer">
     <div class="foot-wrap">
       <div class="footer-left">
@@ -125,5 +88,37 @@
   </footer>
 
   <script defer src="app_fixed.js"></script>
+
+  <div id="productModal" class="bvs-modal-overlay">
+  <div class="bvs-modal-card">
+
+    <div class="bvs-modal-head">
+      <h2 id="modalTitle">Product</h2>
+      <button onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="bvs-modal-body">
+
+      <div class="modal-left">
+        <div id="modalCategory" class="pill"></div>
+        <div id="modalPrice" class="price-big">$0.00</div>
+        <div id="modalLine" class="line-item"></div>
+
+        <button class="add-btn">Add to Cart</button>
+      </div>
+
+      <div class="modal-right">
+        <h3>Choose strength</h3>
+        <div id="modalDoses" class="doses"></div>
+
+        <div class="modal-info">
+          <ul id="modalInfo"></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  
 </body>
 </html>
