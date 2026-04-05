@@ -202,10 +202,6 @@ function guidePasses(item, q){
   const passQ = !query || inText.includes(query);
   let passFilter = true;
 
-  <div class="price-range">
-  $${min.toFixed(2)} – $${max.toFixed(2)} range
-</div>
-
   if(guideFilter === 'kits'){
     const hasKit = (item.doses || []).some(d => /kit\s*x\s*10/i.test(String(d)));
     passFilter = hasKit;
@@ -304,6 +300,11 @@ function renderGuide(){
   const kitGrid = document.getElementById('kitGrid');
 
   function renderCard(item, targetGrid){
+    const prices = (item.doses || [])
+      .map(d => getPrice(item.name, d))
+      .filter(p => !isNaN(p));
+    const min = prices.length ? Math.min(...prices) : 0;
+    const max = prices.length ? Math.max(...prices) : 0;
     const detailsOpen = guideExpanded;
 
     const doses = (item.doses||[]).map(label=>{
@@ -331,6 +332,10 @@ function renderGuide(){
     const more = item.more ? item.more : '<ul><li>Educational info only.</li></ul>';
 
     const html = `
+      <div class="price-range">
+        ${prices.length ? `$${min.toFixed(2)} – $${max.toFixed(2)}` : ''}
+      </div>
+    
       <article class="card ${item.isKitCard ? 'kit-card' : ''}" data-key="${esc(item.key)}">
         <div class="title">
           <h3>${esc(item.name)}</h3>
