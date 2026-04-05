@@ -527,3 +527,55 @@ td.in-stock{
   color:#fff;
   font-weight:700;
 }
+
+
+.modal-section-title{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+/* Dose buttons spacing */
+.modal-doses{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+/* More info card */
+.modal-info-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  padding:16px;
+  margin-top:10px;
+}
+
+.modal-info-card h4{
+  margin:0 0 10px 0;
+  font-size:14px;
+  font-weight:700;
+  opacity:0.9;
+}
+
+.modal-info-card ul{
+  margin:0;
+  padding-left:18px;
+}
+
+.modal-info-card li{
+  margin-bottom:6px;
+  color:#b8b9c2;
+}
+
+/* Warning box (bottom) */
+.modal-warning{
+  margin-top:16px;
+  padding:14px;
+  border-radius:12px;
+  background:rgba(255,0,0,0.05);
+  border:1px solid rgba(255,0,0,0.2);
+  font-size:13px;
+  color:#ffb3b3;
+}
