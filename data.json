@@ -138,6 +138,22 @@
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
     {
+      "key": "GLP-3RT 5mg + Cag 5mg (10mg)",
+      "name": "GLP-3RT 5mg + Cag 5mg (10mg)"",
+      "badge": "Weight",
+      "category": "weight",
+      "short": "Enhance appetite suppression, improve blood sugar control, and support more significant fat loss through complementary hormonal pathways.",
+      "onset": "Gradual over weeks.",
+      "fact": "Form: Lyophilized powder",
+      "doses": [
+        "10 mg"
+      ],
+      "stock": {
+        "10 mg": 10
+      },
+      "more": "<ul><li>Educational info only—always confirm your label and concentration.</li></ul>"
+    },
+    {
       "key": "motsc",
       "name": "MOTS-C",
       "badge": "Metabolic",
@@ -1138,6 +1154,13 @@
       30.0,
       "mg",
       13
+    ],
+    [
+      "GLP-3RT 5mg + Cag 5mg (10mg)"",
+      "10 mg",
+      30.00,
+      "mg"
+      10
     ],
     [
       "MOTS-C",
