@@ -518,17 +518,6 @@ td.in-stock{
   font-weight:900;
 }
 
-.add-btn{
-  margin-top:10px;
-  background:linear-gradient(90deg,#ff2d2d,#b30000);
-  border:none;
-  padding:12px;
-  border-radius:10px;
-  color:#fff;
-  font-weight:700;
-}
-
-
 .modal-section-title{
   font-size:18px;
   font-weight:700;
