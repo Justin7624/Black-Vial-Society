@@ -52,7 +52,8 @@ function stockClass(n){
 const SPECIAL_MULTIPLIER_ITEMS = new Set([
   "GLP-3RT (Retatrutide)",
   "GLP-2TZ (Tirzepatide)",
-  "HGH 191AA (Somatropin)"
+  "HGH 191AA (Somatropin)",
+  "CJC-1295 (no DAC) + Ipamorelin (Combo)"
 ]);
 
 function getPrice(itemName, doseLabel){
