@@ -39,6 +39,12 @@ function stockClass(n){
   return 'ok';
 }
 
+const SPECIAL_MULTIPLIER_ITEMS = new Set([
+  "GLP-3RT (Retatrutide)",
+  "GLP-2TZ (Tirzepatide)",
+  "HGH 191AA (Somatropin)"
+]);
+
 function getPrice(itemName, doseLabel){
   const lookupName = itemName || '';
   const base = RAW_PRICE_MAP[lookupName]?.[doseLabel];
@@ -49,7 +55,17 @@ function getPrice(itemName, doseLabel){
   }
 
   const isKit = /kit/i.test(String(doseLabel));
-  const multiplier = isKit ? KIT_MULTIPLIER : PRICE_MULTIPLIER;
+
+  let multiplier;
+
+  if (isKit) {
+    multiplier = KIT_MULTIPLIER;
+  } else if (SPECIAL_MULTIPLIER_ITEMS.has(lookupName)) {
+    multiplier = PRICE_MULTIPLIER; // 4.29
+  } else {
+    multiplier = DEFAULT_MULTIPLIER; // everything else
+  }
+
   return Math.round(Number(base) * multiplier);
 }
 
@@ -124,7 +140,9 @@ let guideExpanded = store.get('bvs.guideExpanded', false);
 let sortKey = store.get('bvs.priceSortKey', 'name');
 let sortDir = store.get('bvs.priceSortDir', 'asc');
 
-// Price inflation (hard-coded like original)
+// Price inflation for everything else
+const DEFAULT_MULTIPLIER = 2.5; // 
+//Reta, Tirz, and HGH specific.
 const PRICE_MULTIPLIER = 4.29;
 // Kit-specific multiplier
 const KIT_MULTIPLIER = 2;
