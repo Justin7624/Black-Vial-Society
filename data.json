@@ -80,7 +80,7 @@
         "20mg kit x10": 7,
         "30mg kit x10": 11,
         "40mg kit x10": 10,
-        "50mg kit x10": 1
+        "50mg kit x10": 1,
         "60mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -98,7 +98,9 @@
         "10 mg",
         "15 mg",
         "20 mg",
-        "5mg kit x10"
+        "5mg kit x10",
+        "10mg kit x10",
+        "15mg kit x10"
       ],
       "stock": {
         "5 mg": 26,
@@ -562,7 +564,7 @@
         "10 mg": 13,
         "30 mg": 30,
         "5mg kit x10": 1,
-        "10mg kit x10": 1
+        "10mg kit x10": 1,
         "30mg kit x10": 3
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -1669,7 +1671,7 @@
     ],
     [
       "Semax",
-      "10mg ki x10",
+      "10mg kit x10",
       200.0,
       "mg",
       1
