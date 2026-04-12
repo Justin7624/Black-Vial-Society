@@ -15,6 +15,16 @@ function rebuildRawPriceMap(){
   }
 }
 
+const ITEM_CATEGORY_MAP = Object.create(null);
+
+function rebuildItemCategoryMap(){
+  for (const key of Object.keys(ITEM_CATEGORY_MAP)) delete ITEM_CATEGORY_MAP[key];
+
+  for (const item of (GUIDE || [])) {
+    ITEM_CATEGORY_MAP[item.name] = item.category || '';
+  }
+}
+
 /* ---------- Utilities ---------- */
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const money = n => `$${Number(n).toFixed(2)}`;
@@ -54,16 +64,20 @@ function getPrice(itemName, doseLabel){
     return NaN;
   }
 
+  const category = ITEM_CATEGORY_MAP[lookupName] || '';
+  const isSupply = category === 'supplies';
   const isKit = /kit/i.test(String(doseLabel));
 
-  let multiplier;
+  let multiplier = 1;
 
-  if (isKit) {
+  if (isSupply) {
+    multiplier = 1;
+  } else if (isKit) {
     multiplier = KIT_MULTIPLIER;
   } else if (SPECIAL_MULTIPLIER_ITEMS.has(lookupName)) {
     multiplier = PRICE_MULTIPLIER; // 4.29
   } else {
-    multiplier = DEFAULT_MULTIPLIER; // everything else
+    multiplier = DEFAULT_MULTIPLIER; // your separate peptide multiplier
   }
 
   return Math.round(Number(base) * multiplier);
@@ -453,14 +467,23 @@ function computePrices(){
     // Match original behavior:
     // - Do NOT inflate certain item names
     // - Do NOT inflate units "mL" or "pack"
-    const skip = NO_INCREASE.has(String(name).toLowerCase()) || unitNorm === 'mL' || unitNorm === 'pack';
-
+    const category = ITEM_CATEGORY_MAP[name] || '';
+    const isSupply = category === 'supplies';
     const isKit = /kit\s*x\s*10/i.test(String(strength)) || /\bkit\b/i.test(String(name));
-
-    const multiplier = isKit ? KIT_MULTIPLIER : PRICE_MULTIPLIER;
-
-    const inflated = skip ? base : base * multiplier;
-
+    
+    let multiplier = 1;
+    
+    if (isSupply) {
+      multiplier = 1;
+    } else if (isKit) {
+      multiplier = KIT_MULTIPLIER;
+    } else if (SPECIAL_MULTIPLIER_ITEMS.has(name)) {
+      multiplier = PRICE_MULTIPLIER; // 4.29
+    } else {
+      multiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    const inflated = base * multiplier;
     // NEW behavior: cutoff rounding (<= $0.30 down; otherwise up)
     const finalPrice = roundDollarCutoff(inflated);
 
@@ -474,7 +497,7 @@ function computePrices(){
       priceBase: base,
       stock: s,
       unit: unitNorm,
-      skipInflation: skip,
+      skipInflation: isSupply,
       isKit,
       multiplierUsed: multiplier
   };
@@ -624,6 +647,7 @@ async function loadData(){
   GUIDE = DATA.guide || [];
   PRICES_RAW = DATA.prices_raw || [];
   rebuildRawPriceMap();
+  rebuildItemCategoryMap();
   const updatedEl = $('#updated');
   if(updatedEl) updatedEl.textContent = DATA.updated ? `Updated: ${DATA.updated}` : '';
 }
