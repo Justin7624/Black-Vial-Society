@@ -931,7 +931,7 @@
         "10 mL"
       ],
       "stock": {
-        "10 mL": 8
+        "10 mL": 0
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     },
@@ -963,7 +963,7 @@
         "30 mL"
       ],
       "stock": {
-        "30 mL": 20
+        "30 mL": 16
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     }
@@ -2080,14 +2080,14 @@
       "10 mL",
       5.0,
       "mL",
-      8
+      0
     ],
     [
       "Hospira Bac Water",
       "30 mL",
       15.0,
       "mL",
-      20
+      16
     ]
   ],
   "price_multiplier_default": 1.0
