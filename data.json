@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-26",
+  "updated": "2026-04-12",
   "guide": [
     {
       "key": "glp3rt",
@@ -972,14 +972,14 @@
       "5 mg",
       15.0,
       "mg",
-      30
+      26
     ],
     [
       "GLP-3RT (Retatrutide)",
       "10 mg",
       20.0,
       "mg",
-      104
+      184
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -993,35 +993,35 @@
       "20 mg",
       30.0,
       "mg",
-      145
+      125
     ],
     [
       "GLP-3RT (Retatrutide)",
       "30 mg",
       35.0,
       "mg",
-      49
+      36
     ],
     [
       "GLP-3RT (Retatrutide)",
       "40 mg",
       45.0,
       "mg",
-      8
+      16
     ],
     [
       "GLP-3RT (Retatrutide)",
       "50 mg",
       55.0,
       "mg",
-      9
+      8
     ],
     [
       "GLP-3RT (Retatrutide)",
       "60 mg",
       65.0,
       "mg",
-      10
+      9
     ],
     [
       "GLP-3RT (Retatrutide)",
@@ -1035,21 +1035,28 @@
       "10mg kit x10",
       200.0,
       "mg",
-      9
+      18
     ],
     [
       "GLP-3RT (Retatrutide)",
       "20mg kit x10",
       300.0,
       "mg",
-      13
+      1
     ],
     [
       "GLP-3RT (Retatrutide)",
       "30mg kit x10",
       350.0,
       "mg",
-      10
+      3
+    ],
+    [
+      "GLP-3RT (Retatrutide)",
+      "40mg kit x10",
+      400.0,
+      "mg",
+      1
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1084,7 +1091,7 @@
       "30 mg",
       30.0,
       "mg",
-      27
+      117
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1098,7 +1105,7 @@
       "50 mg",
       40.0,
       "mg",
-      10
+      18
     ],
     [
       "GLP-2TZ (Tirzepatide)",
@@ -1116,31 +1123,52 @@
     ],
     [
       "GLP-2TZ (Tirzepatide)",
+      "5mg kit x10",
+      100.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
       "10mg kit x10",
       150.0,
       "mg",
-      9
+      10
     ],
     [
       "GLP-2TZ (Tirzepatide)",
       "20mg kit x10",
       250.0,
       "mg",
-      6
+      7
     ],
     [
       "GLP-2TZ (Tirzepatide)",
       "30mg kit x10",
       300.0,
       "mg",
-      1
+      11
     ],
     [
       "GLP-2TZ (Tirzepatide)",
       "40mg kit x10",
       350.0,
       "mg",
-      9
+      10
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "50mg kit x10",
+      400.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-2TZ (Tirzepatide)",
+      "60mg kit x10",
+      450.0,
+      "mg",
+      1
     ],
     [
       "GLP-1SG (Semaglutide)",
@@ -1175,6 +1203,20 @@
       "5mg kit x10",
       150.0,
       "mg",
+      2
+    ],
+    [
+      "GLP-1SG (Semaglutide)",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "GLP-1SG (Semaglutide)",
+      "15mg kit x10",
+      250.0,
+      "mg",
       1
     ],
     [
@@ -1182,14 +1224,14 @@
       "10 mg",
       40.0,
       "mg",
-      8
+      7
     ],
     [
       "Cagrilintide",
       "5 mg",
       20.0,
       "mg",
-      14
+      4
     ],
     [
       "Cagrilintide",
@@ -1199,11 +1241,25 @@
       13
     ],
     [
+      "Cagrilintide",
+      "10mg kit x10",
+      300.0,
+      "mg",
+      1
+    ],
+    [
       "GLP-3RT 5mg + Cag 5mg (10mg)",
       "10 mg",
       30.00,
       "mg",
       10
+    ],
+    [
+      "GLP-3RT 5mg + Cag 5mg (10mg)",
+      "10mg kit x10",
+      300.00,
+      "mg",
+      1
     ],
     [
       "MOTS-C",
@@ -1231,7 +1287,7 @@
       "10mg kit x10",
       200.0,
       "mg",
-      5
+      6
     ],
     [
       "MOTS-C",
@@ -1252,7 +1308,7 @@
       "20 mg",
       35.0,
       "mg",
-      20
+      10
     ],
     [
       "BPC-157",
@@ -1273,14 +1329,14 @@
       "20 mg",
       35.0,
       "mg",
-      40
+      0
     ],
     [
       "BPC 10mg + TB 10mg (Combo)",
       "20mg kit x10",
       350.0,
       "mg",
-      40
+      0
     ],
     [
       "TB500 (Thymosin B4 Acetate)",
@@ -1297,46 +1353,81 @@
       10
     ],
     [
+      "TB500 (Thymosin B4 Acetate)",
+      "5mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "TB500 (Thymosin B4 Acetate)",
+      "10mg kit x10",
+      300.0,
+      "mg",
+      1
+    ],
+    [
       "Melanotan",
       "10 mg",
       20.0,
       "mg",
-      8
+      38
     ],
     [
       "Melanotan 2",
       "10 mg",
       20.0,
       "mg",
-      7
+      0
+    ],
+    [
+      "Melanotan",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      3
     ],
     [
       "GLOW",
       "70 mg",
       30.0,
       "mg",
-      2
+      62
+    ],
+    [
+      "GLOW",
+      "70mg kit x10",
+      300.0,
+      "mg",
+      6
     ],
     [
       "KLOW",
       "80 mg",
       35.0,
       "mg",
-      4
+      10
+    ],
+    [
+      "KLOW",
+      "80mg kit x10",
+      350.0,
+      "mg",
+      1
     ],
     [
       "NAD+",
       "500 mg",
       20.0,
       "mg",
-      19
+      9
     ],
     [
       "NAD+",
       "1000 mg",
       35.0,
       "mg",
-      15
+      5
     ],
     [
       "Ipamorelin",
@@ -1350,7 +1441,7 @@
       "10 mg",
       24.0,
       "mg",
-      21
+      11
     ],
     [
       "Ipamorelin",
@@ -1371,7 +1462,14 @@
       "10 mg",
       35.0,
       "mg",
-      0
+      10
+    ],
+    [
+      "Tesamorelin",
+      "10mg kit x10",
+      350.0,
+      "mg",
+      1
     ],
     [
       "Sermorelin Acetate",
@@ -1388,32 +1486,53 @@
       10
     ],
     [
+      "Sermorelin Acetate",
+      "5mg kit x10",
+      180.0,
+      "mg",
+      1
+    ],
+    [
+      "Sermorelin Acetate",
+      "10mg kit x10",
+      240.0,
+      "mg",
+      1
+    ],
+    [
       "SS-31",
       "10 mg",
       20.0,
       "mg",
-      8
+      48
     ],
     [
       "SS-31",
       "50 mg",
       45.0,
       "mg",
-      10
+      7
+    ],
+    [
+      "SS-31",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      4
     ],
     [
       "IGF-1 LR3",
       "1 mg",
       30.0,
       "mg",
-      5
+      0
     ],
     [
       "GHK-CU",
       "50 mg",
       20.0,
       "mg",
-      0
+      40
     ],
     [
       "GHK-CU",
@@ -1421,6 +1540,20 @@
       30.0,
       "mg",
       13
+    ],
+    [
+      "GHK-CU",
+      "50mg kit x10",
+      200.0,
+      "mg",
+      4
+    ],
+    [
+      "GHK-CU",
+      "100mg kit x10",
+      300.0,
+      "mg",
+      1
     ],
     [
       "DSIP",
@@ -1434,7 +1567,7 @@
       "10 mg",
       22.0,
       "mg",
-      10
+      0
     ],
     [
       "DSIP",
@@ -1442,6 +1575,13 @@
       28.0,
       "mg",
       10
+    ],
+    [
+      "DSIP",
+      "15mg kit x10",
+      280.0,
+      "mg",
+      1
     ],
     [
       "Epithalon",
@@ -1458,6 +1598,20 @@
       10
     ],
     [
+      "Epithalon",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "Epithalon",
+      "50mg kit x10",
+      400.0,
+      "mg",
+      1
+    ],
+    [
       "KPV",
       "5 mg",
       18.0,
@@ -1469,7 +1623,21 @@
       "10 mg",
       24.0,
       "mg",
-      12
+      11
+    ],
+    [
+      "KPV",
+      "5mg kit x10",
+      180.0,
+      "mg",
+      1
+    ],
+    [
+      "KPV",
+      "10mg kit x10",
+      240.0,
+      "mg",
+      1
     ],
     [
       "Semax",
@@ -1483,14 +1651,35 @@
       "10 mg",
       20.0,
       "mg",
-      18
+      15
     ],
     [
       "Semax",
       "30 mg",
       35.0,
       "mg",
-      0
+      10
+    ],
+    [
+      "Semax",
+      "5mg kit x10",
+      150.0,
+      "mg",
+      1
+    ],
+    [
+      "Semax",
+      "10mg ki x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "Semax",
+      "30mg kit x10",
+      350.0,
+      "mg",
+      1
     ],
     [
       "Selank",
@@ -1512,6 +1701,20 @@
       35.0,
       "mg",
       30
+    ],
+    [
+      "Selank",
+      "5mg kit x10",
+      150.0,
+      "mg",
+      1
+    ],
+    [
+      "Selank",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
     ],
     [
       "Selank",
@@ -1539,19 +1742,26 @@
       "50 mg",
       35.0,
       "mg",
-      7
+      17
     ],
     [
       "5-amino-1mq",
       "5mg kit x10",
       150.0,
       "mg",
-      1
+      2
     ],
     [
       "5-amino-1mq",
       "10mg kit x10",
       200.0,
+      "mg",
+      2
+    ],
+    [
+      "5-amino-1mq",
+      "50mg kit x10",
+      35.0,
       "mg",
       1
     ],
@@ -1570,11 +1780,25 @@
       13
     ],
     [
+      "CJC-1295 (no DAC)",
+      "10mg kit x10",
+      300.0,
+      "mg",
+      1
+    ],
+    [
       "CJC-1295 (with DAC)",
       "5 mg",
       20.0,
       "mg",
       10
+    ],
+    [
+      "CJC-1295 (with DAC)",
+      "5mg kit x10",
+      200.0,
+      "mg",
+      1
     ],
     [
       "CJC-1295 (no DAC) + Ipamorelin (Combo)",
@@ -1588,7 +1812,7 @@
       "10mg kit x10",
       280.0,
       "mg",
-      7
+      8
     ],
     [
       "AOD-9604",
@@ -1602,7 +1826,14 @@
       "10 mg",
       30.0,
       "mg",
-      9
+      4
+    ],
+    [
+      "AOD-9604",
+      "5mg kit x10",
+      200.0,
+      "mg",
+      1
     ],
     [
       "FOXO4-DRI",
@@ -1623,7 +1854,7 @@
       "100mg kit x10",
       180.0,
       "mg",
-      1
+      2
     ],
     [
       "Glutathione",
@@ -1669,8 +1900,36 @@
     ],
     [
       "HGH 191AA (Somatropin)",
+      "10iu kit x10",
+      200.0,
+      "iu",
+      1
+    ],
+    [
+      "HGH 191AA (Somatropin)",
       "12iu kit x10",
       220.0,
+      "iu",
+      2
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "15iu kit x10",
+      250.0,
+      "iu",
+      1
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "24iu kit x10",
+      350.0,
+      "iu",
+      1
+    ],
+    [
+      "HGH 191AA (Somatropin)",
+      "36iu kit x10",
+      450.0,
       "iu",
       1
     ],
@@ -1696,6 +1955,20 @@
       10
     ],
     [
+      "VIP",
+      "5mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
+      "VIP",
+      "10mg kit x10",
+      300.0,
+      "mg",
+      1
+    ],
+    [
       "snap-8",
       "10 mg",
       20.0,
@@ -1703,11 +1976,18 @@
       10
     ],
     [
+      "snap-8",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      1
+    ],
+    [
       "HCG",
       "5000 iu",
       20.0,
       "iu",
-      20
+      10
     ],
     [
       "HCG",
@@ -1718,8 +1998,15 @@
     ],
     [
       "HCG",
-      "5000iu x10",
+      "5000iu kit x10",
       200.0,
+      "iu",
+      1
+    ],
+    [
+      "HCG",
+      "10000iu kit x10",
+      300.0,
       "iu",
       1
     ],
@@ -1728,14 +2015,21 @@
       "10 mg",
       20.0,
       "mg",
-      4
+      54
+    ],
+    [
+      "PT-141 (Bremelanotide)",
+      "10mg kit x10",
+      200.0,
+      "mg",
+      5
     ],
     [
       "Ara-290",
       "10 mg",
       20.0,
       "mg",
-      10
+      0
     ],
     [
       "Pinealon",
@@ -1743,6 +2037,13 @@
       22.0,
       "mg",
       10
+    ],
+    [
+      "Pinealon",
+      "20mg kit x10",
+      220.0,
+      "mg",
+      1
     ],
     [
       "SLU-PP-332",
@@ -1777,14 +2078,14 @@
       "10 mL",
       5.0,
       "mL",
-      32
+      8
     ],
     [
       "Hospira Bac Water",
       "30 mL",
       15.0,
       "mL",
-      17
+      20
     ]
   ],
   "price_multiplier_default": 1.0
