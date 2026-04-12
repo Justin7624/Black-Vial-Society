@@ -155,11 +155,11 @@ let sortKey = store.get('bvs.priceSortKey', 'name');
 let sortDir = store.get('bvs.priceSortDir', 'asc');
 
 // Price inflation for everything else
-const DEFAULT_MULTIPLIER = 2.5; // 
+const DEFAULT_MULTIPLIER = 2; // 
 //Reta, Tirz, and HGH specific.
 const PRICE_MULTIPLIER = 4.29;
 // Kit-specific multiplier
-const KIT_MULTIPLIER = 2;
+const KIT_MULTIPLIER = 1.75;
 
 const NO_INCREASE = new Set([
   "bacteriostatic water",
