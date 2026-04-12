@@ -45,10 +45,6 @@
       flex-direction:column;
       gap:10px;
     }
-   .mini-wrap{
-      position:relative;
-      z-index:9999;
-      pointer-events:auto;
     }
    .section-grid{
       position:relative;
@@ -80,67 +76,7 @@
   details.moreinfo > summary::-webkit-details-marker{display:none}
   details.moreinfo > summary::before{content:"▶";font-size:11px;opacity:.8}
   details.moreinfo[open] > summary::before{content:"▼"}
-/* Mini calculator dropdown */
-  .mini-wrap{margin-top:8px;border:1px solid #2a2d3c;background:#14161b;border-radius:12px;overflow:visible;display:none}
-  .mini-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:700;font-size:13px}
-  .mini-sub{font-size:12px;color:#b8b9c2;font-weight:600;margin-top:2px}
-  .close-mini{cursor:pointer;border:1px solid #2b2e3b;background:#1a1d26;border-radius:999px;color:#cfd0d8;padding:6px 10px;font-size:12px}
-  .mini-body{display:grid;gap:12px;padding:10px 12px;border-top:1px solid #24283a}
-
-  /* Mini calculator fields */
-  .mini-wrap{
-      position:relative;
-      z-index:10;
-    }
-  .mini-field{display:flex;flex-direction:column;gap:6px;min-width:0}
-  .mini-field label{font-size:12px;color:#b8b9c2}
-  .mini-field input, .mini-field select{width:100%;background:#0f1116;border:1px solid #2b2e3b;border-radius:10px;color:#e8e9ef;padding:8px 10px;font-size:13px;min-width:0}
-  .mini-field select{position:relative;z-index:5}
-
-  /* Exact layout requested:
-     Peptide per vial | unit | Diluent added
-     Desired dose     | unit | Syringe scale
-  */
-  .mini-form{
-    display:grid;
-    grid-template-columns: 1fr 96px 1fr;
-    grid-template-areas:
-      "pep pepUnit dil"
-      "des desUnit syr";
-    gap:12px;
-    align-items:end;
-  }
-  .quick-presets{
-  display:flex;
-  gap:6px;
-  margin-top:4px;
-}
-
-.quick-presets button{
-  background:#1a1c22;
-  border:1px solid #2b2e3b;
-  color:#e8e9ef;
-  border-radius:8px;
-  padding:6px 10px;
-  font-size:12px;
-  cursor:pointer;
-  transition:all .15s ease;
-}
-
-.quick-presets button:hover{
-  border-color:#3fc29a;
-  background:rgba(99,230,190,.12);
-}
-  .field-pep{grid-area:pep}
-  .field-pepUnit{grid-area:pepUnit}
-  .field-diluent{grid-area:dil}
-  .field-desired{grid-area:des}
-  .field-desiredUnit{grid-area:desUnit}
-  .field-syringe{grid-area:syr}
-
-  .mini-unit label{height:14px}
-  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
+ 
   @media (max-width: 560px){
     .mini-form{
       grid-template-columns: 1fr 96px;
@@ -151,23 +87,6 @@
         "syr syr";
     }
   }
-
-  /* Classic syringe visual (mini) */
-  .classic{background:#0c0d11;border:1px solid #272930;border-radius:12px;padding:12px;margin-top:6px}
-  .tube{position:relative;height:28px;border-radius:16px;background:linear-gradient(180deg,#11131a,#0b0c10);border:1px solid #2a2c33;box-shadow:inset 0 2px 8px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05)}
-  .fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,var(--classic-a),var(--classic-b));border-radius:16px;box-shadow:inset 0 0 12px rgba(255,255,255,.25), 0 0 16px rgba(124,92,255,.45)}
-  .cursor{position:absolute;top:-6px;width:2px;background:var(--classic-c);height:40px;border-radius:2px;box-shadow:0 0 0 2px rgba(37,208,166,.15)}
-  .ticks{position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-top:8px;margin-bottom:6px;padding:0 2px}
-  .tick{position:relative;width:1px;background:#3a3d47}
-  .tick.minor{height:8px;opacity:.55}
-  .tick.major{height:14px}
-  .tick .n{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:11px;color:#aab2c5}
-
-  .mini-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
-  .stat{background:#10131a;border:1px dashed #2c3450;padding:10px;border-radius:10px;font-size:13px}
-  .stat b{display:block;font-size:12px;color:#9fb3d2;margin-bottom:4px}
-  .warn{margin-top:10px;color:var(--warn);font-weight:700;font-size:13px}
-
 
   /* COA (Certificate of Analysis) */
 
