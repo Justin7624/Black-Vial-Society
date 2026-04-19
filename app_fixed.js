@@ -379,7 +379,7 @@ function renderGuide(){
 
         <div class="price-range">${esc(rangeText)}</div>
         <div style="display:flex; gap:8px; margin-top:2px;">
-          <button class="view-btn" type="button" data-view-key="${esc(item.key)}">View</button>
+          <button class="view-btn" type="button" data-view-key="${esc(item.key)}">View Price</button>
         </div>
 
         <div class="desc">${esc(item.short||'')}</div>
