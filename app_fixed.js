@@ -156,7 +156,7 @@ let sortKey = store.get('bvs.priceSortKey', 'name');
 let sortDir = store.get('bvs.priceSortDir', 'asc');
 
 // Price inflation for everything else
-const DEFAULT_MULTIPLIER = 1.75; // 
+const DEFAULT_MULTIPLIER = 2; // 
 //Reta, Tirz, cjc+ipa, and HGH specific.
 const PRICE_MULTIPLIER = 2;
 // Kit-specific multiplier
