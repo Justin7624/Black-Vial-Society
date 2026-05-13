@@ -161,7 +161,7 @@ const DEFAULT_MULTIPLIER = 2; //
 //Reta, Tirz, cjc+ipa, and HGH specific.
 const PRICE_MULTIPLIER = 4.29;
 // Kit-specific multiplier
-const KIT_MULTIPLIER = 1.50;
+const KIT_MULTIPLIER = 1.75;
 
 const NO_INCREASE = new Set([
   "bacteriostatic water",
