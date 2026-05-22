@@ -2074,17 +2074,31 @@
     ],
     [
       "Acetic Acid",
-      "10 mL",
+      "3 mL",
       6.0,
       "mL",
+      30
+    ],
+    [
+      "Acetic Acid",
+      "10 mL",
+      10.0,
+      "mL",
       3
+    ],
+    [
+      "Bac Water",
+      "3 mL",
+      4.0,
+      "mL",
+      95
     ],
     [
       "Bac Water",
       "10 mL",
       5.0,
       "mL",
-      84
+      79
     ],
     [
       "Hospira Bac Water",
