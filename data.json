@@ -950,7 +950,7 @@
         "10 mL"
       ],
       "stock": {
-        "3 mL": 30
+        "3 mL": 30,
         "10 mL": 3
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
