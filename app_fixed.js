@@ -54,7 +54,7 @@ const SPECIAL_MULTIPLIER_ITEMS = new Set([
   "GLP-2TZ (Tirzepatide)",
   "HGH 191AA (Somatropin)",
   "CJC-1295 (no DAC) + Ipamorelin (Combo)",
-  "ghkcu"
+  "GHK-CU"
 ]);
 
 function getPrice(itemName, doseLabel){
