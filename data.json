@@ -863,11 +863,13 @@
       "onset": "Varies",
       "fact": "Form: Lyophilized powder",
       "doses": [
+        "10 mg",
         "20 mg"
       ],
       "stock": {
-        "20 mg": 0,
-        "20mg kit x10": 0
+        "10 mg": 10
+        "20 mg": 10,
+        "20mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -2040,9 +2042,16 @@
     [
       "Pinealon",
       "20 mg",
-      22.0,
+      20.0,
       "mg",
-      0
+      10
+    ],
+    [
+      "Pinealon",
+      "20 mg",
+      30.0,
+      "mg",
+      10
     ],
     [
       "Pinealon",
