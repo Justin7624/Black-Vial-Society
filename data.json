@@ -523,6 +523,22 @@
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
     {
+      "key": "Adamax",
+      "name": "Adamax",
+      "badge": "Nootropic",
+      "category": "energy",
+      "short": "Nootropic research peptide often discussed for focus, mood, and cognitive performance support",
+      "onset": "Varies.",
+      "fact": "Form: Lyophilized powder",
+      "doses": [
+        "5 mg"
+      ],
+      "stock": {
+        "5 mg": 66,
+      },
+      "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
+    },
+    {
       "key": "semax",
       "name": "Semax",
       "badge": "Nootropic",
@@ -1646,6 +1662,13 @@
       240.0,
       "mg",
       2
+    ],
+    [
+      "Adamax",
+      "5 mg",
+      25.0,
+      "mg",
+      66
     ],
     [
       "Semax",
