@@ -57,6 +57,11 @@ const SPECIAL_MULTIPLIER_ITEMS = new Set([
   "GHK-CU"
 ]);
 
+const SPECIAL_KIT_MULTIPLIER_ITEMS = new Set([
+  "HGH 191AA (Somatropin)",
+  "Lobster HGH 191AA (Somatropin)"
+]);
+
 function getPrice(itemName, doseLabel){
   const lookupName = itemName || '';
   const base = RAW_PRICE_MAP[lookupName]?.[doseLabel];
@@ -78,6 +83,8 @@ function getPrice(itemName, doseLabel){
     multiplier = KIT_MULTIPLIER;
   } else if (SPECIAL_MULTIPLIER_ITEMS.has(lookupName)) {
     multiplier = PRICE_MULTIPLIER; // 4.29
+  } else if (SPECIAL_KIT_MULTIPLIER_ITEMS.has(lookupName)) {
+    multiplier = SPECIAL_KIT_MULTIPLIER; 
   } else {
     multiplier = DEFAULT_MULTIPLIER; // your separate peptide multiplier
   }
@@ -162,6 +169,8 @@ const DEFAULT_MULTIPLIER = 2; //
 const PRICE_MULTIPLIER = 4.29;
 // Kit-specific multiplier
 const KIT_MULTIPLIER = 1.75;
+// Special Kit multiplier
+const SPECIAL_KIT_MULTIPLIER = 2;
 
 const NO_INCREASE = new Set([
   "bacteriostatic water",
