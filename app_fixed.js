@@ -78,16 +78,16 @@ function getPrice(itemName, doseLabel){
   let multiplier = 1;
 
   if (isSupply) {
-    multiplier = 1;
-  } else if (isKit) {
-    multiplier = KIT_MULTIPLIER;
-  } else if (SPECIAL_MULTIPLIER_ITEMS.has(lookupName)) {
-    multiplier = PRICE_MULTIPLIER; // 4.29
-  } else if (SPECIAL_KIT_MULTIPLIER_ITEMS.has(lookupName)) {
-    multiplier = SPECIAL_KIT_MULTIPLIER; 
-  } else {
-    multiplier = DEFAULT_MULTIPLIER; // your separate peptide multiplier
-  }
+  multiplier = 1;
+} else if (isKit && SPECIAL_KIT_MULTIPLIER_ITEMS.has(lookupName)) {
+  multiplier = SPECIAL_KIT_MULTIPLIER; // 2.0
+} else if (isKit) {
+  multiplier = KIT_MULTIPLIER; // 1.75
+} else if (SPECIAL_MULTIPLIER_ITEMS.has(lookupName)) {
+  multiplier = PRICE_MULTIPLIER; // 4.29
+} else {
+  multiplier = DEFAULT_MULTIPLIER;
+}
 
   return Math.round(Number(base) * multiplier);
 }
@@ -486,10 +486,12 @@ function computePrices(){
     
     if (isSupply) {
       multiplier = 1;
+    } else if (isKit && SPECIAL_KIT_MULTIPLIER_ITEMS.has(name)) {
+      multiplier = SPECIAL_KIT_MULTIPLIER;
     } else if (isKit) {
       multiplier = KIT_MULTIPLIER;
     } else if (SPECIAL_MULTIPLIER_ITEMS.has(name)) {
-      multiplier = PRICE_MULTIPLIER; // 4.29
+      multiplier = PRICE_MULTIPLIER;
     } else {
       multiplier = DEFAULT_MULTIPLIER;
     }
