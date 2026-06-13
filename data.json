@@ -756,14 +756,32 @@
       "stock": {
         "10iu": 19,
         "12iu": 20,
-        "15iu": 10,
-        "24iu": 9,
-        "36iu": 8,
+        "15iu": 9,
+        "24iu": 0,
+        "36iu": 13,
         "10iu kit x10": 1,
         "12iu kit x10": 2,
         "15iu kit x10": 0,
         "24iu kit x10": 0,
-        "36iu kit x10": 0
+        "36iu kit x10": 1
+      },
+      "more": "<ul><li>Only use with a licensed prescriber.</li><li>Educational info only\u2014always confirm your label, strength (IU), and storage.</li></ul>"
+    },
+  {
+    "key": "Lobsterhgh191aa",
+      "name": "Lobster HGH 191AA (Somatropin)",
+      "badge": "Hormone",
+      "category": "energy",
+      "short": "Prescription hormone\u2014used for GH therapy under medical supervision.",
+      "onset": "Varies.",
+      "fact": "Form: Lyophilized powder",
+      "doses": [
+        "24iu",
+        "24iu kit x10"
+      ],
+      "stock": {
+        "24iu": 20,
+        "24iu kit x10": 2,
       },
       "more": "<ul><li>Only use with a licensed prescriber.</li><li>Educational info only\u2014always confirm your label, strength (IU), and storage.</li></ul>"
     },
@@ -1967,6 +1985,20 @@
       450.0,
       "iu",
       0
+    ],
+    [
+      "Lobster HGH 191AA (Somatropin)",
+      "24iu",
+      40.0,
+      "iu",
+      20
+    ],
+    [
+      "Lobster HGH 191AA (Somatropin)",
+      "24iu kit x10",
+      400.0,
+      "iu",
+      2
     ],
     [
       "KissPeptin-10",
