@@ -512,7 +512,9 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 30,
