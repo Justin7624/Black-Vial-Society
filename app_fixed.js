@@ -59,7 +59,11 @@ const SPECIAL_MULTIPLIER_ITEMS = new Set([
 
 const SPECIAL_KIT_MULTIPLIER_ITEMS = new Set([
   "HGH 191AA (Somatropin)",
-  "Lobster HGH 191AA (Somatropin)"
+  "Lobster HGH 191AA (Somatropin)",
+  "GLP-3RT (Retatrutide)",
+  "GLP-2TZ (Tirzepatide)",
+  "CJC-1295 (no DAC) + Ipamorelin (Combo)",
+  "GHK-CU"
 ]);
 
 function getPrice(itemName, doseLabel){
