@@ -21,23 +21,28 @@
         "5mg kit x10",
         "10mg kit x10",
         "20mg kit x10",
-        "30mg kit x10"
+        "30mg kit x10",
+        "40mg kit x10",
+        "50mg kit x10",
+        "60mg kit x10"
       ],
       "stock": {
-        "5 mg": 35,
-        "10 mg": 189,
-        "15 mg": 19,
-        "20 mg": 259,
-        "30 mg": 171,
-        "40 mg": 26,
-        "50 mg": 18,
-        "60 mg": 17,
-        "5mg kit x10": 3,
-        "10mg kit x10": 18,
-        "15mg kit x10": 1,
-        "20mg kit x10": 25,
-        "30mg kit x10": 17,
-        "40mg kit x10": 2
+        "5 mg": 64,
+        "10 mg": 330,
+        "15 mg": 73,
+        "20 mg": 92,
+        "30 mg": 380,
+        "40 mg": 71,
+        "50 mg": 50,
+        "60 mg": 128,
+        "5mg kit x10": 6,
+        "10mg kit x10": 33,
+        "15mg kit x10": 7,
+        "20mg kit x10": 9,
+        "30mg kit x10": 38,
+        "40mg kit x10": 7,
+        "50mg kit x10": 5,
+        "60mg kit x10": 12
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -62,26 +67,30 @@
         "10mg kit x10",
         "20mg kit x10",
         "30mg kit x10",
-        "40mg kit x10"
+        "40mg kit x10",
+        "50mg kit x10",
+        "60mg kit x10",
+        "100mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 113,
-        "15 mg": 19,
-        "20 mg": 192,
-        "30 mg": 106,
-        "40 mg": 150,
-        "50 mg": 17,
-        "60 mg": 90,
-        "100 mg": 10,
+        "10 mg": 158,
+        "15 mg": 116,
+        "20 mg": 282,
+        "30 mg": 211,
+        "40 mg": 57,
+        "50 mg": 164,
+        "60 mg": 210,
+        "100 mg": 17,
         "5mg kit x10": 1,
-        "10mg kit x10": 11,
-        "15mg kit x10": 1,
-        "20mg kit x10": 19,
-        "30mg kit x10": 10,
-        "40mg kit x10": 15,
-        "50mg kit x10": 1,
-        "60mg kit x10": 9
+        "10mg kit x10": 15,
+        "15mg kit x10": 11,
+        "20mg kit x10": 28,
+        "30mg kit x10": 21,
+        "40mg kit x10": 5,
+        "50mg kit x10": 16,
+        "60mg kit x10": 21,
+        "100mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -100,16 +109,18 @@
         "20 mg",
         "5mg kit x10",
         "10mg kit x10",
-        "15mg kit x10"
+        "15mg kit x10",
+        "20mg kit x10"
       ],
       "stock": {
-        "5 mg": 24,
-        "10 mg": 18,
+        "5 mg": 14,
+        "10 mg": 62,
         "15 mg": 10,
-        "20 mg": 19,
-        "5mg kit x10": 2,
-        "10mg kit x10": 1,
-        "15mg kit x10": 1
+        "20 mg": 78,
+        "5mg kit x10": 1,
+        "10mg kit x10": 6,
+        "15mg kit x10": 1,
+        "20mg kit x10": 7
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -139,11 +150,14 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
-        "5 mg": 39,
-        "10 mg": 39,
+        "5 mg": 77,
+        "10 mg": 37,
+        "5mg kit x10": 7,
         "10mg kit x10": 3
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -157,7 +171,8 @@
       "onset": "Gradual over weeks.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
         "10 mg": 10,
@@ -181,11 +196,12 @@
         "40mg kit x10"
       ],
       "stock": {
-        "10 mg": 4,
+        "10 mg": 105,
         "30 mg": 8,
-        "40 mg": 107,
-        "10mg kit x10": 0,
-        "40mg kit x10": 10
+        "40 mg": 43,
+        "10mg kit x10": 10,
+        "30mg kit x10": 0,
+        "40mg kit x10": 4
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -200,11 +216,13 @@
       "doses": [
         "10 mg",
         "20 mg",
+        "10mg kit x10",
         "20mg kit x10"
       ],
       "stock": {
-        "10 mg": 53,
+        "10 mg": 32,
         "20 mg": 30,
+        "10mg kit x10": 3,
         "20mg kit x10": 3
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -218,10 +236,12 @@
       "onset": "Often described as gradual over weeks.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 65
+        "10 mg": 228,
+        "10mg kit x10": 22
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -238,8 +258,8 @@
         "20mg kit x10"
       ],
       "stock": {
-        "20 mg": 109,
-        "20mg kit x10": 10
+        "20 mg": 20,
+        "20mg kit x10": 2
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -253,12 +273,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 39,
-        "5mg kit x10": 1
+        "10 mg": 42,
+        "5mg kit x10": 1,
+        "10mg kit x10": 4
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -271,11 +294,12 @@
       "onset": "Often noticeable over days to weeks.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 18,
-        "10mg kit x10": 1
+        "10 mg": 45,
+        "10mg kit x10": 4
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -288,10 +312,12 @@
       "onset": "Often noticeable over days to weeks.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 70
+        "10 mg": 45,
+        "10mg kit x10"
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -304,11 +330,12 @@
       "onset": "Usually gradual (weeks+).",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "70 mg"
+        "70 mg",
+        "70mg kit x10"
       ],
       "stock": {
-        "70 mg": 77,
-        "70mg kit x10": 7
+        "70 mg": 67,
+        "70mg kit x10": 6
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -321,10 +348,11 @@
       "onset": "Usually gradual (weeks+).",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "80 mg"
+        "80 mg",
+        "80mg kit x10"
       ],
       "stock": {
-        "80 mg": 67,
+        "80 mg": 66,
         "80mg kit x10": 6
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -339,11 +367,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "500 mg",
-        "1000 mg"
+        "1000 mg",
+        "500mg kit x10",
+        "1000mg kit x10"
       ],
       "stock": {
-        "500 mg": 55,
-        "1000 mg": 67
+        "500 mg": 230,
+        "1000 mg": 78,
+        "500mg kit x10": 23,
+        "1000mg kit x10": 7
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -358,12 +390,14 @@
       "doses": [
         "5 mg",
         "10 mg",
+        "5mg kit x10",
         "10mg kit x10"
       ],
       "stock": {
         "5 mg": 19,
-        "10 mg": 20,
-        "10mg kit x10": 2
+        "10 mg": 80,
+        "5mg kit x10",
+        "10mg kit x10": 8
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -377,12 +411,19 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "20 mg",
+        "5mg kit x10",
+        "10mg kit x10",
+        "20mg kit x10"
       ],
       "stock": {
         "5 mg": 17,
-        "10 mg": 12,
-        "10mg kit x10": 1
+        "10 mg": 88,
+        "20 mg": 110,
+        "5mg kit x10": 1,
+        "10mg kit x10": 8,
+        "20mg kit x10": 11
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -396,13 +437,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
-        "5 mg": 10,
-        "10 mg": 10,
-        "5mg kit x10": 1,
-        "10mg kit x10": 1
+        "5 mg": 40,
+        "10 mg": 50,
+        "5mg kit x10": 4,
+        "10mg kit x10": 5
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -416,13 +459,16 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "10 mg",
-        "50 mg"
+        "50 mg",
+        "10mg kit x10",
+        "50mg kit x10"
         
       ],
       "stock": {
-        "10 mg": 44,
-        "50 mg": 20,
-        "10mg kit x10": 4
+        "10 mg": 33,
+        "50 mg": 15,
+        "10mg kit x10": 3,
+        "50mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -435,10 +481,12 @@
       "onset": "Varies.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "1 mg"
+        "1 mg",
+        "1mg kit x10"
       ],
       "stock": {
-        "1 mg": 40
+        "1 mg": 27,
+        "1mg kit x10": 2
       },
       "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -452,12 +500,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "50 mg",
-        "100 mg"
+        "100 mg",
+        "50mg kit x10",
+        "100mg kit x10"
       ],
       "stock": {
-        "50 mg": 58,
-        "100 mg": 21,
-        "50mg kit x10": 5
+        "50 mg": 82,
+        "100 mg": 48,
+        "50mg kit x10": 8,
+        "100mg kit x10": 4
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -472,13 +523,18 @@
       "doses": [
         "5 mg",
         "10 mg",
-        "15 mg"
+        "15 mg",
+        "5mg kit x10",
+        "10mg kit x10",
+        "15mg kit x10"
       ],
       "stock": {
-        "5 mg": 10,
-        "10 mg": 10,
-        "15 mg": 10,
-        "15mg kit x10": 1
+        "5 mg": 12,
+        "10 mg": 106,
+        "15 mg": 9,
+        "5mg kit x10": 1,
+        "10mg kit x10": 10
+        "15mg kit x10": 0
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -492,7 +548,9 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "10 mg",
-        "50 mg"
+        "50 mg",
+        "10mg kit x10",
+        "50mg kit x10"
       ],
       "stock": {
         "10 mg": 16,
@@ -518,9 +576,9 @@
       ],
       "stock": {
         "5 mg": 30,
-        "10 mg": 20,
+        "10 mg": 186,
         "5mg kit x10": 3,
-        "10mg kit x10": 2
+        "10mg kit x10": 18
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -533,10 +591,16 @@
       "onset": "Varies.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "5 mg"
+        "5 mg",
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
-        "5 mg": 66
+        "5 mg": 50,
+        "10 mg": 86,
+        "5mg kit x10": 5,
+        "10mg kit x10": 8
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -551,14 +615,17 @@
       "doses": [
         "5 mg",
         "10 mg",
-        "30 mg"
+        "30 mg",
+        "5mg kit x10",
+        "10mg kit x10",
+        "30mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 30,
-        "30 mg": 18,
+        "10 mg": 115,
+        "30 mg": 16,
         "5mg kit x10": 1,
-        "10mg kit x10": 3,
+        "10mg kit x10": 11,
         "30mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -575,14 +642,16 @@
         "5 mg",
         "10 mg",
         "30 mg",
+        "5mg kit x10",
+        "10mg kit x10",
         "30mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
-        "10 mg": 30,
-        "30 mg": 8,
+        "10 mg": 117,
+        "30 mg": 7,
         "5mg kit x10": 1,
-        "10mg kit x10": 3,
+        "10mg kit x10": 11,
         "30mg kit x10": 0
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
@@ -600,15 +669,16 @@
         "10 mg",
         "50 mg",
         "5mg kit x10",
-        "10mg kit x10"
+        "10mg kit x10",
+        "50mg kit x10"
       ],
       "stock": {
         "5 mg": 40,
-        "10 mg": 18,
-        "50 mg": 56,
+        "10 mg": 37,
+        "50 mg": 30,
         "5mg kit x10": 4,
-        "10mg kit x10": 1,
-        "50mg kit x10": 5
+        "10mg kit x10": 3,
+        "50mg kit x10": 3
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -622,12 +692,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
-        "5 mg": 19,
-        "10 mg": 10,
-        "10mg kit x10": 1
+        "5 mg": 10,
+        "10 mg": 52,
+        "5mg kit x10": 1,
+        "10mg kit x10": 5
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -640,7 +713,8 @@
       "onset": "Gradual.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "5 mg"
+        "5 mg",
+        "5mg kit x10"
       ],
       "stock": {
         "5 mg": 10,
@@ -661,8 +735,8 @@
         "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 50,
-        "10mg kit x10": 5
+        "10 mg": 132,
+        "10mg kit x10": 13
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -676,12 +750,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
-        "5 mg": 50,
-        "10 mg": 20,
-        "5mg kit x10": 5
+        "5 mg": 30,
+        "10 mg": 48,
+        "5mg kit x10": 3,
+        "10mg kit x10": 4
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -714,8 +791,8 @@
         "100mg kit x10"
       ],
       "stock": {
-        "100 mg": 29,
-        "100mg kit x10": 2
+        "100 mg": 14,
+        "100mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -728,10 +805,12 @@
       "onset": "Varies.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "1500 mg"
+        "1500 mg",
+        "1500mg kit x10"
       ],
       "stock": {
-        "1500 mg": 7
+        "1500 mg": 67,
+        "1500mg kit x10": 6
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -758,14 +837,14 @@
       "stock": {
         "10iu": 19,
         "12iu": 20,
-        "15iu": 10,
-        "24iu": 9,
-        "36iu": 8,
+        "15iu": 6,
+        "24iu": 317,
+        "36iu": 94,
         "10iu kit x10": 1,
         "12iu kit x10": 2,
-        "15iu kit x10": 1,
-        "24iu kit x10": 0,
-        "36iu kit x10": 0
+        "15iu kit x10": 0,
+        "24iu kit x10": 31,
+        "36iu kit x10": 9
       },
       "more": "<ul><li>Only use with a licensed prescriber.</li><li>Educational info only\u2014always confirm your label, strength (IU), and storage.</li></ul>"
     },
@@ -796,10 +875,12 @@
       "onset": "Varies.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 14
+        "10 mg": 21,
+        "10mg kit x10": 2
       },
       "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -813,13 +894,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "5 mg",
-        "10 mg"
+        "10 mg",
+        "5mg kit x10",
+        "10mg kit x10"
       ],
       "stock": {
-        "5 mg": 10,
-        "10 mg": 9,
-        "5mg x10": 1,
-        "10mg x10": 0
+        "5 mg": 40,
+        "10 mg": 37,
+        "5mg kit x10": 4,
+        "10mg kit x10": 3
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -832,11 +915,12 @@
       "onset": "Gradual (weeks+).",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 10,
-        "10mg kit x10": 1
+        "10 mg": 70,
+        "10mg kit x10": 7
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -851,13 +935,14 @@
       "doses": [
         "5000 iu",
         "10000 iu",
-        "5000iu x10"
+        "5000iu kit x10",
+        "10000iu kit x10"
       ],
       "stock": {
-        "5000 iu": 8,
-        "10000 iu": 10,
-        "5000iu kit x10": 0,
-        "10000iu kit x10": 1
+        "5000 iu": 18,
+        "10000 iu": 30,
+        "5000iu kit x10": 1,
+        "10000iu kit x10": 3
       },
       "more": "<ul><li>Higher-risk category\u2014do serious research and consider professional guidance.</li><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -870,11 +955,12 @@
       "onset": "Varies.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 52,
-        "10mg kit x10": 5
+        "10 mg": 10,
+        "10mg kit x10": 1
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -887,10 +973,12 @@
       "onset": "Varies.",
       "fact": "Form: Lyophilized powder",
       "doses": [
-        "10 mg"
+        "10 mg",
+        "10mg kit x10"
       ],
       "stock": {
-        "10 mg": 0
+        "10 mg": 146,
+        "10mg kiit x10": 14
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -904,12 +992,15 @@
       "fact": "Form: Lyophilized powder",
       "doses": [
         "10 mg",
-        "20 mg"
+        "20 mg",
+        "10mg kit x10",
+        "20mg kit x10"
       ],
       "stock": {
-        "10 mg": 10,
-        "20 mg": 10,
-        "20mg kit x10": 1
+        "10 mg": 20,
+        "20 mg": 6,
+        "10mg kit x10": 2
+        "20mg kit x10": 0
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -925,7 +1016,7 @@
         "5 mg"
       ],
       "stock": {
-        "5 mg": 40
+        "5 mg": 9
       },
       "more": "<ul><li>Educational info only\u2014always confirm your label and concentration.</li></ul>"
     },
@@ -941,7 +1032,7 @@
         "10 pack"
       ],
       "stock": {
-        "10 pack": 54
+        "10 pack": 48
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     },
@@ -957,7 +1048,7 @@
         "10 mg/ 10 mL"
       ],
       "stock": {
-        "10 mg/ 10 mL": 14
+        "10 mg/ 10 mL": 24
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     },
@@ -974,8 +1065,8 @@
         "10 mL"
       ],
       "stock": {
-        "3 mL": 95,
-        "10 mL": 79
+        "3 mL": 110,
+        "10 mL": 43
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     },
@@ -992,8 +1083,8 @@
         "10 mL"
       ],
       "stock": {
-        "3 mL": 30,
-        "10 mL": 3
+        "3 mL": 88,
+        "10 mL": 11
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     },
@@ -1009,7 +1100,7 @@
         "30 mL"
       ],
       "stock": {
-        "30 mL": 54
+        "30 mL": 52
       },
       "more": "<ul><li>Supply item. Keep sterile; label concentration and date once opened/used.</li></ul>"
     }
